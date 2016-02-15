@@ -1,0 +1,23 @@
+{
+  "name": "autumn",
+  "version": "1.0.0",
+  "description": "A Template Project for traditional front-end.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uinika/autumn.git"
+  },
+  "author": "Hank",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uinika/autumn/issues"
+  },
+  "homepage": "https://github.com/uinika/autumn#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.13.4"
+  }
+}
