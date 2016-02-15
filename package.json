@@ -1,7 +1,7 @@
 {
   "name": "autumn",
   "version": "1.0.0",
-  "description": "A Template Project for traditional front-end.",
+  "description": "A Template Project for Traditional Front-end.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,2 +1,2 @@
 # autumn
-A template project for traditional front-end.
+A Template Project for Traditional Front-end.
