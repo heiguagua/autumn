@@ -31,4 +31,4 @@ gulp.task('watch', function() {
 })
 
 // Make defulat task
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['less', 'connect', 'watch']);
