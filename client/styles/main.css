@@ -1,6 +1,12 @@
 body {
   background: green;
 }
-body h1 {
+div {
+  display: block;
+  width: 500px;
+  height: 100px;
   background: red;
+}
+div h1 {
+  background: blue;
 }

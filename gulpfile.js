@@ -27,7 +27,7 @@ gulp.task('less', function () {
 
 // Watch
 gulp.task('watch', function() {
-  gulp.watch('./client/' + '**/*.*',['livereload', 'less']);
+  gulp.watch('./client/' + '**/*.*',['less', 'livereload']);
 })
 
 // Make defulat task
