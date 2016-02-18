@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" ng-app="app">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +9,13 @@
     <link href="./styles/main.css" rel="stylesheet">
   </head>
   <body>
-    <div>
-      <h1>Hello Autumn</h1>
+    <div ng-controller='DemoController'>
+      <h1>{{test}}</h1>
+      <h2>{{hank}}</h2>
     </div>
     <script src="libraries/jquery/jquery-2.2.0.min.js"></script>
     <script src="libraries/angular/angular.min.js"></script>
     <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/scripts/controllers/demo.js"></script>
   </body>
 </html>

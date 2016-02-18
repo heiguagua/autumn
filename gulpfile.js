@@ -3,6 +3,9 @@ const gulp = require("gulp"),
   connect = require('gulp-connect');
   less = require('gulp-less');
 
+//Custom Path
+let path = './client/';
+
 //Static Server
 gulp.task('connect', function() {
   connect.server({
