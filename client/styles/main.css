@@ -9,7 +9,7 @@
 }
 #login .form-box .form-head {
   overflow: hidden;
-  background: #fff;
+  background: #eee;
   -moz-border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
@@ -29,7 +29,7 @@
 }
 #login .form-box .form-body {
   padding: 25px 25px 30px;
-  background: #eee;
+  background: #D6D6D6;
   -moz-border-radius: 0 0 4px 4px;
   -webkit-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
