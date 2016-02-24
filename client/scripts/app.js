@@ -17,6 +17,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('main',{
       url: '/main',
       templateUrl: 'scripts/partials/main.html',
+      controller: 'MainController'
     })
-    ;
 });

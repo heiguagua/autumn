@@ -1,9 +1,9 @@
 'use strict';
 /* Common Controllers */
 
-var loginControllers = angular.module('loginControllers', ['ui.router', 'commonServices']);
+var commonControllers = angular.module('loginControllers', ['ui.router', 'commonServices', 'commonDirectives']);
 
-loginControllers.controller('LoginController', ['$scope', '$state', 'LoginService',
+commonControllers.controller('LoginController', ['$scope', '$state', 'LoginService',
   function($scope, $state, LoginService) {
     // Define a global object for current page
     $scope.login = {};
@@ -16,3 +16,9 @@ loginControllers.controller('LoginController', ['$scope', '$state', 'LoginServic
     }
   }
 ]);
+
+commonControllers.controller('MainController',['$scope',
+  function($scope){
+
+  }
+])
