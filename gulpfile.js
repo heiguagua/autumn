@@ -20,7 +20,7 @@ gulp.task('livereload',[],function() {
 
 // Less Processor
 gulp.task('less', function () {
-  return gulp.src('./client/styles/' + '**/*.less')
+  return gulp.src('./client/styles/' + 'index.less')
   .pipe(less())
   .pipe(gulp.dest('./client/styles/'));
 });
