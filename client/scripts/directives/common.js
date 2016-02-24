@@ -1,12 +1,13 @@
 'use strict';
-/* Common Directive */
+/* Common Directives */
 
 var commonDirectives = angular.module('commonDirectives', ['ngResource']);
 
-commonDirectives.service('MainDirective', ['$resource',
-  function($resource) {
-    return $resource('login', {}, {
-      query: {method:'POST', params:{username:'admin', password: 'password'}, isArray:true}
-    });
+commonDirectives.directive('TestDirective',[
+  return {
+    restrict: 'AE',
+    link: function(scope, element, attrs){
+
+    }
   }
 ]);
