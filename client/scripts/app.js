@@ -6,7 +6,6 @@ var app = angular.module('app', ['ui.router','loginControllers']);
 app.config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /login
   $urlRouterProvider.otherwise('/login');
-
   // Now set up the states
   $stateProvider
     .state('login', {
