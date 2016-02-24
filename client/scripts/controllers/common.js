@@ -1,7 +1,7 @@
 'use strict';
-/* Login Controllers */
+/* Common Controllers */
 
-var loginControllers = angular.module('loginControllers', ['ui.router', 'loginServices']);
+var loginControllers = angular.module('loginControllers', ['ui.router', 'commonServices']);
 
 loginControllers.controller('LoginController', ['$scope', '$state', 'LoginService',
   function($scope, $state, LoginService) {

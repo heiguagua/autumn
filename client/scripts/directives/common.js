@@ -1,9 +1,9 @@
 'use strict';
-/* Login Service */
+/* Common Directive */
 
-var loginService = angular.module('loginServices', ['ngResource']);
+var commonDirectives = angular.module('commonDirectives', ['ngResource']);
 
-loginService.service('LoginService', ['$resource',
+commonDirectives.service('MainDirective', ['$resource',
   function($resource) {
     return $resource('login', {}, {
       query: {method:'POST', params:{username:'admin', password: 'password'}, isArray:true}
