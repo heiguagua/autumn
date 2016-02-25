@@ -36,5 +36,9 @@ gulp.task('watch', function() {
   gulp.watch('./client/' + '**/*.*',['less', 'livereload']);
 })
 
-// Make defulat task
-gulp.task('start', ['express', 'less', 'connect', 'watch']);
+/* gulp */
+gulp.task('default', ['express', 'less', 'connect', 'watch']);
+/* gulp client */
+gulp.task('client', ['less', 'connect', 'watch']);
+/* gulp server */
+gulp.task('server', ['express']);
