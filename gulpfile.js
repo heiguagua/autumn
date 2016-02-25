@@ -15,7 +15,7 @@ gulp.task('connect', function() {
 
 // API Server
 gulp.task('express', function(){
-  express.run(['./server/api.js']);
+  express.run(['./server/api.js'], {}, false);
 })
 
 // Reload Server
