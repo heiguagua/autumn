@@ -1,18 +1,24 @@
 const gulp = require("gulp"),
   livereload = require("gulp-livereload"),
-  connect = require('gulp-connect');
-  less = require('gulp-less');
+  connect = require('gulp-connect'),
+  less = require('gulp-less'),
+  express = require('gulp-express');
 
-//Static Server
+// Static Server
 gulp.task('connect', function() {
   connect.server({
     root: './client/',
-    port: 5000,
+    port: 8000,
     livereload: true
   });
 });
 
-//Reload Server
+// API Server
+gulp.task('express', function(){
+  express.run(['./server/api.js']);
+})
+
+// Reload Server
 gulp.task('livereload',[],function() {
   gulp.src('./client/' + '**/*.*')
   .pipe(connect.reload());
@@ -31,4 +37,4 @@ gulp.task('watch', function() {
 })
 
 // Make defulat task
-gulp.task('default', ['less', 'connect', 'watch']);
+gulp.task('start', ['express', 'less', 'connect', 'watch']);
