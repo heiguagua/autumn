@@ -12,3 +12,23 @@ commonDirectives.directive('wiservTest', [function() {
     }
   };
 }]);
+
+commonDirectives.directive("myNav",
+[function() {
+  return {
+    templateUrl :'scripts/partials/nav.html',
+    restrict : "E",
+    link: function(scope, element, attrs){
+      var slideout = new Slideout({
+        'panel': document.getElementById('content'),
+        'menu': document.getElementById('navMenu'),
+        'padding': 250,
+        'tolerance': 70
+      });
+
+      document.getElementById('sidebarToggler').addEventListener('click', function() {
+        slideout.toggle();
+      });
+    }
+  }
+}]);
