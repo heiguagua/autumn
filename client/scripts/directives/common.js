@@ -25,7 +25,7 @@ commonDirectives.directive("myNav",
         'padding': 250,
         'tolerance': 70
       });
-
+      slideout.open();
       document.getElementById('sidebarToggler').addEventListener('click', function() {
         slideout.toggle();
       });
