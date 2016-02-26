@@ -1,8 +1,7 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-
+const express = require('express'),
+  app = express();
 // Setting static resource for express
+// const path = require('path');
 // var client = path.resolve(__dirname + '/../client');
 // app.use(express.static(client));
 
