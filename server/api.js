@@ -1,9 +1,12 @@
 const express = require('express'),
   app = express();
+const jsonLoader = require('load-json-file'),
+  jsonPath = __dirname + '/mock/';
 // Setting static resource for express
 // const path = require('path');
 // var client = path.resolve(__dirname + '/../client');
 // app.use(express.static(client));
+
 
 app.all('*', function(req, res, next) {
   // 指定一个允许向该服务器提交请求的URI.
@@ -26,6 +29,10 @@ app.all('/api/user', function(req, res) {
   res.cookie('username', 'wiserv');
   res.json('{username:"hank",password:"admin"}');
 });
+
+app.all('/getRoleMenuList_ajax.action', function(req, res) {
+  res.json( jsonLoader.sync(jsonPath + 'getRoleMenuList_ajax.json') );
+})
 
 app.listen(5000);
 
