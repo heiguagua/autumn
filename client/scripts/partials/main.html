@@ -1,7 +1,5 @@
-<main-wrapper>
+<div main-wrapper>
   <div id="main">
-    <!-- Top bar -->
-    <header></header>
     <!-- Left Menu -->
     <nav id="navMenu">
       <div class="nav-wrapper">
@@ -17,8 +15,17 @@
     </nav>
     <!-- Content -->
     <article id="content">
-      <button id="sidebarToggler"><img src="styles/images/main/sidebar-toggler.jpg"/></button>
+      <div class="navbar">
+        <button id="sidebarToggler"><img src="styles/images/main/sidebar-toggler.jpg"/></button>
+
+        <ol class="breadcrumb nav-bread">
+          <li><a href="javascript:;">数据资源管理</a></li>
+          <li><a href="javascript:;">元数据管理</a></li>
+          <li>数据接入资源管理</li>
+        </ol>
+
+      </div>
       <div ui-view></div>
     </article>
   </div>
-</main-wrapper>
+</div>
