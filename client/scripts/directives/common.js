@@ -13,20 +13,20 @@ commonDirectives.directive('wiservTest', [function() {
   };
 }]);
 
-commonDirectives.directive("myNav",
-[function() {
+commonDirectives.directive("mainWrapper",[function() {
   return {
-    templateUrl :'scripts/partials/nav.html',
-    restrict : "E",
+    templateUrl :'scripts/partials/content.html',
+    restrict : "AE",
+    replace: true,
     link: function(scope, element, attrs){
       var slideout = new Slideout({
-        'panel': document.getElementById('content'),
-        'menu': document.getElementById('navMenu'),
+        'panel': element.find('#content')[0],
+        'menu': element.find('#navMenu')[0],
         'padding': 250,
         'tolerance': 70
       });
       slideout.open();
-      document.getElementById('sidebarToggler').addEventListener('click', function() {
+      element.find('#sidebarToggler')[0].addEventListener('click', function() {
         slideout.toggle();
       });
     }
