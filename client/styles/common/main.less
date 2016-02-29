@@ -1,13 +1,19 @@
+html,body{
+  height:100%;
+}
+.uiview{
+  height:100%;
+}
 #main{
+  overflow: hidden;
+  height:100%;
   header{
     position: fixed;
     height: 40px;
     width: 100%;
     background: #303030;
-    margin-left: 250px;
   }
   nav{
-    display: inline-block;
     width: 250px;
     height: 100%;
     position: fixed;
@@ -16,7 +22,109 @@
     background: #303030;
     color:white;
   }
+  .menu-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-wrapper{
+    padding-top:40px;
+  }
+  .menu-list>li{
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0px;
+  }
+  .menu-list>li>a{
+    display: block;
+    position: relative;
+    margin: 0;
+    border: 0px;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    border-top: 1px solid #5c5c5c;
+    color: #ffffff;
+  }
   article{
+    height:100%;
+    background:#FFF;
+  }
+  #sidebarToggler{
+    background: none;
+    border: 0;
+    outline:none;
+  }
+}
+.sidebar-tog{
+  display: inline-block;
+  padding: 10px;
+}
 
+.slideout-menu {
+
+  -webkit-overflow-scrolling: touch;
+  display: none;
+}
+
+.slideout-panel {
+  position:relative;
+  z-index: 1;
+  will-change: transform;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
+}
+#modalDialog {
+  .ng-modal-overlay {
+    /* A dark translucent div that covers the whole screen */
+    position:absolute;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    opacity: 0.8;
+  }
+  .ng-modal-dialog {
+    /* A centered div above the overlay with a box shadow. */
+    z-index:10000;
+    position: absolute;
+    width: 50%; /* Default */
+
+    /* Center the dialog */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+
+    background-color: #fff;
+    box-shadow: 4px 4px 80px #000;
+  }
+  .ng-modal-dialog-content {
+    padding:10px;
+    text-align: left;
+  }
+  .ng-modal-close {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 120%;
+    display: inline-block;
+    font-weight: bold;
+    font-family: 'arial', 'sans-serif';
   }
 }
