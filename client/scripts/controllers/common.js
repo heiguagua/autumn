@@ -1,7 +1,7 @@
 'use strict';
 /* Common Controllers */
 
-var commonControllers = angular.module('loginControllers', ['ui.router', 'commonServices', 'commonDirectives']);
+var commonControllers = angular.module('commonControllers', ['ui.router', 'commonServices', 'commonDirectives']);
 
 commonControllers.controller('LoginController', ['$scope', '$state', 'LoginService',
   function($scope, $state, LoginService) {
@@ -20,10 +20,5 @@ commonControllers.controller('LoginController', ['$scope', '$state', 'LoginServi
 commonControllers.controller('MainController',['$scope',
   function($scope){
 
-  }
-])
-
-commonControllers.controller('DashboardController',['$scope',
-  function($scope){
   }
 ])

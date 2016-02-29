@@ -1,7 +1,11 @@
 'use strict';
 /* Bootstrap Application */
 
-var app = angular.module('app', ['ui.router','loginControllers']);
+var app = angular.module('app', [
+  'ui.router',
+  'commonControllers',
+  'dashboardControllers'
+]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /login
