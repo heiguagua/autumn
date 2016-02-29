@@ -18,7 +18,6 @@ commonDirectives.directive("mainWrapper",[function() {
     restrict : "AE",
     replace: true,
     link: function(scope, element, attrs){
-
       element.find('#sidebarToggler')[0].addEventListener('click', function() {
         var $content = $(element.find('#content')[0]);
         var $navMenu = $(element.find('#navMenu')[0]);
@@ -29,12 +28,12 @@ commonDirectives.directive("mainWrapper",[function() {
   }
 }]);
 
-/*content view directive*/
 commonDirectives.directive("contentView",[function() {
   return {
     restrict : "AE",
     replace : true,
     link : function(scope, element, attrs) {
+    
       $('#table').bootstrapTable({
         columns: [{
             field: 'id',

@@ -19,12 +19,11 @@ commonControllers.controller('LoginController', ['$scope', '$state', 'LoginServi
 
 commonControllers.controller('MainController',['$scope',
   function($scope){
-    
+
   }
 ])
 
 commonControllers.controller('DashboardController',['$scope',
   function($scope){
-
   }
 ])
