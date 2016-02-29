@@ -11,13 +11,14 @@
           <li><a href="#">Product</a></li>
           <li><a href="#">Profile</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a ui-sref='main.dashboard'>Contact</a></li>
         </ul>
       </div>
     </nav>
     <!-- Content -->
     <article id="content">
       <button id="sidebarToggler"><img src="styles/images/main/sidebar-toggler.jpg"/></button>
+      <div ui-view></div>
     </article>
   </div>
 </main-wrapper>

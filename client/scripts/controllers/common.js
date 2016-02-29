@@ -25,3 +25,9 @@ commonControllers.controller('MainController',['$scope',
     };
   }
 ])
+
+commonControllers.controller('DashboardController',['$scope',
+  function($scope){
+
+  }
+])

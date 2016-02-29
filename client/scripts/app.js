@@ -18,4 +18,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'scripts/partials/main.html',
       controller: 'MainController'
     })
+    .state('main.dashboard',{
+      url: '/dashboard',
+      templateUrl: 'scripts/partials/dashboard.html',
+      controller: 'DashboardController'
+    })
 });
