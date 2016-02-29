@@ -15,7 +15,6 @@ commonDirectives.directive('wiservTest', [function() {
 
 commonDirectives.directive("mainWrapper",[function() {
   return {
-    templateUrl :'scripts/partials/content.html',
     restrict : "AE",
     replace: true,
     link: function(scope, element, attrs){
