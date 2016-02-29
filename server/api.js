@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express'),
   app = express();
 const jsonLoader = require('load-json-file'),
@@ -6,7 +7,6 @@ const jsonLoader = require('load-json-file'),
 // const path = require('path');
 // var client = path.resolve(__dirname + '/../client');
 // app.use(express.static(client));
-
 
 app.all('*', function(req, res, next) {
   // 指定一个允许向该服务器提交请求的URI.
@@ -25,13 +25,14 @@ app.all('*', function(req, res, next) {
   else next();
 });
 
-app.all('/api/user', function(req, res) {
+app.all('/test', function(req, res) {
   res.cookie('username', 'wiserv');
   res.json('{username:"hank",password:"admin"}');
 });
 
-app.all('/getRoleMenuList_ajax.action', function(req, res) {
-  res.json( jsonLoader.sync(jsonPath + 'getRoleMenuList_ajax.json') );
+app.all('/menu/getRoleMenuList_ajax.action', function(req, res) {
+  let datas = jsonLoader.sync(jsonPath + 'getRoleMenuList_ajax.json');
+  res.json( datas );
 })
 
 app.listen(5000);
