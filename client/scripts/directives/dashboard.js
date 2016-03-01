@@ -3,7 +3,7 @@
 
 var dashboardDirectives = angular.module('dashboardDirectives', ['dashboardServices', 'ngResource']);
 
-dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHisService', function(PlatformPieService, PlatformHisService) {
+dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHisService', 'PlatformDataBarService', function(PlatformPieService, PlatformHisService, PlatformDataBarService) {
   return {
     restrict: "AE",
     replace: true,
@@ -60,6 +60,23 @@ dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHis
           data: PlatformPieService.rows
         }]
       });
+
+      // platformDataBar
+      var dataBarEle = element.find("#platformDataBar").children(":eq(0)");
+      element.find("#platformDataBar").html("");
+      for (var i = 0; i < PlatformDataBarService.rows.length; i++) {
+        var _vclone = dataBarEle.clone();
+        if (i > 0) {
+          _vclone.addClass("margin-top");
+        }
+        _vclone.show();
+        _vclone.find(".data-name").html(PlatformDataBarService.rows[i].name);
+
+        _vclone.find(".data-value").html(PlatformDataBarService.rows[i].volume);
+        _vclone.find(".data-increase").html("今日新增  " + PlatformDataBarService.rows[i].increase);
+        _vclone.find(".latest-increase").html("最近7天新增" + PlatformDataBarService.rows[i].latest + "&nbsp;");
+        element.find("#platformDataBar").append(_vclone);
+      }
 
       // platform history data charts
       element.find('#high-chart').highcharts('StockChart', {
