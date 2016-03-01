@@ -17,12 +17,8 @@ commonControllers.controller('LoginController', ['$scope', '$state', 'LoginServi
   }
 ]);
 
-commonControllers.controller('MainController',['$scope', 'MenuTreeService',
-  function($scope,MenuTreeService){
-    MenuTreeService.then(function(resp){
-      console.log(resp.data);
-    },function(resp){
-      console.error(resp);
-    })
+commonControllers.controller('MainController',['$scope',
+  function($scope){
+
   }
 ])
