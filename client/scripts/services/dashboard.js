@@ -130,4 +130,25 @@ dashboardServices.service('PlatformHisService', ['$resource', '$http',
     };
     return platformHisJson;
   }
-])
+]);
+
+dashboardServices.service('PlatformDataBarService', ['$resource', '$http',
+  function($resource, $http) {
+    var platformDataBarJson = {
+      "total": 2,
+      "status": true,
+      "rows": [{
+        "name": "普通文件数据量",
+        "volume": "202.82KB",
+        "increase": "0.00Byte",
+        "latest": "0.00Byte"
+      }, {
+        "name": "数据库数据量",
+        "volume": "99.53MB",
+        "increase": "0.00Byte",
+        "latest": "0.00Byte"
+      }]
+    };
+    return platformDataBarJson;
+  }
+]);
