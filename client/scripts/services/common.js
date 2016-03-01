@@ -3,6 +3,8 @@
 
 var commonService = angular.module('commonServices', ['ngResource']);
 
+commonService.constant('CONFIG', {name:'uinika'});
+
 commonService.service('LoginService', ['$resource', '$http',
   function($resource, $http) {
     $http({
@@ -14,6 +16,17 @@ commonService.service('LoginService', ['$resource', '$http',
       console.log('HTTP Response : ' + data);
     }).error(function(data, status, headers, config) {
       console.error("HTTP Status Code : "+status);
+    });
+  }
+]);
+
+commonService.service('MenuTreeService', ['$resource', '$http', 'API',
+  function($resource, $http, API) {
+    var baseURL = API.path || 'http://localhost:8080';
+    return $http({
+      method: 'GET',
+      url: baseURL+'/menu/getRoleMenuList_ajax.action',
+      withCredentials: true
     });
   }
 ]);

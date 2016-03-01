@@ -27,3 +27,12 @@ commonDirectives.directive("mainWrapper",[function() {
     }
   }
 }]);
+
+commonDirectives.directive('menuTree', [function() {
+  return {
+    restrict: 'AE',
+    link: function(scope, element, attrs){
+      console.log(element.text());
+    }
+  };
+}]);
