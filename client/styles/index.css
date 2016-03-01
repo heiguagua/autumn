@@ -45,11 +45,6 @@
 #login .form-box .form-body button {
   width: 100%;
 }
-html,
-body {
-  height: 100%;
-  font-family: '微软雅黑';
-}
 #main {
   overflow: hidden;
   height: 100%;

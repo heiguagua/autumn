@@ -1,10 +1,10 @@
 'use strict';
 /* Login Service */
 
-var LoginService = angular.module('LoginService', ['ngResource']);
+var LoginService = angular.module('LoginService',[]);
 
-LoginService.service('LoginService.login', ['$resource', '$http',
-  function($resource, $http) {
+LoginService.service('LoginService.login', ['$http',
+  function($http) {
     $http({
       method: 'POST',
       url: 'http://localhost:5000/test',

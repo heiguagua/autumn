@@ -1,7 +1,7 @@
 'use strict';
 /* Dashboard Directives */
 
-var DashboardDirective = angular.module('DashboardDirective', ['DashboardService', 'ngResource']);
+var DashboardDirective = angular.module('DashboardDirective', ['DashboardService']);
 
 DashboardDirective.directive("defaultDash", ['DashboardService.platformPie', 'DashboardService.platformHis', 'DashboardService.platformDataBar', function(platformPie, platformHis, platformDataBar) {
   return {

@@ -1,7 +1,7 @@
 'use strict';
 /* Common Directives */
 
-var MainDirective = angular.module('MainDirective', ['ngResource', 'MainService']);
+var MainDirective = angular.module('MainDirective', ['MainService']);
 
 MainDirective.directive('wiservTest', [
   function() {

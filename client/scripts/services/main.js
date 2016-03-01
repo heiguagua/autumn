@@ -1,10 +1,10 @@
 'use strict';
 /* Common Service */
 
-var MainService = angular.module('MainService', ['ngResource']);
+var MainService = angular.module('MainService', []);
 
-MainService.service('MainService.login', ['$resource', '$http',
-  function($resource, $http) {
+MainService.service('MainService.login', ['$http',
+  function($http) {
     $http({
       method: 'POST',
       url: 'http://localhost:5000/test',
@@ -18,8 +18,8 @@ MainService.service('MainService.login', ['$resource', '$http',
   }
 ]);
 
-MainService.service('MainService.menuTree', ['$resource', '$http', 'API',
-  function($resource, $http, API) {
+MainService.service('MainService.menuTree', ['$http', 'API',
+  function($http, API) {
     if (API && API.path) {
       return $http({
         method: 'GET',
