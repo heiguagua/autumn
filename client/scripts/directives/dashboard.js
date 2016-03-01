@@ -62,7 +62,6 @@ dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHis
       });
 
       // platform history data charts
-      /*
       element.find('#high-chart').highcharts('StockChart', {
         rangeSelector: {
           selected: 1,
@@ -146,30 +145,6 @@ dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHis
           }
         }]
       });
-      */
-
-      $.getJSON('http://www.hcharts.cn/datas/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
-        // Create the chart
-        $('#high-chart').highcharts('StockChart', {
-
-
-            rangeSelector : {
-                selected : 1
-            },
-
-            title : {
-                text : 'AAPL Stock Price'
-            },
-
-            series : [{
-                name : 'AAPL',
-                data : data,
-                tooltip: {
-                    valueDecimals: 2
-                }
-            }]
-        });
-    });
     }
   }
 }]);
