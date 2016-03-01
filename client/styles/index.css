@@ -50,15 +50,6 @@ body {
   height: 100%;
   font-family: '微软雅黑';
 }
-.uiview {
-  height: 100%;
-}
-.hidden {
-  display: hidden;
-}
-div[main-wrapper] {
-  height: 100%;
-}
 #main {
   overflow: hidden;
   height: 100%;
@@ -88,9 +79,11 @@ div[main-wrapper] {
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-#main div[content-view] {
+#main div[dashboard-view] {
   margin-top: 50px;
-  padding: 30px;
+  padding: 15px 30px;
+  color: white;
+  z-index: -1;
 }
 #main .menu-list {
   list-style: none;
@@ -104,13 +97,13 @@ div[main-wrapper] {
   display: block;
   margin: 0;
   padding: 0;
-  border: 0px;
+  border: 0;
 }
 #main .menu-list > li > a {
   display: block;
   position: relative;
   margin: 0;
-  border: 0px;
+  border: 0;
   padding: 10px 15px;
   text-decoration: none;
   font-size: 14px;
@@ -152,6 +145,52 @@ div[main-wrapper] {
 }
 .slideout-open .slideout-menu {
   display: block;
+}
+.home-data-bar {
+  height: 49%;
+  border: 1px solid;
+  margin-top: 0;
+}
+.home-data-bar.margin-top {
+  margin-top: 6px;
+}
+.home-data-bar .part1 {
+  float: left;
+  width: 30%;
+  height: 100%;
+  background-color: #2272C3;
+}
+.home-data-bar .part2 {
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+.home-data-bar .part3 {
+  float: right;
+  width: 40%;
+  height: 100%;
+  background-color: #996600;
+}
+.home-data-bar .fontshow {
+  margin-top: 30px;
+  word-wrap: break-word;
+  font-size: 20px;
+  text-align: center;
+}
+.home-data-bar .fontshow.white {
+  color: white;
+}
+.home-data-bar .font-style {
+  font-family: '应用字体 Regular', '应用字体';
+}
+.home-data-bar .font-mini {
+  text-align: right;
+  color: white;
+  font-size: 13px;
+}
+.panel-body {
+  border-style: hidden;
+  border-width: 0;
 }
 #content.content-collapse {
   margin-left: 0;
