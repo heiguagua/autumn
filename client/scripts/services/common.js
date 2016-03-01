@@ -22,11 +22,15 @@ commonService.service('LoginService', ['$resource', '$http',
 
 commonService.service('MenuTreeService', ['$resource', '$http', 'API',
   function($resource, $http, API) {
-    var baseURL = API.path || 'http://localhost:8080';
-    return $http({
-      method: 'GET',
-      url: baseURL+'/menu/getRoleMenuList_ajax.action',
-      withCredentials: true
-    });
+    if( API && API.path ){
+      return $http({
+        method: 'GET',
+        url: API.path+'/menu/getRoleMenuList_ajax.action',
+        withCredentials: true
+      });
+    }
+    else{
+      console.error('API Not Found in config.js');
+    }
   }
 ]);
