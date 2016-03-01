@@ -1,9 +1,9 @@
 'use strict';
 /* Dashboard Directives */
 
-var dashboardDirectives = angular.module('dashboardDirectives', ['dashboardServices', 'ngResource']);
+var DashboardDirective = angular.module('DashboardDirective', ['DashboardService', 'ngResource']);
 
-dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHisService', 'PlatformDataBarService', function(PlatformPieService, PlatformHisService, PlatformDataBarService) {
+DashboardDirective.directive("defaultDash", ['DashboardService.platformPie', 'DashboardService.platformHis', 'DashboardService.platformDataBar', function(platformPie, platformHis, platformDataBar) {
   return {
     restrict: "AE",
     replace: true,
@@ -57,24 +57,24 @@ dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHis
         series: [{
           type: 'pie',
           name: '占用空间',
-          data: PlatformPieService.rows
+          data: platformPie.rows
         }]
       });
 
       // platformDataBar
       var dataBarEle = element.find("#platformDataBar").children(":eq(0)");
       element.find("#platformDataBar").html("");
-      for (var i = 0; i < PlatformDataBarService.rows.length; i++) {
+      for (var i = 0; i < platformDataBar.rows.length; i++) {
         var _vclone = dataBarEle.clone();
         if (i > 0) {
           _vclone.addClass("margin-top");
         }
         _vclone.show();
-        _vclone.find(".data-name").html(PlatformDataBarService.rows[i].name);
+        _vclone.find(".data-name").html(platformDataBar.rows[i].name);
 
-        _vclone.find(".data-value").html(PlatformDataBarService.rows[i].volume);
-        _vclone.find(".data-increase").html("今日新增  " + PlatformDataBarService.rows[i].increase);
-        _vclone.find(".latest-increase").html("最近7天新增" + PlatformDataBarService.rows[i].latest + "&nbsp;");
+        _vclone.find(".data-value").html(platformDataBar.rows[i].volume);
+        _vclone.find(".data-increase").html("今日新增  " + platformDataBar.rows[i].increase);
+        _vclone.find(".latest-increase").html("最近7天新增" + platformDataBar.rows[i].latest + "&nbsp;");
         element.find("#platformDataBar").append(_vclone);
       }
 
@@ -140,25 +140,25 @@ dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHis
           }
         },
         series: [{
-          name: '普通文件[' + PlatformHisService['unit'] + ']',
-          data: PlatformHisService['fileList'],
+          name: '普通文件[' + platformHis['unit'] + ']',
+          data: platformHis['fileList'],
           type: 'spline',
           tooltip: {
-            valueDecimals: PlatformHisService['valueDecimals']
+            valueDecimals: platformHis['valueDecimals']
           }
         }, {
-          name: '数据库[' + PlatformHisService['unit'] + ']',
-          data: PlatformHisService['dbList'],
+          name: '数据库[' + platformHis['unit'] + ']',
+          data: platformHis['dbList'],
           type: 'spline',
           tooltip: {
-            valueDecimals: PlatformHisService['valueDecimals']
+            valueDecimals: platformHis['valueDecimals']
           }
         }, {
-          name: '全部[' + PlatformHisService['unit'] + ']',
-          data: PlatformHisService['allList'],
+          name: '全部[' + platformHis['unit'] + ']',
+          data: platformHis['allList'],
           type: 'spline',
           tooltip: {
-            valueDecimals: PlatformHisService['valueDecimals']
+            valueDecimals: platformHis['valueDecimals']
           }
         }]
       });
@@ -166,7 +166,7 @@ dashboardDirectives.directive("defaultDash", ['PlatformPieService', 'PlatformHis
   }
 }]);
 
-dashboardDirectives.directive("dashboardView", [function() {
+DashboardDirective.directive("dashboardView", [function() {
   return {
     restrict: "AE",
     replace: true,

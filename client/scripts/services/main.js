@@ -1,11 +1,9 @@
 'use strict';
 /* Common Service */
 
-var commonService = angular.module('commonServices', ['ngResource']);
+var MainService = angular.module('MainService', ['ngResource']);
 
-commonService.constant('CONFIG', {name:'uinika'});
-
-commonService.service('LoginService', ['$resource', '$http',
+MainService.service('MainService.login', ['$resource', '$http',
   function($resource, $http) {
     $http({
       method: 'POST',
@@ -15,21 +13,20 @@ commonService.service('LoginService', ['$resource', '$http',
       console.log('HTTP Cookie : ' + document.cookie);
       console.log('HTTP Response : ' + data);
     }).error(function(data, status, headers, config) {
-      console.error("HTTP Status Code : "+status);
+      console.error("HTTP Status Code : " + status);
     });
   }
 ]);
 
-commonService.service('MenuTreeService', ['$resource', '$http', 'API',
+MainService.service('MainService.menuTree', ['$resource', '$http', 'API',
   function($resource, $http, API) {
-    if( API && API.path ){
+    if (API && API.path) {
       return $http({
         method: 'GET',
-        url: API.path+'/menu/getRoleMenuList_ajax.action',
+        url: API.path + '/menu/getRoleMenuList_ajax.action',
         withCredentials: true
       });
-    }
-    else{
+    } else {
       console.error('API Not Found in config.js');
     }
   }

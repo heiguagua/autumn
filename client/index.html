@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='zh-CN' ng-app='app'>
+<html lang='zh-CN' ng-app='app' ng-strict-di>
   <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -21,17 +21,21 @@
     <script src='libraries/angular-router/angular-ui-router.min.js'></script>
     <script src='libraries/bootstrap/js/bootstrap.min.js'></script>
     <script src='libraries/bootstrap-table/bootstrap-table.min.js'></script>
-    <script src='libraries/jquery-metismenu/metisMenu.min.js'></script>
     <script src='libraries/bootstrap-table/locale/bootstrap-table-zh-CN.min.js'></script>
+    <script src='libraries/jquery-metismenu/metisMenu.min.js'></script>
     <script src='libraries/slideout/slideout.min.js'></script>
     <script src='libraries/highcharts/highstock.js'></script>
     <!-- Entry Point -->
     <script src='scripts/app.js'></script>
     <script src='scripts/config.js'></script>
-    <!-- Common -->
-    <script src='scripts/controllers/common.js'></script>
-    <script src='scripts/services/common.js'></script>
-    <script src='scripts/directives/common.js'></script>
+    <!-- Login -->
+    <script src='scripts/controllers/login.js'></script>
+    <script src='scripts/services/login.js'></script>
+    <script src='scripts/directives/login.js'></script>
+    <!-- Main -->
+    <script src='scripts/controllers/main.js'></script>
+    <script src='scripts/services/main.js'></script>
+    <script src='scripts/directives/main.js'></script>
     <!-- Dashboard -->
     <script src='scripts/controllers/dashboard.js'></script>
     <script src='scripts/services/dashboard.js'></script>

@@ -1,11 +1,10 @@
 'use strict';
 /* Dashboard Controllers */
 
-var dashboardControllers = angular.module('dashboardControllers', ['dashboardServices', 'dashboardDirectives']);
+var DashboardController = angular.module('DashboardController', ['DashboardService', 'DashboardDirective']);
 
-
-dashboardControllers.controller('DashboardController',['$scope',
-  function($scope){
+DashboardController.controller('DashboardController.dashboard', ['$scope',
+  function($scope) {
 
   }
 ])

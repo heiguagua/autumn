@@ -2,30 +2,29 @@
 /* Bootstrap Application */
 
 var app = angular.module('app', [
-  'config',
   'ui.router',
-  'commonControllers',
-  'dashboardControllers'
+  'Config',
+  'LoginController',
+  'MainController',
+  'DashboardController'
 ]);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-  // For any unmatched url, redirect to /login
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/login');
-  // Now set up the states
   $stateProvider
     .state('login', {
       url: '/login',
       templateUrl: 'scripts/partials/login.html',
-      controller: 'LoginController'
+      controller: 'LoginController.login'
     })
-    .state('main',{
+    .state('main', {
       url: '/main',
       templateUrl: 'scripts/partials/main.html',
-      controller: 'MainController'
+      controller: 'MainController.main'
     })
-    .state('main.dashboard',{
+    .state('main.dashboard', {
       url: '/dashboard',
       templateUrl: 'scripts/partials/dashboard.html',
-      controller: 'DashboardController'
+      controller: 'DashboardController.dashboard'
     })
-});
+}]);

@@ -1,9 +1,9 @@
 'use strict';
 /* Dashboard Service */
 
-var dashboardServices = angular.module('dashboardServices', ['ngResource']);
+var DashboardService = angular.module('DashboardService', ['ngResource']);
 
-dashboardServices.service('PlatformPieService', ['$resource', '$http',
+DashboardService.service('DashboardService.platformPie', ['$resource', '$http',
   function($resource, $http) {
     var platformPieJson = {
       "total": 2,
@@ -22,7 +22,7 @@ dashboardServices.service('PlatformPieService', ['$resource', '$http',
   }
 ]);
 
-dashboardServices.service('PlatformHisService', ['$resource', '$http',
+DashboardService.service('DashboardService.platformHis', ['$resource', '$http',
   function($resource, $http) {
     var platformHisJson = {
       "allList": [
@@ -132,7 +132,7 @@ dashboardServices.service('PlatformHisService', ['$resource', '$http',
   }
 ]);
 
-dashboardServices.service('PlatformDataBarService', ['$resource', '$http',
+DashboardService.service('DashboardService.platformDataBar', ['$resource', '$http',
   function($resource, $http) {
     var platformDataBarJson = {
       "total": 2,
