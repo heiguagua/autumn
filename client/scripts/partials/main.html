@@ -1,45 +1,24 @@
 <div wiserv-main-wrapper>
   <div id="main">
     <!-- Left Menu -->
-    <nav id="navMenu">
-      <div class="nav-wrapper">
-        <div class="menu">Menu</div>
-        <div wiserv-menu-tree></div>
-        <ul class="menu-list">
-          <li>
-            <a href="#">Index</a>
-          </li>
-          <li>
-            <a ui-sref='main.resourceCatalog'>Product</a>
-          </li>
-          <li>
-            <a ui-sref='main.dataResource'>Profile</a>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a ui-sref='main.dashboard'>Contact</a>
-          </li>
-        </ul>
-      </div>
+    <nav class="sidebar">
+
     </nav>
     <!-- Content -->
-    <article id="content">
-      <div class="navbar">
-        <button id="sidebarToggler"><img src="styles/images/main/sidebar-toggler.jpg"/></button>
+    <article class="content">
+      <div class="navbar navbar-default">
+        <button class="toggler"><img src="styles/images/main/sidebar-toggler.jpg"/></button>
         <ol class="breadcrumb nav-bread">
           <li>
-            <a href="javascript:;">数据资源管理</a>
+            <a>数据资源管理</a>
           </li>
           <li>
-            <a href="javascript:;">元数据管理</a>
+            <a>元数据管理</a>
           </li>
           <li>数据接入资源管理</li>
         </ol>
-
       </div>
-      <div ui-view class="content-view"></div>
+      <div ui-view class="partial-view"></div>
     </article>
   </div>
 </div>

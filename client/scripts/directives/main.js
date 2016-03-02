@@ -9,9 +9,9 @@ MainDirective.directive("wiservMainWrapper", [
       restrict: "AE",
       replace: true,
       link: function(scope, element, attrs) {
-        element.find('#sidebarToggler')[0].addEventListener('click', function() {
-          element.find('#content').toggleClass("content-collapse");
-          element.find('#navMenu').toggleClass("ml-250");
+        element.find('.toggler')[0].addEventListener('click', function() {
+          element.find('.content').toggleClass("content-collapse");
+          element.find('.sidebar').toggleClass("sidebar-collapse");
         });
       }
     }
@@ -28,7 +28,7 @@ MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
         }, function(resp) {
           console.error(resp);
         })
-      console.log(element.text());
+        console.log(element.text());
       }
     };
   }
