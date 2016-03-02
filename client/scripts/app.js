@@ -8,7 +8,8 @@ var app = angular.module('app', [
   'MainController',
   'DashboardController',
   'ResourceCatalogController',
-  'DataResourceController'
+  'DataResourceController',
+  'DataInfoController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -38,5 +39,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/dataResource',
       templateUrl: 'scripts/partials/dataResource.html',
       controller: 'DataResourceController.dataResource'
+    })
+    .state('main.dataInfo', {
+      url: '/dataInfo',
+      templateUrl: 'scripts/partials/dataInfo.html',
+      controller: 'DataInfoController.dataInfo'
     })
 }]);

@@ -3,6 +3,7 @@
 
 var DataResourceDirective = angular.module('DataResourceDirective', ['DataResourceService']);
 
+// Data Resource Directive
 DataResourceDirective.directive("wiservDataResource", [
   function() {
     return {

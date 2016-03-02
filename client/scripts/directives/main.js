@@ -2,7 +2,7 @@
 /* Common Directives */
 
 var MainDirective = angular.module('MainDirective', ['MainService']);
-
+// Main Wrapper Directive
 MainDirective.directive("wiservMainWrapper", [
   function() {
     return {
@@ -18,6 +18,7 @@ MainDirective.directive("wiservMainWrapper", [
   }
 ]);
 
+// Menu Tree Directive
 MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
   function(menuTree) {
     return {
