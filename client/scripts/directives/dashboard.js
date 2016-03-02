@@ -3,7 +3,8 @@
 
 var DashboardDirective = angular.module('DashboardDirective', ['DashboardService']);
 
-DashboardDirective.directive("defaultDash", ['DashboardService.platformPie', 'DashboardService.platformHis', 'DashboardService.platformDataBar', function(platformPie, platformHis, platformDataBar) {
+// dashboard directive
+DashboardDirective.directive("myDefaultDash", ['DashboardService.platformPie', 'DashboardService.platformHis', 'DashboardService.platformDataBar', function(platformPie, platformHis, platformDataBar) {
   return {
     restrict: "AE",
     replace: true,
@@ -161,86 +162,6 @@ DashboardDirective.directive("defaultDash", ['DashboardService.platformPie', 'Da
             valueDecimals: platformHis['valueDecimals']
           }
         }]
-      });
-    }
-  }
-}]);
-
-DashboardDirective.directive("dashboardView", [function() {
-  return {
-    restrict: "AE",
-    replace: true,
-    link: function(scope, element, attrs) {
-      element.find('#table').bootstrapTable({
-        columns: [{
-          field: 'state',
-          checkbox: true
-        }, {
-          field: 'id',
-          title: 'Item ID'
-        }, {
-          field: 'name',
-          title: 'Item Name'
-        }, {
-          field: 'price',
-          title: 'Item Price'
-        }],
-        data: [{
-          id: 1,
-          name: 'Item 1',
-          price: '$1'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }, {
-          id: 2,
-          name: 'Item 2',
-          price: '$2'
-        }],
-        pagination: true,
-        pageNumber: 1,
-        toolbar: ".toolbar",
-        clickToSelect: true,
-        showRefresh: true,
-        showToggle: true,
-        showColumns: true
       });
     }
   }
