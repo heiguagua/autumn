@@ -1,10 +1,51 @@
-<div dashboard-view>
+<div table-view>
+  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+    <div class="panel-heading" role="tab"  title="点击收缩/展开查询条件" data-toggle="collapse"   aria-expanded="true" aria-controls="collapseSearch" style="cursor: pointer">
+      <div class="panel-title" style="font-size: 14px;">
+        <span class="text-muted">查询条件</span>
+        <div class="pull-right">
+          <i class="glyphicon glyphicon-chevron-up"></i>
+        </div>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSearch">
+      <div class="panel-body">
+        <form class="form-inline" style="margin-bottom:0">
+          <div class="form-group">
+            <label class="control-label">资源目录类型</label>
+            <select  class="selectpicker">
+              <option value="">请选择</option>
+              <option value="1">主题</option>
+              <option value="3">服务</option>
+              <option value="test">test</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label">资源目录名称</label>
+            <input type="text" class="form-control input-sm"  name="catalogName" placeholder="请输入资源目录名称"/>
+          </div>
+          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
+            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="toolbar">
     <div class="btn-group">
-        <button title="" class="btn btn-default" type="button"><i class="glyphicon glyphicon-plus"></i></button>
-        <button title="" class="btn btn-default" type="button"><i class="glyphicon glyphicon-pencil"></i></button>
-        <button title="" class="btn btn-default" type="button"><i class="glyphicon glyphicon-remove"></i></button>
-        <button title="" class="btn btn-default" type="button"><i class="glyphicon glyphicon-th-list"></i></button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-plus"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-pencil"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-remove"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-th-list"></i>
+      </button>
     </div>
   </div>
   <table id="table"></table>
