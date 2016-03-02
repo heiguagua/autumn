@@ -102,13 +102,19 @@
 }
 #main article {
   height: 100%;
-  background: #f7f7f7;
+  background: #FFF;
   margin: 0 0 0 250px;
   overflow: hidden;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+}
+#main .content-view {
+  margin-top: 50px;
+  padding: 15px 30px;
+  color: #5D5F63;
+  z-index: -1;
 }
 #main .ml-250 {
   margin-left: -250px;
@@ -205,12 +211,6 @@
   padding: 14px 15px;
   margin-bottom: 0;
   background-color: #FFF;
-}
-div[default-dash] {
-  margin-top: 50px;
-  padding: 15px 30px;
-  color: #5D5F63;
-  z-index: -1;
 }
 #dashboard .home-data-bar {
   height: 49%;
