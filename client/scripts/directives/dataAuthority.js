@@ -1,10 +1,10 @@
 'use strict';
-/* Data Info Directives */
+/* Data Authority Directives */
 
-var DataInfoDirective = angular.module('DataInfoDirective', ['DataInfoService']);
+var DataAuthorityDirective = angular.module('DataAuthorityDirective', ['DataAuthorityService']);
 
 // Data Info Directive
-DataInfoDirective.directive("wiservDataInfo", [
+DataAuthorityDirective.directive("wiservDataAuthority", [
   function() {
     return {
       restrict: "AE",
@@ -15,61 +15,51 @@ DataInfoDirective.directive("wiservDataInfo", [
           width: 80,
           liveSearch: false
         });
-        
+
         element.find('#table').bootstrapTable({
           columns: [{
-            field: 'state',
-            checkbox: true
-          }, {
             field: 'dataName',
             title: '数据名称'
-          }, {
-            field: 'dataFlag',
-            title: '数据标识符'
-          }, {
-            field: 'dataType',
-            title: '数据类型'
           }, {
             field: 'dataResCatalog',
             title: '数据资源分类'
           }, {
-            field: 'dataProvider',
-            title: '数据提供方'
+            field: 'dataType',
+            title: '数据类型'
           }, {
             field: 'dataCreateTime',
-            title: '数据创建时间'
+            title: '创建时间'
           }, {
-            field: 'keyDesc',
-            title: '关键字说明'
+            field: 'creater',
+            title: '创建人'
           }, {
             field: 'dataStatus',
             title: '数据状态'
+          }, {
+            field: 'operator',
+            title: '操作'
           }],
           data: [{
             dataName: '民政',
-            dataFlag: 'DS2343343',
-            dataType: '普通文件',
             dataResCatalog: '部门：交通局',
-            dataProvider: '民政局',
+            dataType: '普通文件',
             dataCreateTime:'2016-02-10 10:15:21',
-            keyDesc:'描述',
-            dataStatus:'已接入'
+            creater:'数据采集员',
+            dataProvider: '民政局',
+            dataStatus:'已接入',
+            operator:'<a href='+'"#"'+'>授权</a>'
           }, {
             dataName: '民政',
-            dataFlag: 'DS2343343',
-            dataType: '普通文件',
             dataResCatalog: '部门：交通局',
-            dataProvider: '民政局',
+            dataType: '普通文件',
             dataCreateTime:'2016-02-10 10:15:21',
-            keyDesc:'描述',
-            dataStatus:'已接入'
+            creater:'数据采集员',
+            dataProvider: '民政局',
+            dataStatus:'已接入',
+            operator:'<a href='+'"#"'+'>授权</a>'
           }],
           pagination: true,
-          pageNumber: 1,
-          toolbar: ".toolbar",
-          clickToSelect: true,
-          showRefresh: true,
-          showColumns: true
+          pageNumber: 1
         });
       }
     }
