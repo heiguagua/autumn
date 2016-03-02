@@ -3,6 +3,7 @@
 
 var DataResourceDirective = angular.module('DataResourceDirective', ['DataResourceService']);
 
+// Data Resource Directive
 DataResourceDirective.directive("wiservDataResource", [
   function() {
     return {
@@ -14,12 +15,6 @@ DataResourceDirective.directive("wiservDataResource", [
           width: 80,
           liveSearch: false
         });
-
-
-        //var date = new Date();
-        //var startDate = moment(date).subtract(30, 'days').startOf('days');
-        //var endDate = moment(date).endOf('days');
-        //element.find('#createTime_query').daterangepicker({'startDate': '2016-02-01 00:00:00', 'endDate': '2016-03-01 00:00:00'}, //null, date);
 
         element.find('#table').bootstrapTable({
           columns: [{

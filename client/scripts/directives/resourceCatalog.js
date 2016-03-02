@@ -3,6 +3,7 @@
 
 var ResourceCatalogDirective = angular.module('ResourceCatalogDirective', ['ResourceCatalogService']);
 
+// Resource Catalog Directive
 ResourceCatalogDirective.directive("wiservResourceCatalog", [
   function() {
     return {
