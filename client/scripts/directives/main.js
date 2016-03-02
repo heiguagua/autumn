@@ -23,7 +23,6 @@ MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
     return {
       restrict: 'AE',
       link: function(scope, element, attrs) {
-        element.find(".menu").metisMenu();
         menuTree.then(function(resp) {
           console.log(resp.data.menuVoList);
         }, function(resp) {

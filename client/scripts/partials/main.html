@@ -1,25 +1,27 @@
 <div wiserv-main-wrapper>
   <div id="main">
     <!-- Left Menu -->
-    <nav wiserv-menu-tree>
-      <div class='menu'>
-
-        <ul class="metismenu" id="menu">
-          <li class="active">
-            <a href="#" aria-expanded="true">Menu 1</a>
-            <ul aria-expanded="true">
-              ...
-            </ul>
+    <nav id="navMenu">
+      <div class="nav-wrapper">
+        <div class="menu">Menu</div>
+        <div wiserv-menu-tree></div>
+        <ul class="menu-list">
+          <li>
+            <a href="#">Index</a>
           </li>
           <li>
-            <a href="#" aria-expanded="false">Menu 2</a>
-            <ul aria-expanded="false">
-              ...
-            </ul>
+            <a ui-sref='main.resourceCatalog'>Product</a>
           </li>
-          ...
+          <li>
+            <a href="#">Profile</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a ui-sref='main.dashboard'>Contact</a>
+          </li>
         </ul>
-
       </div>
     </nav>
     <!-- Content -->
