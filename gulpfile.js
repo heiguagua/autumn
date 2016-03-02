@@ -56,14 +56,14 @@ gulp.task('concat', function() {
     .pipe(sourcemap.init())
     .pipe(concat('bundle.js'))
     .pipe(sourcemap.write('./'))
-    .pipe(gulp.dest('./client/scripts/'));
+    .pipe(gulp.dest('./client/scripts/build/'));
 });
 
 // Compress Scripts
 gulp.task('uglify', function() {
   return gulp.src('./client/scripts/bundle.js')
-    .pipe(uglify('bundle.min.js'))
-    .pipe(gulp.dest('./client/scripts'));
+    .pipe(uglify())
+    .pipe(gulp.dest('./client/scripts/build/'));
 });
 
 /* gulp */
