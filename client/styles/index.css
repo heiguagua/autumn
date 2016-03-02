@@ -48,6 +48,7 @@
 #main {
   overflow: hidden;
   height: 100%;
+  line-height: normal;
 }
 #main a:link,
 #main a:visited {
@@ -116,8 +117,14 @@
   color: #5D5F63;
   z-index: -1;
 }
+#main .form-inline .form-group {
+  margin: 10px 0;
+}
 #main .ml-250 {
   margin-left: -250px;
+}
+#main .inline-block {
+  display: inline-block;
 }
 .sidebar-tog {
   display: inline-block;
