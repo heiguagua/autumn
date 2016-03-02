@@ -27,7 +27,7 @@ app.all('*', function(req, res, next) {
 
 app.all('/test', function(req, res) {
   res.cookie('username', 'wiserv');
-  res.json('{username:"hank",password:"admin"}');
+  res.json('{username:"admin",password:"admin"}');
 });
 
 app.all('/menu/getRoleMenuList_ajax.action', function(req, res) {
