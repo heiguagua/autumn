@@ -7,7 +7,8 @@ var app = angular.module('app', [
   'LoginController',
   'MainController',
   'DashboardController',
-  'ResourceCatalogController'
+  'ResourceCatalogController',
+  'DataResourceController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -32,5 +33,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/resourceCatalog',
       templateUrl: 'scripts/partials/resourceCatalog.html',
       controller: 'ResourceCatalogController.resourceCatalog'
+    })
+    .state('main.dataResource', {
+      url: '/dataResource',
+      templateUrl: 'scripts/partials/dataResource.html',
+      controller: 'DataResourceController.dataResource'
     })
 }]);

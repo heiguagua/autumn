@@ -9,69 +9,118 @@ ResourceCatalogDirective.directive("wiservResourceCatalog", [
       restrict: "AE",
       replace: true,
       link: function(scope, element, attrs) {
-        window.console.log(element.find('#table'));
+        element.find('.selectpicker').selectpicker({
+          style: 'btn-default btn-sm',
+          width: 80,
+          liveSearch: false
+        });
         element.find('#table').bootstrapTable({
           columns: [{
             field: 'state',
             checkbox: true
           }, {
-            field: 'id',
-            title: 'Item ID'
+            field: 'resCatType',
+            title: '资源目录类型'
           }, {
-            field: 'name',
-            title: 'Item Name'
+            field: 'resCatName',
+            title: '资源目录名称'
           }, {
-            field: 'price',
-            title: 'Item Price'
+            field: 'resCatCode',
+            title: '资源目录编码'
+          }, {
+            field: 'resCatParCode',
+            title: '父目录编码'
+          }, {
+            field: 'resCatDesc',
+            title: '资源目录描述'
+          }, {
+            field: 'resCatStaus',
+            title: '状态'
           }],
           data: [{
-            id: 1,
-            name: 'Item 1',
-            price: '$1'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }, {
-            id: 2,
-            name: 'Item 2',
-            price: '$2'
+            resCatType: '服务',
+            resCatName: '服务一',
+            resCatCode: '23343',
+            resCatParCode:0,
+            resCatDesc:'描述',
+            resCatStaus:'启用'
           }],
           pagination: true,
           pageNumber: 1,
