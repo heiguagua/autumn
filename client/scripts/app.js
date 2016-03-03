@@ -24,7 +24,11 @@ var app = angular.module('app', [
   'SysSettingCategoryController',
   'SysDictCategoryController',
   'LogManageController',
-  'InitSystemController'
+  'InitSystemController',
+  'SysDepManageController',
+  'UserManageController',
+  'SysRoleController',
+  'DataRoleController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -134,5 +138,25 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/initSystem',
       templateUrl: 'scripts/partials/initSystem.html',
       controller: 'InitSystemController.initSystem'
+    })
+    .state('main.sysDepManage', {
+      url: '/sysDepManage',
+      templateUrl: 'scripts/partials/sysDepManage.html',
+      controller: 'SysDepManageController.sysDepManage'
+    })
+    .state('main.userManage', {
+      url: '/userManage',
+      templateUrl: 'scripts/partials/userManage.html',
+      controller: 'UserManageController.userManage'
+    })
+    .state('main.sysRole', {
+      url: '/sysRole',
+      templateUrl: 'scripts/partials/sysRole.html',
+      controller: 'SysRoleController.sysRole'
+    })
+    .state('main.dataRole', {
+      url: '/dataRole',
+      templateUrl: 'scripts/partials/dataRole.html',
+      controller: 'DataRoleController.dataRole'
     })
 }]);
