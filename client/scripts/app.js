@@ -10,7 +10,16 @@ var app = angular.module('app', [
   'ResourceCatalogController',
   'DataResourceController',
   'DataInfoController',
-  'DataAuthorityController'
+  'DataAuthorityController',
+  'DataAuthorityApplyController',
+  'DataAuditInfoController',
+  'DataReleaseInfoController',
+  'DataOfflineInfoController',
+  'DataVisitInfoController',
+  'ServerManageController',
+  'ContactsGroupController',
+  'AlarmRuleController',
+  'AlarmInfoController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -50,5 +59,50 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/dataAuthority',
       templateUrl: 'scripts/partials/dataAuthority.html',
       controller: 'DataAuthorityController.dataAuthority'
+    })
+    .state('main.dataAuthorityApply', {
+      url: '/dataAuthorityApply',
+      templateUrl: 'scripts/partials/dataAuthorityApply.html',
+      controller: 'DataAuthorityApplyController.dataAuthorityApply'
+    })
+    .state('main.dataAuditInfo', {
+      url: '/dataAuditInfo',
+      templateUrl: 'scripts/partials/dataAuditInfo.html',
+      controller: 'DataAuditInfoController.dataAuditInfo'
+    })
+    .state('main.dataReleaseInfo', {
+      url: '/dataReleaseInfo',
+      templateUrl: 'scripts/partials/dataReleaseInfo.html',
+      controller: 'DataReleaseInfoController.dataReleaseInfo'
+    })
+    .state('main.dataOfflineInfo', {
+      url: '/dataOfflineInfo',
+      templateUrl: 'scripts/partials/dataOfflineInfo.html',
+      controller: 'DataOfflineInfoController.dataOfflineInfo'
+    })
+    .state('main.dataVisitInfo', {
+      url: '/dataVisitInfo',
+      templateUrl: 'scripts/partials/dataVisitInfo.html',
+      controller: 'DataVisitInfoController.dataVisitInfo'
+    })
+    .state('main.serverManage', {
+      url: '/serverManage',
+      templateUrl: 'scripts/partials/serverManage.html',
+      controller: 'ServerManageController.serverManage'
+    })
+    .state('main.contactsGroup', {
+      url: '/contactsGroup',
+      templateUrl: 'scripts/partials/contactsGroup.html',
+      controller: 'ContactsGroupController.contactsGroup'
+    })
+    .state('main.alarmRule', {
+      url: '/alarmRule',
+      templateUrl: 'scripts/partials/alarmRule.html',
+      controller: 'AlarmRuleController.alarmRule'
+    })
+    .state('main.alarmInfo', {
+      url: '/alarmInfo',
+      templateUrl: 'scripts/partials/alarmInfo.html',
+      controller: 'AlarmInfoController.alarmInfo'
     })
 }]);

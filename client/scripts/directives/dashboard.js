@@ -4,10 +4,9 @@
 var DashboardDirective = angular.module('DashboardDirective', ['DashboardService']);
 
 // dashboard directive
-DashboardDirective.directive("myDefaultDash", ['DashboardService.platformPie', 'DashboardService.platformHis', 'DashboardService.platformDataBar', function(platformPie, platformHis, platformDataBar) {
+DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', 'DashboardService.platformHis', 'DashboardService.platformDataBar', function(platformPie, platformHis, platformDataBar) {
   return {
-    restrict: "AE",
-    replace: true,
+    restrict: 'AE',
     link: function(scope, element, attrs) {
       // platform data charts
       element.find('#high-pie-donut').highcharts({

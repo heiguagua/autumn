@@ -4,11 +4,10 @@
 var ResourceCatalogDirective = angular.module('ResourceCatalogDirective', ['ResourceCatalogService']);
 
 // Resource Catalog Directive
-ResourceCatalogDirective.directive("wiservResourceCatalog", [
+ResourceCatalogDirective.directive('wiservResourceCatalog', [
   function() {
     return {
-      restrict: "AE",
-      replace: true,
+      restrict: 'AE',
       link: function(scope, element, attrs) {
         element.find('.selectpicker').selectpicker({
           style: 'btn-default btn-sm',
@@ -128,7 +127,6 @@ ResourceCatalogDirective.directive("wiservResourceCatalog", [
           toolbar: ".toolbar",
           clickToSelect: true,
           showRefresh: true,
-          showToggle: true,
           showColumns: true
         });
       }
