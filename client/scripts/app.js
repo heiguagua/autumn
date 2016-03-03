@@ -19,7 +19,16 @@ var app = angular.module('app', [
   'ServerManageController',
   'ContactsGroupController',
   'AlarmRuleController',
-  'AlarmInfoController'
+  'AlarmInfoController',
+  'DcmConfigController',
+  'SysSettingCategoryController',
+  'SysDictCategoryController',
+  'LogManageController',
+  'InitSystemController',
+  'SysDepManageController',
+  'UserManageController',
+  'SysRoleController',
+  'DataRoleController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -104,5 +113,50 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/alarmInfo',
       templateUrl: 'scripts/partials/alarmInfo.html',
       controller: 'AlarmInfoController.alarmInfo'
+    })
+    .state('main.dcmConfig', {
+      url: '/dcmConfig',
+      templateUrl: 'scripts/partials/dcmConfig.html',
+      controller: 'DcmConfigController.dcmConfig'
+    })
+    .state('main.sysSettingCategory', {
+      url: '/sysSettingCategory',
+      templateUrl: 'scripts/partials/sysSettingCategory.html',
+      controller: 'SysSettingCategoryController.sysSettingCategory'
+    })
+    .state('main.sysDictCategory', {
+      url: '/sysDictCategory',
+      templateUrl: 'scripts/partials/sysDictCategory.html',
+      controller: 'SysDictCategoryController.sysDictCategory'
+    })
+    .state('main.logManage', {
+      url: '/logManage',
+      templateUrl: 'scripts/partials/logManage.html',
+      controller: 'LogManageController.logManage'
+    })
+    .state('main.initSystem', {
+      url: '/initSystem',
+      templateUrl: 'scripts/partials/initSystem.html',
+      controller: 'InitSystemController.initSystem'
+    })
+    .state('main.sysDepManage', {
+      url: '/sysDepManage',
+      templateUrl: 'scripts/partials/sysDepManage.html',
+      controller: 'SysDepManageController.sysDepManage'
+    })
+    .state('main.userManage', {
+      url: '/userManage',
+      templateUrl: 'scripts/partials/userManage.html',
+      controller: 'UserManageController.userManage'
+    })
+    .state('main.sysRole', {
+      url: '/sysRole',
+      templateUrl: 'scripts/partials/sysRole.html',
+      controller: 'SysRoleController.sysRole'
+    })
+    .state('main.dataRole', {
+      url: '/dataRole',
+      templateUrl: 'scripts/partials/dataRole.html',
+      controller: 'DataRoleController.dataRole'
     })
 }]);
