@@ -27,7 +27,9 @@ MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
         menuTree.then(function(response){
           scope.menus = response.data;
           scope.$applyAsync(function(){
-            element.metisMenu();
+            element.metisMenu({
+              preventDefault: false
+            });
           })
           console.log(response.data);
         },function(response){
