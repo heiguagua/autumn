@@ -2,12 +2,10 @@
   <div id="main">
     <!-- Left Menu -->
     <aside class="sidebar">
-      <div class='head'>
-        <a ui-sref='main.dashboard'>
-          <span class="glyphicon glyphicon-object-align-left"></span>
-          Wiserv Big Data
-        </a>
-      </div>
+      <a ui-sref='main.dashboard' class='head'>
+        <span class="glyphicon glyphicon-object-align-left"></span>
+        Wiserv Big Data
+      </a>
       <div class='body'>
         <ul wiserv-menu-tree class="metismenu" id="menu">
 <!--
@@ -28,13 +26,13 @@
 -->
 
           <li class="active" ng-repeat='item in menus'>
-            <a ui-sref="{{item.url}}">{{item.name}}</a>
+            <a ui-sref="{{::item.url}}">{{::item.name}}</a>
             <ul>
               <li ng-repeat='child in item.children'>
-                <a ui-sref="{{child.url}}">{{child.name}}</a>
+                <a ui-sref="{{::child.url}}">{{::child.name}}</a>
                 <ul>
                   <li ng-repeat='grandchild in child.children'>
-                    <a ui-sref="{{grandchild.url}}">{{grandchild.name}}</a>
+                    <a ui-sref="{{::grandchild.url}}">{{::grandchild.name}}</a>
                   </li>
                 </ul>
               </li>
