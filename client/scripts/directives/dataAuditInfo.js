@@ -1,10 +1,10 @@
 'use strict';
-/* Data Authority Directives */
+/* Data Audit Info Directives */
 
-var DataAuthorityDirective = angular.module('DataAuthorityDirective', ['DataAuthorityService']);
+var DataAuditInfoDirective = angular.module('DataAuditInfoDirective', ['DataAuditInfoService']);
 
-// Data Authority Apply Directive
-DataAuthorityDirective.directive('wiservDataAuthority', [
+// Data Audit Info Directive
+DataAuditInfoDirective.directive('wiservDataAuditInfo', [
   function() {
     return {
       restrict: 'AE',

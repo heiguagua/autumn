@@ -4,18 +4,17 @@
 var DataInfoDirective = angular.module('DataInfoDirective', ['DataInfoService']);
 
 // Data Info Directive
-DataInfoDirective.directive("wiservDataInfo", [
+DataInfoDirective.directive('wiservDataInfo', [
   function() {
     return {
-      restrict: "AE",
-      replace: true,
+      restrict: 'AE',
       link: function(scope, element, attrs) {
         element.find('.selectpicker').selectpicker({
           style: 'btn-default btn-sm',
           width: 80,
           liveSearch: false
         });
-        
+
         element.find('#table').bootstrapTable({
           columns: [{
             field: 'state',

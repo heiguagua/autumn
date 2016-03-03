@@ -4,11 +4,10 @@
 var DataResourceDirective = angular.module('DataResourceDirective', ['DataResourceService']);
 
 // Data Resource Directive
-DataResourceDirective.directive("wiservDataResource", [
+DataResourceDirective.directive('wiservDataResource', [
   function() {
     return {
-      restrict: "AE",
-      replace: true,
+      restrict: 'AE',
       link: function(scope, element, attrs) {
         element.find('.selectpicker').selectpicker({
           style: 'btn-default btn-sm',

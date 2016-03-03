@@ -11,7 +11,8 @@ var app = angular.module('app', [
   'DataResourceController',
   'DataInfoController',
   'DataAuthorityController',
-  'DataAuthorityApplyController'
+  'DataAuthorityApplyController',
+  'DataAuditInfoController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -56,5 +57,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/dataAuthorityApply',
       templateUrl: 'scripts/partials/dataAuthorityApply.html',
       controller: 'DataAuthorityApplyController.dataAuthorityApply'
+    })
+    .state('main.dataAuditInfo', {
+      url: '/dataAuditInfo',
+      templateUrl: 'scripts/partials/dataAuditInfo.html',
+      controller: 'DataAuditInfoController.dataAuditInfo'
     })
 }]);

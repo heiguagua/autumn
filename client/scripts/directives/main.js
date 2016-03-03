@@ -3,11 +3,10 @@
 
 var MainDirective = angular.module('MainDirective', ['MainService']);
 // Main Wrapper Directive
-MainDirective.directive("wiservMainWrapper", [
+MainDirective.directive('wiservMainWrapper', [
   function() {
     return {
-      restrict: "AE",
-      replace: true,
+      restrict: 'AE',
       link: function(scope, element, attrs) {
         element.find('.toggler')[0].addEventListener('click', function() {
           element.find('.content').toggleClass("content-collapse");

@@ -4,10 +4,10 @@
 var DataAuthorityApplyDirective = angular.module('DataAuthorityApplyDirective', ['DataAuthorityApplyService']);
 
 // Data Authority Apply Directive
-DataAuthorityApplyDirective.directive("wiservDataAuthpply", [
+DataAuthorityApplyDirective.directive('wiservDataAuthorityApply', [
   function() {
     return {
-      restrict: "AE",
+      restrict: 'AE',
       link: function(scope, element, attrs) {
         window.console.log(element.find('#table'));
         element.find('#table').bootstrapTable({
