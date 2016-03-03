@@ -18,13 +18,24 @@ MainDirective.directive('wiservMainWrapper', [
 ]);
 
 // Menu Tree Directive
-MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
-  function(menuTree) {
+MainDirective.directive('wiservMenuTree', ['$timeout', 'MainService.menuTree',
+  function($timeout, menuTree) {
     return {
       restrict: 'AE',
+      controller: 'MainController.main',
       link: function(scope, element, attrs) {
-        element.metisMenu();
-        console.log("teststsdfsaf");
+
+        $timeout(function() {
+          scope.$apply(function(){
+            element.metisMenu();
+          })
+        }, 0);
+        menuTree.then(function(response){
+          scope.menus = response.data;
+          console.log(response.data);
+        },function(response){
+          console.error(response.status + response.statusText);
+        });
       }
     };
   }

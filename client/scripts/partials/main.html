@@ -8,30 +8,37 @@
       </div>
       <div class='body'>
         <ul wiserv-menu-tree class="metismenu" id="menu">
-          <li class="active">
-            <a href="#" aria-expanded="true">Menu 1</a>
-            <ul aria-expanded="true">
-            <li>
-              <a>
-                <span class="sidebar-nav-item-icon fa fa-code-fork"></span>
-                Child-1
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="sidebar-nav-item-icon fa fa-star"></span>
-                Child-2
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="sidebar-nav-item-icon fa
-            fa-exclamation-triangle"></span>
-                Child-3
-              </a>
-            </li>
+<!--
+          <li class="active" >
+            <a href="#">数据资源管理</a>
+            <ul>
+              <li><a>资源目录管理</a>
+                <ul>
+                  <li><a>资源目录管理</a></li>
+                  <li><a>元数据管理</a></li>
+                  <li><a>数据管理</a></li>
+                </ul>
+              </li>
+              <li><a>元数据管理</a></li>
+              <li><a>数据管理</a></li>
             </ul>
           </li>
+-->
+
+          <li class="active" ng-repeat='item in menus'>
+            <a ui-sref="{{item.url}}">{{item.name}}</a>
+            <ul>
+              <li ng-repeat='child in item.children'>
+                <a ui-sref="{{child.url}}">{{child.name}}</a>
+                <ul>
+                  <li ng-repeat='grandchild in child.children'>
+                    <a ui-sref="{{grandchild.url}}">{{grandchild.name}}</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </div>
     </aside>

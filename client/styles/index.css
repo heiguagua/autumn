@@ -81,6 +81,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  font-size: 13px;
 }
 #main .sidebar .body ul li,
 #main .sidebar .body ul a {
@@ -89,14 +90,15 @@
 #main .sidebar .body ul a {
   padding: 10px 28px;
   color: #EEE;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.9);
   box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 #main .sidebar .body ul a:hover,
 #main .sidebar .body ul a:focus,
 #main .sidebar .body ul a:active {
-  color: #fff;
+  color: #FFF;
   text-decoration: none;
 }
 #main .sidebar .body ul ul a {
@@ -104,9 +106,12 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 #main .sidebar .body ul ul a:hover,
-#main .sidebar .body ul .sidebar-nav ul ul a:focus,
-#main .sidebar .body ul .sidebar-nav ul ul a:active {
+#main .sidebar .body ul ul a:focus,
+#main .sidebar .body ul ul a:active {
   background-color: rgba(255, 255, 255, 0.2);
+}
+#main .sidebar .body ul ul ul a {
+  padding-left: 62px;
 }
 #main .content {
   height: 100%;
