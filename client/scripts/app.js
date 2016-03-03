@@ -19,7 +19,12 @@ var app = angular.module('app', [
   'ServerManageController',
   'ContactsGroupController',
   'AlarmRuleController',
-  'AlarmInfoController'
+  'AlarmInfoController',
+  'DcmConfigController',
+  'SysSettingCategoryController',
+  'SysDictCategoryController',
+  'LogManageController',
+  'InitSystemController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -104,5 +109,30 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/alarmInfo',
       templateUrl: 'scripts/partials/alarmInfo.html',
       controller: 'AlarmInfoController.alarmInfo'
+    })
+    .state('main.dcmConfig', {
+      url: '/dcmConfig',
+      templateUrl: 'scripts/partials/dcmConfig.html',
+      controller: 'DcmConfigController.dcmConfig'
+    })
+    .state('main.sysSettingCategory', {
+      url: '/sysSettingCategory',
+      templateUrl: 'scripts/partials/sysSettingCategory.html',
+      controller: 'SysSettingCategoryController.sysSettingCategory'
+    })
+    .state('main.sysDictCategory', {
+      url: '/sysDictCategory',
+      templateUrl: 'scripts/partials/sysDictCategory.html',
+      controller: 'SysDictCategoryController.sysDictCategory'
+    })
+    .state('main.logManage', {
+      url: '/logManage',
+      templateUrl: 'scripts/partials/logManage.html',
+      controller: 'LogManageController.logManage'
+    })
+    .state('main.initSystem', {
+      url: '/initSystem',
+      templateUrl: 'scripts/partials/initSystem.html',
+      controller: 'InitSystemController.initSystem'
     })
 }]);
