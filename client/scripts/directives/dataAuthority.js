@@ -3,7 +3,7 @@
 
 var DataAuthorityDirective = angular.module('DataAuthorityDirective', ['DataAuthorityService']);
 
-// Data Info Directive
+// Data Authority Apply Directive
 DataAuthorityDirective.directive("wiservDataAuthority", [
   function() {
     return {

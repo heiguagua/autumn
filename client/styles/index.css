@@ -96,6 +96,9 @@
   color: #5D5F63;
   z-index: -1;
 }
+#main .content .partial-view .form-inline .form-group {
+  margin: 5px 0;
+}
 #main .sidebar-collapse {
   margin-left: -250px;
 }
