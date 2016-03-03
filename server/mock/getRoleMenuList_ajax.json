@@ -1,15 +1,7 @@
 [{
   "id": "1",
-  "name": "Dashboard",
-  "url": "main.dashboard",
-  "order": "",
-  "icon": "",
-  "expansion": true,
-  "description": ""
-}, {
-  "id": "1",
   "name": "数据资源管理",
-  "url": "main.dataResource",
+  "url": "null",
   "order": "",
   "icon": "",
   "expansion": true,

@@ -72,7 +72,10 @@
   padding: 12px 28px;
   font-weight: bold;
   font-size: 20px;
-  color: #DDDDDD;
+}
+#main .sidebar .head a {
+  text-decoration: none;
+  color: #DDD;
 }
 #main .sidebar .head span {
   padding-right: 5px;

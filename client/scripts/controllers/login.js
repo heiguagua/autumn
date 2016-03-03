@@ -12,7 +12,7 @@ LoginController.controller('LoginController.login', ['$scope', '$state', 'LoginS
     $scope.login.password = 'admin';
     // Binding submit event
     $scope.login.submit = function() {
-      $state.go("main");
+      $state.go("main.dashboard");
     }
   }
 ]);
