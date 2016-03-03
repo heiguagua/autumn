@@ -1,10 +1,10 @@
 'use strict';
-/* Data Audit Info Directives */
+/* Data Offline Info Directives */
 
-var DataAuditInfoDirective = angular.module('DataAuditInfoDirective', ['DataAuditInfoService']);
+var DataOfflineInfoDirective = angular.module('DataOfflineInfoDirective', ['DataOfflineInfoService']);
 
-// Data Audit Info Directive
-DataAuditInfoDirective.directive('wiservDataAuditInfo', [
+// Data Offline Info Directive
+DataOfflineInfoDirective.directive('wiservDataOfflineInfo', [
   function() {
     return {
       restrict: 'AE',
@@ -46,7 +46,7 @@ DataAuditInfoDirective.directive('wiservDataAuditInfo', [
             creater:'数据采集员',
             dataProvider: '民政局',
             dataStatus:'已接入',
-            operator:'<a href='+'"#"'+'>审核</a>'
+            operator:'<a href='+'"#"'+'></a>'
           }, {
             dataName: '民政',
             dataResCatalog: '部门：交通局',
@@ -55,7 +55,7 @@ DataAuditInfoDirective.directive('wiservDataAuditInfo', [
             creater:'数据采集员',
             dataProvider: '民政局',
             dataStatus:'已接入',
-            operator:'<a href='+'"#"'+'>审核</a>'
+            operator:'<a href='+'"#"'+'></a>'
           }],
           pagination: true,
           pageNumber: 1

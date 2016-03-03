@@ -1,8 +1,4 @@
-<div wiserv-data-audit-info>
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab">未审核</a></li>
-    <li role="presentation"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">已审核</a></li>
-  </ul>
+<div wiserv-alarm-info>
   <div class="searchBar panel panel-default" style="margin-bottom:5px;">
     <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
       <div class="panel-title" style="font-size: 14px;">
@@ -16,28 +12,30 @@
       <div class="panel-body">
         <form class="form-inline" style="margin-bottom:0">
           <div class="form-group">
-            <label class="control-label" for="">数据名称
-            </label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请输入数据名称"/>
-          </div>
-          <div class="form-group">
-            <label for="" class="control-label">数据资源分类</label>
+            <label for="" class="control-label">告警类型</label>
             <select id="" class="selectpicker">
               <option value="">请选择</option>
-              <option value="2">部门</option>
-              <option value="1">主题</option>
-              <option value="3">服务</option>
-              <option value="test">test</option>
+              <option value="2">服务器警告</option>
+              <option value="1">系统警告</option>
             </select>
-            <input id="dataClassifyNames_query" class="form-control input-sm" placeholder="请选择" readonly />
           </div>
           <div class="form-group">
-            <label class="control-label" for="">数据提供方</label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请选择" readonly />
+            <label class="control-label" for="">告警名称
+            </label>
+            <input type="text" class="form-control input-sm" id="" name="" placeholder="请输入告警名称"/>
           </div>
           <div class="form-group">
-            <label class="control-label" for="">创建时间</label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请选择" />
+            <label for="" class="control-label">告警状态</label>
+            <select id="" class="selectpicker">
+              <option value="">请选择</option>
+              <option value="1">未处理</option>
+              <option value="2">确认</option>
+              <option value="3">忽略</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="">告警时间</label>
+            <input type="text" class="form-control input-sm" id="" name="" />
           </div>
           <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
             <i class="glyphicon glyphicon-search"></i>&nbsp;查询
@@ -46,6 +44,15 @@
       </div>
     </div>
   </div>
-
+  <div class="toolbar">
+    <div class="btn-group">
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-ok-sign"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-ban-circle"></i>
+      </button>
+    </div>
+  </div>
   <table id="table"></table>
 </div>
