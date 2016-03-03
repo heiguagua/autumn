@@ -24,12 +24,8 @@ MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
     return {
       restrict: 'AE',
       link: function(scope, element, attrs) {
-        menuTree.then(function(resp) {
-          console.log(resp.data.menuVoList);
-        }, function(resp) {
-          console.error(resp);
-        })
-        console.log(element.text());
+        element.metisMenu();
+        console.log("teststsdfsaf");
       }
     };
   }

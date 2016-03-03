@@ -51,12 +51,62 @@
   position: fixed;
   left: 0;
   top: 0;
-  background: #303030;
-  color: white;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  background-image: -webkit-linear-gradient(left, color-stop(#333333 10px), color-stop(#222222 10px));
+  background-image: linear-gradient(to right, #333333 10px, #222222 10px);
+  background-repeat: repeat-x;
+}
+#main .sidebar a,
+#main .sidebar a:hover,
+#main .sidebar a:focus,
+#main .sidebar a:active {
+  outline: none;
+}
+#main .sidebar .head {
+  color: #FFF;
+  height: 49px;
+  padding: 12px 28px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #DDDDDD;
+}
+#main .sidebar .head span {
+  padding-right: 5px;
+}
+#main .sidebar .body ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#main .sidebar .body ul li,
+#main .sidebar .body ul a {
+  display: block;
+}
+#main .sidebar .body ul a {
+  padding: 10px 28px;
+  color: #EEE;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+}
+#main .sidebar .body ul a:hover,
+#main .sidebar .body ul a:focus,
+#main .sidebar .body ul a:active {
+  color: #fff;
+  text-decoration: none;
+}
+#main .sidebar .body ul ul a {
+  padding: 10px 45px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+#main .sidebar .body ul ul a:hover,
+#main .sidebar .body ul .sidebar-nav ul ul a:focus,
+#main .sidebar .body ul .sidebar-nav ul ul a:active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 #main .content {
   height: 100%;
@@ -77,12 +127,17 @@
 }
 #main .content .navbar .toggler {
   display: inline-block;
-  background: none;
   border: 0;
   outline: none;
-  padding-left: 10px;
+  padding: 0;
+  margin: 9px 0 0 10px;
+  width: 29px;
+  height: 29px;
+  background: url('images/main/sidebar-toggler.jpg') no-repeat;
 }
 #main .content .navbar .nav-bread {
+  position: absolute;
+  top: 0;
   display: inline-block;
   padding: 14px 15px;
   margin-bottom: 0;

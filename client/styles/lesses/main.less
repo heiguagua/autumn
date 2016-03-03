@@ -5,12 +5,56 @@
     position: fixed;
     left: 0;
     top: 0;
-    background: #303030;
-    color: white;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    background-image: -webkit-linear-gradient(left, color-stop(#333333 10px), color-stop(#222222 10px));
+    background-image: linear-gradient(to right, #333333 10px, #222222 10px);
+    background-repeat: repeat-x;
+    a, a:hover, a:focus, a:active {
+      outline: none;
+    }
+    .head{
+      color: #FFF;
+      height: 49px;
+      padding: 12px 28px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #DDDDDD;
+      span {
+        padding-right: 5px;
+      }
+    }
+    .body{
+      ul{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        li, a {
+          display: block;
+        }
+        a {
+          padding: 10px 28px;
+          color: #EEE;
+          border-top: 1px solid rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
+          text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+        }
+        a:hover, a:focus, a:active {
+          color: #fff;
+          text-decoration: none;
+        }
+        ul a {
+          padding: 10px 45px;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        ul a:hover, .sidebar-nav ul ul a:focus, .sidebar-nav ul ul a:active {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
   }
   .content {
     height: 100%;
@@ -29,12 +73,17 @@
       z-index: 99;
       .toggler {
         display: inline-block;
-        background: none;
         border: 0;
         outline: none;
-        padding-left: 10px;
+        padding: 0;
+        margin: 9px 0 0 10px;
+        width: 29px;
+        height: 29px;
+        background: url('./images/main/sidebar-toggler.jpg') no-repeat;
       }
       .nav-bread {
+        position: absolute;
+        top:0;
         display: inline-block;
         padding: 14px 15px;
         margin-bottom: 0;

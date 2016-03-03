@@ -1,13 +1,44 @@
 <div wiserv-main-wrapper>
   <div id="main">
     <!-- Left Menu -->
-    <nav class="sidebar">
-
-    </nav>
+    <aside class="sidebar">
+      <div class='head'>
+        <span class="glyphicon glyphicon-object-align-left"></span>
+        Wiserv Big Data
+      </div>
+      <div class='body'>
+        <ul wiserv-menu-tree class="metismenu" id="menu">
+          <li class="active">
+            <a href="#" aria-expanded="true">Menu 1</a>
+            <ul aria-expanded="true">
+            <li>
+              <a>
+                <span class="sidebar-nav-item-icon fa fa-code-fork"></span>
+                Child-1
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="sidebar-nav-item-icon fa fa-star"></span>
+                Child-2
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="sidebar-nav-item-icon fa
+            fa-exclamation-triangle"></span>
+                Child-3
+              </a>
+            </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
     <!-- Content -->
     <article class="content">
-      <div class="navbar navbar-default">
-        <button class="toggler"><img src="styles/images/main/sidebar-toggler.jpg"/></button>
+      <nav class="navbar navbar-default">
+        <button class="toggler"></button>
         <ol class="breadcrumb nav-bread">
           <li>
             <a>数据资源管理</a>
@@ -17,7 +48,7 @@
           </li>
           <li>数据接入资源管理</li>
         </ol>
-      </div>
+      </nav>
       <div ui-view class="partial-view"></div>
     </article>
   </div>
