@@ -1,8 +1,8 @@
 'use strict';
 /* Common Directives */
-
 var MainDirective = angular.module('MainDirective', ['MainService']);
-// Main Wrapper Directive
+
+// Toggle Button
 MainDirective.directive('wiservMainWrapper', [
   function() {
     return {
@@ -17,21 +17,18 @@ MainDirective.directive('wiservMainWrapper', [
   }
 ]);
 
-// Menu Tree Directive
-MainDirective.directive('wiservMenuTree', ['$timeout', 'MainService.menuTree',
-  function($timeout, menuTree) {
+// Menu Tree
+MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
+  function(menuTree) {
     return {
       restrict: 'AE',
       controller: 'MainController.main',
       link: function(scope, element, attrs) {
-
-        $timeout(function() {
-          scope.$apply(function(){
-            element.metisMenu();
-          })
-        }, 0);
         menuTree.then(function(response){
           scope.menus = response.data;
+          scope.$applyAsync(function(){
+            element.metisMenu();
+          })
           console.log(response.data);
         },function(response){
           console.error(response.status + response.statusText);
