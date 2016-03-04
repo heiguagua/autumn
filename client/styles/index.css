@@ -88,12 +88,14 @@
   color: #bfbfbf;
   outline: none;
 }
+#main .sidebar .body .search-box .search-link {
+  padding: 5px;
+  color: #CCC;
+}
 #main .sidebar .body .search-box .search-link :hover {
   color: #DDD;
-  padding: 5px;
 }
 #main .sidebar .body .search-box .search-link .search-icon {
-  color: #CCC;
   font-size: 14px;
 }
 #main .sidebar .body ul {
