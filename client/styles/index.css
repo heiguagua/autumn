@@ -127,11 +127,12 @@
   position: fixed;
   height: 40px;
   width: 100%;
+  background: #F5F5F5;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 5px rgba(0, 0, 0, 0.075);
   z-index: 99;
 }
-#main .content .navbar .toggler {
+#main .content .navbar .left .toggler {
   display: inline-block;
   border: 0;
   outline: none;
@@ -141,15 +142,33 @@
   height: 29px;
   background: url('images/main/sidebar-toggler.jpg') no-repeat;
 }
-#main .content .navbar .nav-bread {
-  position: absolute;
-  top: 0;
+#main .content .navbar .left .nav-bread {
   display: inline-block;
-  padding: 14px 15px;
   margin-bottom: 0;
+  position: relative;
+  top: -10px;
 }
-#main .content .navbar .nav-bread li {
+#main .content .navbar .left .nav-bread li {
   cursor: pointer;
+}
+#main .content .navbar .right {
+  float: right;
+  margin: -44px 265px 0 0;
+}
+#main .content .navbar .right .search {
+  float: left;
+  display: inline-block;
+  width: 250px;
+  margin-right: 20px;
+}
+#main .content .navbar .right .profile {
+  float: right;
+  display: inline-block;
+  width: 100px;
+  height: 34px;
+}
+#main .content .navbar .right .profile .dropdown {
+  float: right;
 }
 #main .content .partial-view {
   margin-top: 50px;
