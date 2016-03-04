@@ -51,10 +51,10 @@
   position: fixed;
   left: 0;
   top: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   background-image: -webkit-linear-gradient(left, color-stop(#333333 10px), color-stop(#222222 10px));
   background-image: linear-gradient(to right, #333333 10px, #222222 10px);
@@ -118,10 +118,10 @@
   height: 100%;
   margin: 0 0 0 250px;
   overflow: hidden;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 #main .content .navbar {
   position: fixed;
@@ -184,6 +184,9 @@
 }
 #main .content-collapse {
   margin-left: 0;
+}
+#main .sidebar-right-collapse {
+  margin-right: 20px !important;
 }
 #dashboard .home-data-bar {
   height: 49%;

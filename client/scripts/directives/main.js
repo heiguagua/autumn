@@ -11,6 +11,7 @@ MainDirective.directive('wiservMainWrapper', [
         element.find('.toggler')[0].addEventListener('click', function() {
           element.find('.content').toggleClass("content-collapse");
           element.find('.sidebar').toggleClass("sidebar-collapse");
+          element.find('.right').toggleClass("sidebar-right-collapse");
         });
       }
     }
