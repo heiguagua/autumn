@@ -8,69 +8,64 @@ const gulp = require("gulp"),
   uglify = require('gulp-uglify'),
   sourcemap = require('gulp-sourcemaps');
 
-// Static Server
-gulp.task('connect', function() {
-  connect.server({
-    root: './client/',
-    port: 8000,
-    livereload: true
+/** gulp */
+gulp.task('default', ['server', 'client']);
+
+/** gulp client*/
+gulp.task('client', function() {
+  // Less Processor
+  gulp.task('less', function() {
+    gulp.src('./client/styles/lesses/' + 'index.less')
+      .pipe(less())
+      .pipe(gulp.dest('./client/styles/'));
   });
+  // Static Server
+  gulp.task('connect', ['less'], function() {
+    connect.server({
+      root: './client/',
+      port: 8000,
+      livereload: true
+    });
+  });
+  // Reload Server
+  gulp.task('livereload', ['less'], function() {
+    gulp.src('./client/' + '**/*.*')
+      .pipe(connect.reload());
+  });
+  // Watch Client
+  gulp.watch('./client/' + '**/*.*', ['livereload']);
 });
 
-// API Server
-gulp.task('express', function() {
-  express.run(['./server/api.js'], {}, false);
-})
-
-// Reload Server
-gulp.task('livereload', [], function() {
-  gulp.src('./client/' + '**/*.*')
-    .pipe(connect.reload());
-});
-
-// Whatch Server
-gulp.task('nodemon', function() {
+/** gulp server */
+gulp.task('server', function() {
+  // Whatch Server
   nodemon({
     script: './server/api.js',
     env: {
       'NODE_ENV': 'development'
     }
   })
+});
+
+/** gulp build */
+gulp.task('build', function() {
+  // Concat Scripts
+  gulp.task('concat', function() {
+    gulp.src('./client/scripts/**/*.js')
+      .pipe(sourcemap.init())
+      .pipe(concat('bundle.js'))
+      .pipe(sourcemap.write('./'))
+      .pipe(gulp.dest('./client/scripts/build/'));
+  });
+  // Compress Scripts
+  gulp.task('uglify', function() {
+    gulp.src('./client/scripts/bundle.js')
+      .pipe(uglify())
+      .pipe(gulp.dest('./client/scripts/build/'));
+  });
+});
+
+/** gulp express */
+gulp.task('express', function() {
+  express.run(['./server/api.js'], {}, false);
 })
-
-// Watch Client
-gulp.task('watch', function() {
-  gulp.watch('./client/' + '**/*.*', ['less', 'livereload']);
-})
-
-// Less Processor
-gulp.task('less', function() {
-  return gulp.src('./client/styles/lesses/' + 'index.less')
-    .pipe(less())
-    .pipe(gulp.dest('./client/styles/'));
-});
-
-// Concat Scripts
-gulp.task('concat', function() {
-  return gulp.src('./client/scripts/**/*.js')
-    .pipe(sourcemap.init())
-    .pipe(concat('bundle.js'))
-    .pipe(sourcemap.write('./'))
-    .pipe(gulp.dest('./client/scripts/build/'));
-});
-
-// Compress Scripts
-gulp.task('uglify', function() {
-  return gulp.src('./client/scripts/bundle.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./client/scripts/build/'));
-});
-
-/* gulp */
-gulp.task('default', ['express', 'less', 'connect', 'watch']);
-/* gulp client */
-gulp.task('client', ['less', 'connect', 'watch']);
-/* gulp server */
-gulp.task('server', ['nodemon']);
-/* gulp build */
-gulp.task('build', ['concat', 'uglify']);
