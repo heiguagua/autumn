@@ -9,16 +9,25 @@
   "children": [{
     "id": "",
     "name": "资源目录管理",
-    "url": "main.dataResource",
+    "url": "null",
     "order": "",
     "icon": "",
     "expansion": true,
     "description": "",
-    "children": []
+    "children": [{
+      "id": "",
+      "name": "资源目录管理",
+      "url": "main.resource-catalog",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }]
   }, {
     "id": "2",
     "name": "元数据管理",
-    "url": "main.dataResource",
+    "url": "null",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -26,7 +35,7 @@
     "children": [{
       "id": "",
       "name": "数据接入资源管理",
-      "url": "main.dataResource",
+      "url": "main.data-resource",
       "order": "",
       "icon": "",
       "expansion": true,
@@ -35,7 +44,7 @@
     }, {
       "id": "",
       "name": "元数据管理",
-      "url": "main.dataResource",
+      "url": "main.data-info",
       "order": "",
       "icon": "",
       "expansion": true,
@@ -44,7 +53,7 @@
     }, {
       "id": "",
       "name": "数据授权管理",
-      "url": "main.dataResource",
+      "url": "main.data-authority",
       "order": "",
       "icon": "",
       "expansion": true,
@@ -53,7 +62,7 @@
     }, {
       "id": "",
       "name": "授权申请审核管理",
-      "url": "main.dataResource",
+      "url": "main.data-authority-apply",
       "order": "",
       "icon": "",
       "expansion": true,
@@ -63,7 +72,232 @@
   }, {
     "id": "3",
     "name": "数据管理",
-    "url": "main.dataResource",
+    "url": "null",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": [{
+      "id": "",
+      "name": "数据审核",
+      "url": "main.data-audit-info",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }, {
+      "id": "",
+      "name": "数据发布",
+      "url": "main.data-release-info",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }, {
+      "id": "",
+      "name": "数据下架",
+      "url": "main.data-offline-info",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }]
+  }]
+}, {
+  "id": "",
+  "name": "数据状态监控",
+  "url": "null",
+  "order": "",
+  "icon": "",
+  "expansion": true,
+  "description": "",
+  "children": [{
+    "id": "",
+    "name": "平台数据整体概况",
+    "url": "null",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "部门数据概况",
+    "url": "null",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "数据访问日志统计",
+    "url": "main.data-visit-info",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "数据使用情况统计",
+    "url": "null",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }]
+}, {
+  "id": "",
+  "name": "平台运维管理",
+  "url": "null",
+  "order": "",
+  "icon": "",
+  "expansion": true,
+  "description": "",
+  "children": [{
+    "id": "",
+    "name": "服务器监控",
+    "url": "main.server-manage",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "平台告警管理",
+    "url": "null",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": [{
+      "id": "",
+      "name": "告警联系人组管理",
+      "url": "main.contacts-group",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }, {
+      "id": "",
+      "name": "告警规则管理",
+      "url": "main.alarm-rule",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }, {
+      "id": "",
+      "name": "告警内容管理",
+      "url": "main.alarm-info",
+      "order": "",
+      "icon": "",
+      "expansion": true,
+      "description": "",
+      "children": []
+    }]
+  }]
+}, {
+  "id": "",
+  "name": "平台配置管理",
+  "url": "null",
+  "order": "",
+  "icon": "",
+  "expansion": true,
+  "description": "",
+  "children": [{
+    "id": "",
+    "name": "前置机管理",
+    "url": "main.dcm-config",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "系统配置管理",
+    "url": "main.sys-setting-category",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "系统字典管理",
+    "url": "main.sys-dict-category",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "系统日志管理",
+    "url": "main.log-manage",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "数据转换",
+    "url": "main.init-system",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }]
+}, {
+  "id": "",
+  "name": "组织人员管理",
+  "url": "null",
+  "order": "",
+  "icon": "",
+  "expansion": true,
+  "description": "",
+  "children": [{
+    "id": "",
+    "name": "组织机构管理",
+    "url": "main.sys-dep-manage",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "用户管理",
+    "url": "main.user-manage",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "系统角色管理",
+    "url": "main.sys-role",
+    "order": "",
+    "icon": "",
+    "expansion": true,
+    "description": "",
+    "children": []
+  }, {
+    "id": "",
+    "name": "数据角色管理",
+    "url": "main.data-role",
     "order": "",
     "icon": "",
     "expansion": true,
