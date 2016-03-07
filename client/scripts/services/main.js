@@ -23,7 +23,7 @@ MainService.service('MainService.menuTree', ['$http', 'API',
     if (API && API.path) {
       return $http({
         method: 'GET',
-        url: API.path + '/menu/getRoleMenuList_ajax.action',
+        url: API.path + '/api/menu',
         withCredentials: true
       });
     } else {

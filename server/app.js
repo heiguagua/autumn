@@ -7,7 +7,6 @@ const jsonLoader = require('load-json-file'),
 // const path = require('path');
 // var client = path.resolve(__dirname + '/../client');
 // app.use(express.static(client));
-
 app.all('*', function(req, res, next) {
   // 指定一个允许向该服务器提交请求的URI.
   res.header('Access-Control-Allow-Origin', 'http://localhost:8000');
@@ -24,17 +23,17 @@ app.all('*', function(req, res, next) {
   if (req.method === 'OPTIONS') res.sendStatus(200);
   else next();
 });
+app.listen(5000);
+console.info('http-server[express] listening on 5000');
 
 app.all('/test', function(req, res) {
-  res.cookie('username', 'wiserv');
-  res.json('{username:"admin",password:"admin"}');
+
 });
 
-app.all('/menu/getRoleMenuList_ajax.action', function(req, res) {
-  let datas = jsonLoader.sync(jsonPath + 'getRoleMenuList_ajax.json');
-  res.json( datas );
-})
+/** test */
+var test = require('./api/test');
+app.use('/api', test);
 
-app.listen(5000);
-
-console.info('http-server[express] listening on 5000');
+/** menu */
+var menu = require('./api/menu');
+app.use('/api', menu);

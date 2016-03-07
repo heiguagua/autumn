@@ -43,12 +43,12 @@ gulp.task('watch', function() {
 gulp.task('server', ['nodemon']);
 // API Server
 gulp.task('express', function() {
-  express.run(['./server/api.js'], {}, false);
+  express.run(['./server/app.js'], {}, false);
 })
 // Whatch Server
 gulp.task('nodemon', function() {
   nodemon({
-    script: './server/api.js',
+    script: './server/app.js',
     env: {
       'NODE_ENV': 'development'
     }
