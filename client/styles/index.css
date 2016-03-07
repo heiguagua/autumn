@@ -79,7 +79,7 @@
   padding-right: 5px;
 }
 #main .sidebar .body .search-box {
-  margin: 24px;
+  margin: 5px 24px 10px 24px;
   border-bottom: 1px solid #7d7d7d;
 }
 #main .sidebar .body .search-box .search-input {
