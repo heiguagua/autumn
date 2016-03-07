@@ -85,24 +85,35 @@
   background-size: 45px 45px;
 }
 #main .sidebar .body .search-box {
-  margin: 5px 24px 10px 24px;
-  border-bottom: 1px solid #7d7d7d;
+  padding: 9px 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.9);
 }
-#main .sidebar .body .search-box .search-input {
+#main .sidebar .body .search-box .decoration {
+  height: 25px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+#main .sidebar .body .search-box .decoration .search-input {
   background: none;
   border: none;
-  color: #bfbfbf;
+  color: #EEE;
   outline: none;
+  font-size: 12px;
+  padding-left: 12px;
 }
-#main .sidebar .body .search-box .search-link {
-  padding: 5px;
+#main .sidebar .body .search-box .decoration .search-link {
   color: #CCC;
 }
-#main .sidebar .body .search-box .search-link :hover {
+#main .sidebar .body .search-box .decoration .search-link :hover {
   color: #DDD;
 }
-#main .sidebar .body .search-box .search-link .search-icon {
+#main .sidebar .body .search-box .decoration .search-link .search-icon {
   font-size: 14px;
+  position: relative;
+  left: 10px;
+  top: 3px;
 }
 #main .sidebar .body ul {
   padding: 0;

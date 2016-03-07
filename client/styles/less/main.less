@@ -37,25 +37,35 @@
     .body{
       // search box in menu tree
       .search-box{
-        margin:5px 24px 10px 24px;
-        border-bottom:1px solid #7d7d7d;
-        .search-input{
-          background:none;
-          border:none;
-          color:#bfbfbf;
-          outline:none;
-        }
-        .search-link{
-          padding:5px;
-          color:#CCC;
-          :hover{
-            color:#DDD;
+        padding:9px 24px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.9);
+        .decoration{
+          height: 25px;
+          border-radius: 10px;
+          background-color: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(0, 0, 0, 0.7);
+          .search-input{
+            background:none;
+            border:none;
+            color: #EEE;
+            outline:none;
+            font-size: 12px;
+            padding-left: 12px;
           }
-          .search-icon{
-            font-size:14px;
+          .search-link{
+            color:#CCC;
+            :hover{
+              color:#DDD;
+            }
+            .search-icon{
+              font-size:14px;
+              position: relative;
+              left: 10px;
+              top: 3px;
+            }
           }
         }
-
       }
       // Menus in first level
       ul{
