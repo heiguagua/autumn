@@ -9,7 +9,7 @@ const gulp = require("gulp"),
   sourcemap = require('gulp-sourcemaps');
 
 /**------------------ gulp default ------------------*/
-gulp.task('default', ['nodemon', 'less', 'connect', 'watch']);
+gulp.task('default', ['server', 'client']);
 
 
 /**------------------ gulp client ------------------*/
