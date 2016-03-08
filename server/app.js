@@ -33,3 +33,7 @@ app.use('/api', test);
 /** menu */
 var menu = require('./api/menu');
 app.use('/api', menu);
+
+/** data visit info */
+var dataVisitInfo = require('./api/data-visit-info');
+app.use('/api', dataVisitInfo);
