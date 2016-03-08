@@ -156,21 +156,32 @@
         .search {
           float:left;
           display: inline-block;
-          width: 250px;
-          margin-right: 20px;
         }
         .profile {
           float:right;
           display: inline-block;
-          width: 100px;
           height: 34px;
           .dropdown{
             float:right;
+            .user-wrap{
+              background:none;
+              border:none;
+              outline:none;
+            }
+            .user-wrap.active,.user-wrap:active{
+              -webkit-box-shadow: none;
+              box-shadow: none;
+            }
           }
         }
       }
       .search-profile{
         margin: 7px 5px;
+        .content-search{
+          border-radius: 10px;
+          height:28px;
+          margin:3px 0;
+        }
       }
     }
     .partial-view {

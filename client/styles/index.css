@@ -202,20 +202,32 @@
 #main .content .navbar .right .search {
   float: left;
   display: inline-block;
-  width: 250px;
-  margin-right: 20px;
 }
 #main .content .navbar .right .profile {
   float: right;
   display: inline-block;
-  width: 100px;
   height: 34px;
 }
 #main .content .navbar .right .profile .dropdown {
   float: right;
 }
+#main .content .navbar .right .profile .dropdown .user-wrap {
+  background: none;
+  border: none;
+  outline: none;
+}
+#main .content .navbar .right .profile .dropdown .user-wrap.active,
+#main .content .navbar .right .profile .dropdown .user-wrap:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 #main .content .navbar .search-profile {
   margin: 7px 5px;
+}
+#main .content .navbar .search-profile .content-search {
+  border-radius: 10px;
+  height: 28px;
+  margin: 3px 0;
 }
 #main .content .partial-view {
   margin-top: 50px;
