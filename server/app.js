@@ -1,8 +1,8 @@
 'use strict';
 const express = require('express'),
-  app = express();
-const jsonLoader = require('load-json-file'),
-  jsonPath = __dirname + '/mock/';
+      app = express();
+
+/** CORS Filter */
 // Setting static resource for express
 // const path = require('path');
 // var client = path.resolve(__dirname + '/../client');
@@ -25,10 +25,6 @@ app.all('*', function(req, res, next) {
 });
 app.listen(5000);
 console.info('http-server[express] listening on 5000');
-
-app.all('/test', function(req, res) {
-
-});
 
 /** test */
 var test = require('./api/test');

@@ -1,25 +1,23 @@
 'use strict';
-const express = require('express');
-const router = express.Router();
-const jsonLoader = require('load-json-file'),
-  path = __dirname + '/mock/';
+const Express = require('express'),
+      Router = Express.Router(),
+      JsonLoader = require('load-json-file'),
+      Config = require('../config');
 
-router.route('/menu')
+Router.route('/menu')
   .get(function(req, res) {
-    let datas = jsonLoader.sync(path + 'menu.json');
+    //GET for Read
+    let datas = JsonLoader.sync(Config.path + 'menu.json');
     res.json(datas);
   })
   .post(function(req, res) {
-    let datas = jsonLoader.sync(path + 'menu.json');
-    res.json(datas);
+    //POST for Create
   })
   .put(function(req, res) {
-    let datas = jsonLoader.sync(path + 'menu.json');
-    res.json(datas);
+    //PUT for Update
   })
   .delete(function(req, res) {
-    let datas = jsonLoader.sync(path + 'menu.json');
-    res.json(datas);
+    //DELETE for Delete
   });
 
-module.exports = router;
+module.exports = Router;
