@@ -4,10 +4,10 @@ const Express = require('express'),
       JsonLoader = require('load-json-file'),
       Config = require('../config');
 
-Router.route('/data-visit-info')
+Router.route('/resource_catalog')
   .get(function(req, res) {
     //GET for Read
-    let datas = JsonLoader.sync(Config.path + 'data-visit-info.json');
+    let datas = JsonLoader.sync(Config.path + 'resource_catalog/get.json');
     res.json(datas);
   })
   .post(function(req, res) {

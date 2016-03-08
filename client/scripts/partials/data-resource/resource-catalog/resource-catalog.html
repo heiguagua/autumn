@@ -1,14 +1,122 @@
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-      <h4 class="panel-title">
-          Collapsible Group Item #1
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+<div class='container-fluid'>
+  <div class='row'>
+    <div class='panel-group'>
+      <div class='panel panel-default'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#content1'>查询面板</div>
+        <div id='content1' class='panel-collapse collapse in'>
+          <div class='panel-body'>
+            <form class='form-inline'>
+              <div class='form-group'>
+                <div class='input-group'>
+                  <div class='input-group-addon'>资源目录类型</div>
+                  <select class='form-control'>
+                    <option>主题</option>
+                    <option>服务</option>
+                  </select>
+                </div>
+                <div class='input-group'>
+                  <div class='input-group-addon'>资源目录名称</div>
+                  <input type='text' class='form-control' placeholder='请输入...'>
+                </div>
+                <button type='submit' class='btn btn-primary'>
+                  <span class='glyphicon glyphicon-search'></span>
+                  查询
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <div class='row'>
+    <div class='panel panel-default'>
+      <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+      <div id='content2' class='panel-collapse collapse in'>
+        <div class='panel-body'>
+          <div>
+            <div class='btn-group'>
+              <button title='' class='btn btn-default' type='button'>
+                <i class='glyphicon glyphicon-plus'></i>
+              </button>
+              <button title='' class='btn btn-default' type='button'>
+                <i class='glyphicon glyphicon-pencil'></i>
+              </button>
+              <button title='' class='btn btn-default' type='button'>
+                <i class='glyphicon glyphicon-remove'></i>
+              </button>
+              <button title='' class='btn btn-default' type='button'>
+                <i class='glyphicon glyphicon-th-list'></i>
+              </button>
+            </div>
+            <div class='columns columns-right btn-group pull-right'>
+              <button class='btn btn-default' type='button'>
+                <i class='glyphicon glyphicon-refresh icon-refresh'></i>
+              </button>
+              <div class='keep-open btn-group' title='列'>
+                <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                  <i class='glyphicon glyphicon-th icon-th'></i>
+                  <span class='caret'></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class='table table-bordered table-hover table-striped'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>资源目录类型</th>
+              <th>资源目录名称</th>
+              <th>资源目录编码</th>
+              <th>父目录编码</th>
+              <th>资源目录描述</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='ResourceCatalog in ResourceCatalogs'>
+              <th scope='row'><input type="checkbox" /></th>
+              <td>{{ResourceCatalog.categoryName}}</td>
+              <td>{{ResourceCatalog.catalogName}}</td>
+              <td>{{ResourceCatalog.catalogCode}}</td>
+              <td>{{ResourceCatalog.parentCode}}</td>
+              <td>{{ResourceCatalog.catalogDesc}}</td>
+              <td>{{ResourceCatalog.activeFlagName}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ul class='pagination pull-right'>
+      <li class='disabled'>
+        <a href='#' aria-label='Previous'>
+          <span aria-hidden='true'>«</span>
+        </a>
+      </li>
+      <li class='active'>
+        <a href='#'>1
+          <span class='sr-only'>(current)</span>
+        </a>
+      </li>
+      <li>
+        <a href='#'>2</a>
+      </li>
+      <li>
+        <a href='#'>3</a>
+      </li>
+      <li>
+        <a href='#'>4</a>
+      </li>
+      <li>
+        <a href='#'>5</a>
+      </li>
+      <li>
+        <a href='#' aria-label='Next'>
+          <span aria-hidden='true'>»</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
+{{ResourceCatalog}}

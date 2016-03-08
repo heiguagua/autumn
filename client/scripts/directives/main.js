@@ -31,8 +31,7 @@ MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
             element.metisMenu({
               preventDefault: false
             });
-          })
-          console.log(response.data);
+          });
         },function(response){
           console.error(response.status + response.statusText);
         });

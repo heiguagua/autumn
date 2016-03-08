@@ -34,6 +34,6 @@ app.use('/api', test);
 var menu = require('./api/menu');
 app.use('/api', menu);
 
-/** data visit info */
-var dataVisitInfo = require('./api/data-visit-info');
-app.use('/api', dataVisitInfo);
+/** resource_catalog */
+var resource_catalog = require('./api/resource_catalog');
+app.use('/api', resource_catalog);
