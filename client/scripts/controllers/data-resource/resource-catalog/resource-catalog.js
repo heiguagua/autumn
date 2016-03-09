@@ -6,8 +6,7 @@ var ResourceCatalogController = angular.module('ResourceCatalogController', ['ui
 ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', 'ResourceCatalogService.httpGet',
   function($scope, httpGet) {
     httpGet.then(function(response){
-      $scope.ResourceCatalogs = response.data;
-      console.log(response.data);
+      $scope.ResourceCatalogs = response.data.body;
     },function(response){
       console.error(response.status + response.statusText);
     });

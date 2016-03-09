@@ -1,4 +1,7 @@
 @charset "utf-8";
+.modal-panel-patch {
+  margin-bottom: 0;
+}
 #login {
   position: absolute;
   height: 100%;
