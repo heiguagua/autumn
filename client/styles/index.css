@@ -14,7 +14,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url('images/login/background.png');
+  background-image: url('images/login/background.jpg');
 }
 #login .form-box {
   padding-top: 10em;
@@ -239,8 +239,6 @@
   padding: 15px 16px;
   z-index: -1;
   color: #333;
-  height: 150em;
-  background: url('images/main/background.png');
   font-size: 13px;
 }
 #main .content .partial-view .form-inline .form-group {
