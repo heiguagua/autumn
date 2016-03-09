@@ -10,6 +10,12 @@
   width: 16px;
   height: 1px;
 }
+.fa:before {
+  content: ">" !important;
+}
+.active .fa:before {
+  content: "<" !important;
+}
 #login {
   position: absolute;
   height: 100%;
@@ -151,7 +157,7 @@
   text-decoration: none;
 }
 #main .sidebar .body ul ul a {
-  padding: 10px 45px;
+  padding: 10px 28px 10px 45px;
   background-color: rgba(255, 255, 255, 0.1);
 }
 #main .sidebar .body ul ul a:hover,
