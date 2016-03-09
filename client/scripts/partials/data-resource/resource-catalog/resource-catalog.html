@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class='row'>
-    <div class='panel panel-default'>
+    <div class='panel panel-default panel-patch'>
       <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
       <div id='content2' class='panel-collapse collapse in'>
         <div class='panel-body'>
@@ -47,6 +47,12 @@
               </button>
               <button title='' class='btn btn-default' type='button'>
                 <i class='glyphicon glyphicon-th-list'></i>
+              </button>
+              <button title="" class="btn btn-default" type="button">
+                <i class="glyphicon glyphicon-ok-sign"></i>
+              </button>
+              <button title="" class="btn btn-default" type="button">
+                <i class="glyphicon glyphicon-ban-circle"></i>
               </button>
             </div>
             <div class='columns columns-right btn-group pull-right'>
@@ -104,7 +110,7 @@
 <div class="modal fade" id="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="panel panel-default modal-panel-patch">
+      <div class="panel panel-default panel-patch">
         <div class="panel-heading">
           添加资源目录
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -156,6 +162,7 @@
             <div class="form-group input-sm">
               <div class="col-sm-12">
                 <button type="button" class="btn btn-primary btn-sm pull-right">确定</button>
+                <div class='pull-right block-split'/>
                 <button type="button" class="btn btn-default btn-sm pull-right" data-dismiss="modal">取消</button>
               </div>
             </div>
