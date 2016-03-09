@@ -8,7 +8,7 @@ ResourceCatalogService.service('ResourceCatalogService.httpGet', ['$http', 'API'
     if (API && API.path) {
       return $http({
         method: 'GET',
-        url: API.path + '/api/resource_catalog',
+        url: API.path + '/api/resource-catalog',
         withCredentials: true
       });
     } else {

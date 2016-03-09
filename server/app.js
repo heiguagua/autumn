@@ -1,13 +1,13 @@
 'use strict';
-const express = require('express'),
-      app = express();
+const Express = require('express'),
+      App = Express();
 
 /** CORS Filter */
 // Setting static resource for express
 // const path = require('path');
 // var client = path.resolve(__dirname + '/../client');
 // app.use(express.static(client));
-app.all('*', function(req, res, next) {
+App.all('*', function(req, res, next) {
   // 指定一个允许向该服务器提交请求的URI.
   res.header('Access-Control-Allow-Origin', 'http://localhost:8000');
   // 指定服务器可以接收的HTTP请求方式，该响应头信息在客户端发出Option预检请求时会被返回
@@ -23,17 +23,17 @@ app.all('*', function(req, res, next) {
   if (req.method === 'OPTIONS') res.sendStatus(200);
   else next();
 });
-app.listen(5000);
+App.listen(5000);
 console.info('http-server[express] listening on 5000');
 
 /** test */
 var test = require('./api/test');
-app.use('/api', test);
+App.use('/api', test);
 
 /** menu */
 var menu = require('./api/menu');
-app.use('/api', menu);
+App.use('/api', menu);
 
 /** resource_catalog */
-var resource_catalog = require('./api/resource_catalog');
-app.use('/api', resource_catalog);
+var resource_catalog = require('./api/resource-catalog');
+App.use('/api', resource_catalog);
