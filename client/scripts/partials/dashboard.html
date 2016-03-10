@@ -1,5 +1,5 @@
 <div my-default-dash id="dashboard">
-  <ul class="nav nav-tabs" id="navTabs">
+  <!--<ul class="nav nav-tabs" id="navTabs">
     <li id='1' class="active"><a href='javascript:void(0)' >按大小</a></li>
     <li id='2'><a href='javascript:void(0)'>按条数</a></li>
   </ul>
@@ -60,5 +60,77 @@
       </div>
     </div>
   </div>
-  
+-->
+
+    <div id="showBaseStatistics" style='overflow:hidden'>
+        <div class=" " style="width:44%;float:left;margin-right:1%;padding: 15px;background: #FFF;">
+          <p>平台容量统计</p>
+          <div id="high-pie-donut" style="height:260px;"></div>
+        </div>
+        <div class=" " style="width:54%;float:left;padding: 15px;background: #FFF;">
+          <p>平台历史数据量统计</p>
+          <div id="showHistoryStatistics">
+              <div id="high-chart" style="height:260px;"></div>
+          </div>
+        </div>
+  </div>
+
+<div style='overflow:hidden;margin-top: 10px;clear:left'>
+  <div class=' rateDetail' style='height:260px;width:78%;float:left;background:#FFF;padding: 15px'>
+    <div class="" style='padding-bottom: 10px;overflow: hidden;'>
+          <label style='font-size:12px'>服务器名称：</label><span>192.168.13.237</span>
+          <label style='font-size:12px;padding-left: 20px;'>IP地址:</label><span>192.168.13.237</span>
+          <label style='font-size:12px;padding-left: 20px;' >连接状态:</label><span style='text-align:left;font-size: 16px;color:#00B130' class='glyphicon glyphicon-ok-circle'></span>
+      </div>
+      <div id="server_tab">
+              <ul class="nav nav-tabs">
+                  <li class="active"><a  name="disk" href="javascript:void(0)">硬盘</a></li>
+                  <li class=""><a  name="io" href="javascript:void(0)">IO</a></li>
+                  <li class=""><a  name="mem" href="javascript:void(0)">内存</a></li>
+                  <li class=""><a  name="cpu" href="javascript:void(0)">CPU</a></li>
+                  <li class=""><a  name="socket" href="javascript:void(0)">套接字</a></li>
+                  <li class=""><a  name="net" href="javascript:void(0)">网络</a></li>
+                  <li class=""><a  name="process" href="javascript:void(0)">进程</a></li>
+                  <li class=""><a  name="load" href="javascript:void(0)">负载</a></li>
+              </ul>
+              <div class="columns-right btn-group pull-right">
+                  <button title="刷新" name="refresh" type="button" id="refreshHighchar" class="btn btn-default"><i class="glyphicon glyphicon-refresh icon-refresh"></i></button>
+              </div>
+          </div>
+          <section class="panel">
+              <div class="panel-body">
+                  <div class="rate-detail" style="height:160px"></div>
+              </div>
+          </section>
+          <div id="messageDiv" style="display: none"></div>
+
+  </div>
+  <div class= '' style='height:260px;width:21%;float:left;background:#FFF;padding:0 15px'>
+    <div style='text-align:middle;'>
+      <div style='font-size: 12px;'>
+
+      </div>
+    </ul>
+  </div>
+  <div class='serverRate2' style='height:84px'></div>
+  <div class='serverRate3' style='height:84px'></div>
+  <div class='serverRate4' style='height:84px'></div>
+</div>
+</div>
+
+
+<div  style='overflow:hidden;margin-top: 10px;clear:left'>
+      <div id="high-column" style="float:left;height:300px;width:49%;margin-right:1%"></div>
+      <div style="float:left;height:400px;width:49%;"><div class=" col-md-12" style="padding: 0;">
+           <span>
+               <select id="home_department_select"  class="selectpicker">
+               </select>
+           </span>
+      </div>
+      <div id="high-chart2"  style="height:300px;"></div>
+    </div>
+</div>
+</div>
+
+
 </div>
