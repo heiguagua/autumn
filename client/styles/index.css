@@ -240,6 +240,7 @@
   z-index: -1;
   color: #333;
   font-size: 13px;
+  background: #F3F3F3;
 }
 #main .content .partial-view .form-inline .form-group {
   margin: 5px 0;
