@@ -7,7 +7,7 @@ LoginService.service('LoginService.login', ['$http',
   function($http) {
     $http({
       method: 'POST',
-      url: 'http://localhost:5000/test',
+      url: 'http://localhost:5000/api/test',
       withCredentials: true
     }).success(function(data, status, headers, config) {
       console.log('HTTP Cookie : ' + document.cookie);
