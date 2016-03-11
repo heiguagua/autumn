@@ -7,14 +7,17 @@ LoginController.controller('LoginController.login', ['$scope', '$state', 'HttpAu
   function($scope, $state, HttpAuth) {
     // Define a global object for current page
     $scope.login = {};
-    // Binding login info
-    var test = HttpAuth.get(function(data){
-      $scope.login.username = data.username;
-      $scope.login.password = data.password;
-    });
     // Binding submit event
     $scope.login.submit = function() {
-      $state.go("main.dashboard");
+      var parameters = {
+        username: $scope.login.username,
+        password: $scope.login.password
+      }
+      HttpAuth.get({parameters},function(data){
+        if(data.head.status === 200){
+          $state.go("main.dashboard");
+        }
+      });
     }
   }
 ]);
