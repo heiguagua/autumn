@@ -13,13 +13,19 @@
               <span class='input-group-addon'>
                 <span class='glyphicon glyphicon-user'></span>
               </span>
-              <input type='text' ng-model='username' class='form-control' placeholder='用户名'>
+              <input type='text' ng-model='login.username' class='form-control' placeholder='用户名'>
             </div>
             <div class='input-group'>
               <span class='input-group-addon'>
                 <span class='glyphicon glyphicon-lock'></span>
               </span>
-              <input type='password' ng-model='password'  class='form-control' placeholder='密码'>
+              <input type='password' ng-model='login.password'  class='form-control' placeholder='密码'>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input ng-model="login.remembered" type="checkbox">
+                <p class="text-muted">记住密码</p>
+              </label>
             </div>
             <button ng-click='login.submit()' type='button' class='btn btn-success'>登 陆</button>
           </form>

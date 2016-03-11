@@ -27,8 +27,8 @@ App.listen(5000);
 console.info('http-server[express] listening on 5000');
 
 /** test */
-var test = require('./api/test');
-App.use('/api', test);
+var auth = require('./api/auth');
+App.use('/api', auth);
 
 /** menu */
 var menu = require('./api/menu');

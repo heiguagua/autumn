@@ -3,13 +3,15 @@
 /*============ #Controller ============*/
 var LoginController = angular.module('LoginController', ['ui.router', 'LoginService']);
 
-LoginController.controller('LoginController.login', ['$scope', '$state', 'LoginService.login',
-  function($scope, $state, LoginService) {
+LoginController.controller('LoginController.login', ['$scope', '$state', 'HttpAuth',
+  function($scope, $state, HttpAuth) {
     // Define a global object for current page
     $scope.login = {};
     // Binding login info
-    $scope.login.username = 'admin';
-    $scope.login.password = 'admin';
+    var test = HttpAuth.get(function(data){
+      $scope.login.username = data.username;
+      $scope.login.password = data.password;
+    });
     // Binding submit event
     $scope.login.submit = function() {
       $state.go("main.dashboard");
@@ -19,19 +21,12 @@ LoginController.controller('LoginController.login', ['$scope', '$state', 'LoginS
 
 
 /*============ #Service ============*/
-var LoginService = angular.module('LoginService',[]);
+var LoginService = angular.module('LoginService',['ngResource']);
 
-LoginService.service('LoginService.login', ['$http',
-  function($http) {
-    $http({
-      method: 'POST',
-      url: 'http://localhost:5000/api/test',
+LoginService.factory('HttpAuth', ['$resource',
+  function($resource) {
+    return $resource('http://localhost:5000/api/auth', {}, {
       withCredentials: true
-    }).success(function(data, status, headers, config) {
-      console.log('HTTP Cookie : ' + document.cookie);
-      console.log('HTTP Response : ' + data);
-    }).error(function(data, status, headers, config) {
-      console.error("HTTP Status Code : "+status);
     });
   }
 ]);
