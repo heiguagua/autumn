@@ -28,6 +28,7 @@
     <script src='libraries/bootstrap/js/bootstrap.min.js'></script>
     <script src='libraries/jquery-metismenu/metisMenu.min.js'></script>
     <script src='libraries/slideout/slideout.min.js'></script>
+    <script src='libraries/echarts/echarts.min.js'></script>
     <!-- Libraries that will be removed -->
     <script src='libraries/bootstrap-table/bootstrap-table.min.js'></script>
     <script src='libraries/bootstrap-table/locale/bootstrap-table-zh-CN.min.js'></script>
@@ -38,107 +39,36 @@
     <script src='libraries/highcharts/highcharts-more.js'></script>
     <!-- Entry Point -->
     <script src='scripts/app.js'></script>
+    <!-- Configration for App -->
     <script src='scripts/config.js'></script>
-    <!-- Login -->
-    <script src='scripts/controllers/login.js'></script>
-    <script src='scripts/services/login.js'></script>
-    <script src='scripts/directives/login.js'></script>
-    <!-- Main -->
-    <script src='scripts/controllers/main.js'></script>
-    <script src='scripts/services/main.js'></script>
-    <script src='scripts/directives/main.js'></script>
-    <!-- Dashboard -->
-    <script src='scripts/controllers/dashboard.js'></script>
-    <script src='scripts/services/dashboard.js'></script>
-    <script src='scripts/directives/dashboard.js'></script>
-    <!-- Resource Catalog -->
-    <script src='scripts/controllers/data-resource/resource-catalog/resource-catalog.js'></script>
-    <script src='scripts/services/data-resource/resource-catalog/resource-catalog.js'></script>
-    <script src='scripts/directives/data-resource/resource-catalog/resource-catalog.js'></script>
-    <!-- Data Resource -->
-    <script src='scripts/controllers/data-resource/metadata/data-resource.js'></script>
-    <script src='scripts/services/data-resource/metadata/data-resource.js'></script>
-    <script src='scripts/directives/data-resource/metadata/data-resource.js'></script>
-    <!-- Data Info -->
-    <script src='scripts/controllers/data-resource/metadata/data-info.js'></script>
-    <script src='scripts/services/data-resource/metadata/data-info.js'></script>
-    <script src='scripts/directives/data-resource/metadata/data-info.js'></script>
-    <!-- Data Authority -->
-    <script src='scripts/controllers/data-resource/metadata/data-authority.js'></script>
-    <script src='scripts/services/data-resource/metadata/data-authority.js'></script>
-    <script src='scripts/directives/data-resource/metadata/data-authority.js'></script>
-    <!-- Data Authority Apply-->
-    <script src='scripts/controllers/data-resource/metadata/data-authority-apply.js'></script>
-    <script src='scripts/services/data-resource/metadata/data-authority-apply.js'></script>
-    <script src='scripts/directives/data-resource/metadata/data-authority-apply.js'></script>
-    <!-- Data Audit Info-->
-    <script src='scripts/controllers/data-resource/data/data-audit-info.js'></script>
-    <script src='scripts/services/data-resource/data/data-audit-info.js'></script>
-    <script src='scripts/directives/data-resource/data/data-audit-info.js'></script>
-    <!-- Data Release Info-->
-    <script src='scripts/controllers/data-resource/data/data-release-info.js'></script>
-    <script src='scripts/services/data-resource/data/data-release-info.js'></script>
-    <script src='scripts/directives/data-resource/data/data-release-info.js'></script>
-    <!-- Data Offline Info-->
-    <script src='scripts/controllers/data-resource/data/data-offline-info.js'></script>
-    <script src='scripts/services/data-resource/data/data-offline-info.js'></script>
-    <script src='scripts/directives/data-resource/data/data-offline-info.js'></script>
-    <!-- Data Visit Info-->
-    <script src='scripts/controllers/data-status/data-visit-info.js'></script>
-    <script src='scripts/services/data-status/data-visit-info.js'></script>
-    <script src='scripts/directives/data-status/data-visit-info.js'></script>
-    <!-- Server Manage-->
-    <script src='scripts/controllers/platform-operations/server-manage.js'></script>
-    <script src='scripts/services/platform-operations/server-manage.js'></script>
-    <script src='scripts/directives/platform-operations/server-manage.js'></script>
-    <!-- Contacts Group-->
-    <script src='scripts/controllers/platform-operations/platform-alarm/contacts-group.js'></script>
-    <script src='scripts/services/platform-operations/platform-alarm/contacts-group.js'></script>
-    <script src='scripts/directives/platform-operations/platform-alarm/contacts-group.js'></script>
-    <!-- Alarm Rule-->
-    <script src='scripts/controllers/platform-operations/platform-alarm/alarm-rule.js'></script>
-    <script src='scripts/services/platform-operations/platform-alarm/alarm-rule.js'></script>
-    <script src='scripts/directives/platform-operations/platform-alarm/alarm-rule.js'></script>
-    <!-- Alarm Info-->
-    <script src='scripts/controllers/platform-operations/platform-alarm/alarm-info.js'></script>
-    <script src='scripts/services/platform-operations/platform-alarm/alarm-info.js'></script>
-    <script src='scripts/directives/platform-operations/platform-alarm/alarm-info.js'></script>
-    <!-- Dcm Config-->
-    <script src='scripts/controllers/platform-configuration/dcm-config.js'></script>
-    <script src='scripts/services/platform-configuration/dcm-config.js'></script>
-    <script src='scripts/directives/platform-configuration/dcm-config.js'></script>
-    <!-- System Setting Category-->
-    <script src='scripts/controllers/platform-configuration/sys-setting-category.js'></script>
-    <script src='scripts/services/platform-configuration/sys-setting-category.js'></script>
-    <script src='scripts/directives/platform-configuration/sys-setting-category.js'></script>
-    <!-- System Dict Category-->
-    <script src='scripts/controllers/platform-configuration/sys-dict-category.js'></script>
-    <script src='scripts/services/platform-configuration/sys-dict-category.js'></script>
-    <script src='scripts/directives/platform-configuration/sys-dict-category.js'></script>
-    <!-- Log Management-->
-    <script src='scripts/controllers/platform-configuration/log-manage.js'></script>
-    <script src='scripts/services/platform-configuration/log-manage.js'></script>
-    <script src='scripts/directives/platform-configuration/log-manage.js'></script>
-    <!-- Init System-->
-    <script src='scripts/controllers/platform-configuration/init-system.js'></script>
-    <script src='scripts/services/platform-configuration/init-system.js'></script>
-    <script src='scripts/directives/platform-configuration/init-system.js'></script>
-    <!-- System Department Mangament-->
-    <script src='scripts/controllers/organization-person/sys-dep-manage.js'></script>
-    <script src='scripts/services/organization-person/sys-dep-manage.js'></script>
-    <script src='scripts/directives/organization-person/sys-dep-manage.js'></script>
-    <!-- User Mangament-->
-    <script src='scripts/controllers/organization-person/user-manage.js'></script>
-    <script src='scripts/services/organization-person/user-manage.js'></script>
-    <script src='scripts/directives/organization-person/user-manage.js'></script>
-    <!-- System Role-->
-    <script src='scripts/controllers/organization-person/sys-role.js'></script>
-    <script src='scripts/services/organization-person/sys-role.js'></script>
-    <script src='scripts/directives/organization-person/sys-role.js'></script>
-    <!-- Data Role-->
-    <script src='scripts/controllers/organization-person/data-role.js'></script>
-    <script src='scripts/services/organization-person/data-role.js'></script>
-    <script src='scripts/directives/organization-person/data-role.js'></script>
+    <!-- Common -->
+    <script src='scripts/common/global.js'></script>
+    <script src='scripts/common/login.js'></script>
+    <script src='scripts/common/main.js'></script>
+    <!-- Custom -->
+    <script src='scripts/dashboard/dashboard.js'></script>
+    <script src='scripts/data-resource/resource-catalog/resource-catalog.js'></script>
+    <script src='scripts/data-resource/metadata/data-resource.js'></script>
+    <script src='scripts/data-resource/metadata/data-info.js'></script>
+    <script src='scripts/data-resource/metadata/data-authority.js'></script>
+    <script src='scripts/data-resource/metadata/data-authority-apply.js'></script>
+    <script src='scripts/data-resource/data/data-audit-info.js'></script>
+    <script src='scripts/data-resource/data/data-release-info.js'></script>
+    <script src='scripts/data-resource/data/data-offline-info.js'></script>
+    <script src='scripts/data-status/data-visit-info.js'></script>
+    <script src='scripts/platform-operations/server-manage.js'></script>
+    <script src='scripts/platform-operations/platform-alarm/contacts-group.js'></script>
+    <script src='scripts/platform-operations/platform-alarm/alarm-rule.js'></script>
+    <script src='scripts/platform-operations/platform-alarm/alarm-info.js'></script>
+    <script src='scripts/platform-configuration/dcm-config.js'></script>
+    <script src='scripts/platform-configuration/sys-setting-category.js'></script>
+    <script src='scripts/platform-configuration/sys-dict-category.js'></script>
+    <script src='scripts/platform-configuration/log-manage.js'></script>
+    <script src='scripts/platform-configuration/init-system.js'></script>
+    <script src='scripts/organization-person/sys-dep-manage.js'></script>
+    <script src='scripts/organization-person/user-manage.js'></script>
+    <script src='scripts/organization-person/sys-role.js'></script>
+    <script src='scripts/organization-person/data-role.js'></script>
   </script>
 </body>
 </html>
