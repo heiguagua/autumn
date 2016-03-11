@@ -1,0 +1,89 @@
+<div wiserv-main-wrapper>
+  <div id='main'>
+    <!-- Left Menu -->
+    <aside class='sidebar'>
+      <a ui-sref='main.dashboard' class='head'>
+        <span class='logo'>Wiserv Big Data</span>
+      </a>
+      <div class='body'>
+        <div class='search-box'>
+          <div class='decoration'>
+            <input type'text' class='search-input' placeholder='检索菜单...'>
+            <a href="#" class="search-link"><span class='search-icon glyphicon glyphicon-search'></span></a>
+          </div>
+	      </div>
+        <ul wiserv-menu-tree class='metismenu' id='menu'>
+          <!--
+          <li class='active' >
+            <a href='#'>数据资源管理</a>
+            <ul>
+              <li><a>资源目录管理</a>
+                <ul>
+                  <li><a>资源目录管理</a></li>
+                  <li><a>元数据管理</a></li>
+                  <li><a>数据管理</a></li>
+                </ul>
+              </li>
+              <li><a>元数据管理</a></li>
+              <li><a>数据管理</a></li>
+            </ul>
+          </li>
+          -->
+          <li ng-repeat='item in menus'>
+            <a ui-sref='{{::item.url}}'>{{::item.name}}<span class="glyphicon arrow pull-right"></span></a>
+            <ul>
+              <li ng-repeat='child in item.children'>
+                <a ui-sref='{{::child.url}}'>{{::child.name}}<span ng-if="child.url==='null'" class="glyphicon arrow pull-right"></a>
+                <ul>
+                  <li ng-repeat='grandchild in child.children'>
+                    <a ui-sref='{{::grandchild.url}}'>{{::grandchild.name}}<span ng-if="grandchild.url==='null'" class="glyphicon arrow pull-right"></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <!-- Content -->
+    <article class='content'>
+      <nav class='navbar navbar-default'>
+        <div class='left'>
+          <button class='toggler'></button>
+          <ol class='breadcrumb nav-bread'>
+            <li><a>数据资源管理</a></li>
+            <li><a>元数据管理</a></li>
+            <li>数据接入资源管理</li>
+          </ol>
+        </div>
+        <div class='right search-profile'>
+          <div class='search'>
+            <div class="input-group">
+              <!--
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">搜索</button>
+              </span>
+              -->
+              <input type="text" class="form-control content-search" placeholder="检索面板...">
+            </div>
+          </div>
+          <div class='profile'>
+            <div class="dropdown">
+              <button class="btn user-wrap dropdown-toggle " type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span>
+                系统管理员
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">我的资料</a></li>
+                <li><a href="#">修改密码</a></li>
+                <li><a href="#">退出系统</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div ui-view class='partial-view'></div>
+    </article>
+  </div>
+</div>

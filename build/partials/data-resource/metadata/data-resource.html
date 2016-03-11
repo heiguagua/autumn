@@ -1,0 +1,63 @@
+<div wiserv-data-resource>
+  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+    <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
+      <div class="panel-title" style="font-size: 14px;">
+        <span class="text-muted">查询条件</span>
+        <div class="pull-right">
+          <i class="glyphicon glyphicon-chevron-up"></i>
+        </div>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
+      <div class="panel-body">
+        <form class="form-inline" style="margin-bottom:0">
+          <div class="form-group">
+            <label class="control-label" for="">资源名称
+            </label>
+            <input type="text" class="form-control input-sm" id="" name="" placeholder="请输入资源名称"/>
+          </div>
+          <div class="form-group">
+            <label for="" class="control-label">资源分类</label>
+            <select id="" class="selectpicker">
+              <option value="">请选择</option>
+              <option value="2">部门</option>
+              <option value="1">主题</option>
+              <option value="3">服务</option>
+              <option value="test">test</option>
+            </select>
+            <input id="" class="form-control input-sm" placeholder="请选择" readonly />
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="">资源所属部门</label>
+            <input type="text" class="form-control input-sm" id="" name="" placeholder="请选择" readonly />
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="">创建时间</label>
+            <input type="text" class="form-control input-sm" id="" name="" placeholder="请选择" />
+          </div>
+          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
+            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="btn-group">
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-plus"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-pencil"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-remove"></i>
+      </button>
+      <button title="" class="btn btn-default" type="button">
+        <i class="glyphicon glyphicon-th-list"></i>
+      </button>
+    </div>
+  </div>
+  <table id="table"></table>
+</div>
