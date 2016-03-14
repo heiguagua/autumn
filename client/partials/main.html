@@ -33,10 +33,10 @@
             <a ui-sref='{{::item.url}}'>{{::item.name}}<span class="glyphicon arrow pull-right"></span></a>
             <ul>
               <li ng-repeat='child in item.children'>
-                <a ui-sref='{{::child.url}}'>{{::child.name}}<span ng-if="child.url==='null'" class="glyphicon arrow pull-right"></a>
+                <a ui-sref='{{::child.url}}'>{{::child.name}}<span ng-if="child.isParent===true" class="glyphicon arrow pull-right"></a>
                 <ul>
                   <li ng-repeat='grandchild in child.children'>
-                    <a ui-sref='{{::grandchild.url}}'>{{::grandchild.name}}<span ng-if="grandchild.url==='null'" class="glyphicon arrow pull-right"></a>
+                    <a ui-sref='{{::grandchild.url}}'>{{::grandchild.name}}<span ng-if="grandchild.isParent===true" class="glyphicon arrow pull-right"></a>
                   </li>
                 </ul>
               </li>
