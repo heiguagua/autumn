@@ -1,24 +1,146 @@
 <div my-default-dash id="dashboard">
 
-  <div class='row' style='padding:10px 20px;'>
-    <div class='col-md-3'>
-      <div class='serverRate2' style='height:164px'></div>
-    </div>
-    <div class='col-md-3'>
-      <div class='serverRate3' style='height:164px'></div>
-    </div>
-    <div class='col-md-3'>
-      <div class='serverRate4' style='height:164px'></div>
-    </div>
-  </div>
+    <!-- department data -->
+    <div class='row' >
+      <div class='col-md-6'>
+        <div class='panel panel-default panel-patch'>
+          <div class='panel-heading' data-toggle='collapse' data-target='#content6'>部门数据概况</div>
+          <div id='content6' class='panel-collapse collapse in'>
+            <div class='panel-body'>
+              <div id='dept-chart' style='height:300px;'></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class='col-md-6' >
+        <div class='panel panel-default panel-patch'>
+          <div class='panel-heading' data-toggle='collapse' data-target='#content7'>平台告警</div>
+          <div id='content7' class='panel-collapse collapse in'>
+            <div class='panel-body'>
+              <div id='plat-alarm-chart' style='height:300px;overflow: hidden;'>
+                <table class='table table-hover table-striped'>
+                  <thead>
+                    <tr>
+                      <th>告警类型</th>
+                      <th>告警名称</th>
+                      <th>告警内容</th>
+                      <th>告警时间</th>
+                      <th>状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>服务器告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-info">确认</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>服务器告警</td>
+                      <td>异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-warning">忽略</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>系统告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-danger">未处理</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>服务器告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-info">确认</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>服务器告警</td>
+                      <td>异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-warning">忽略</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>系统告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-danger">未处理</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>服务器告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-info">确认</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>系统告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-danger">未处理</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>服务器告警</td>
+                      <td>系统异常</td>
+                      <td>系统自动关机</td>
+                      <td>04/03/2016 17:23</td>
+                      <td>
+                        <span class="label label-info">确认</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <!-- server usage -->
-  <div class='row'>
+  <div class='row' style='margin-top:15px;'>
     <div class='col-md-9'>
       <div class='panel panel-default panel-patch '>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content2'>CPU使用率</div>
+        <div class='panel-heading' data-toggle='collapse' data-target='#content2'>服务器监控</div>
         <div id='content2' class='panel-collapse collapse in'>
-            <div id='realtime-rate' class='' style='height:300px;'></div>
+          <div class='panel-body'>
+
+            <div class='col-md-3'>
+              <div class='serverRate2' style='height:100px'></div>
+            </div>
+            <div class='col-md-3'>
+              <div class='serverRate3' style='height:100px'></div>
+            </div>
+            <div class='col-md-3'>
+              <div class='serverRate4' style='height:100px'></div>
+            </div>
+            <div class='col-md-3'>
+              <div class='serverRate5' style='height:100px'></div>
+            </div>
+            <div id='realtime-rate' class='' style='height:280px;clear:left'></div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,7 +149,7 @@
         <div class='panel-heading' data-toggle='collapse' data-target='#content3'>数据访问日志</div>
         <div id='content3' class='panel-collapse collapse in'>
           <div class='panel-body'>
-            <div id='data-visit-chart' style='height:270px;overflow: hidden;'>
+            <div id='data-visit-chart' style='height:380px;overflow: hidden;'>
               <ul style='list-style:none;margin:0;padding:0;'>
                 <li style='border-bottom: 1px solid #DDD;'>
                   <i class='fa fa-list-alt pull-left icon-success' style='color:#99CC33;display:inline-block;vertical-align: middle;-moz-border-radius: 30px;  -webkit-border-radius: 30px;border-radius: 30px;width: 34px;  height: 34px;background-color: #e4e4e4;font-size: 16px;line-height: 34px;text-align: center;margin-right: 10px;'></i>
@@ -110,8 +232,8 @@
     <!-- platform info -->
     <div class=' col-md-4'>
       <div class='panel panel-default panel-patch'>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content3'>平台数据整体概况</div>
-        <div id='content3' class='panel-collapse collapse in'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#content4'>平台数据整体概况</div>
+        <div id='content4' class='panel-collapse collapse in'>
           <div class='panel-body'>
             <div id='plat-pie-chart' style='height:300px;'></div>
           </div>
@@ -122,70 +244,10 @@
     <!-- platform history data -->
     <div class='col-md-8'>
       <div class='panel panel-default panel-patch'>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content3'>平台历史数据量统计</div>
-        <div id='content3' class='panel-collapse collapse in'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#content5'>平台历史访问量统计</div>
+        <div id='content5' class='panel-collapse collapse in'>
           <div class='panel-body'>
             <div id='plat-his-chart' style='height:300px;'></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- department data -->
-  <div class='row' style='margin-top:15px;'>
-    <div class='col-md-6'>
-      <div class='panel panel-default panel-patch'>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content3'>部门数据概况</div>
-        <div id='content3' class='panel-collapse collapse in'>
-          <div class='panel-body'>
-            <div id='dept-chart' style='height:300px;'></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class='col-md-6'>
-      <div class='panel panel-default panel-patch'>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content3'>平台告警</div>
-        <div id='content3' class='panel-collapse collapse in'>
-          <div class='panel-body'>
-            <div id='plat-alarm-chart' style='height:300px;'>
-              <table class='table table-hover table-striped'>
-                <thead>
-                  <tr>
-                    <th>告警类型</th>
-                    <th>告警名称</th>
-                    <th>告警内容</th>
-                    <th>告警时间</th>
-                    <th>状态</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>服务器告警</td>
-                    <td>系统异常</td>
-                    <td>系统自动关机</td>
-                    <td>04/03/2016 17:23</td>
-                    <td><span class="label label-info">确认</span></td>
-                  </tr>
-                  <tr>
-                    <td>服务器告警</td>
-                    <td>异常</td>
-                    <td>系统自动关机</td>
-                    <td>04/03/2016 17:23</td>
-                    <td><span class="label label-warning">忽略</span></td>
-                  </tr>
-                  <tr>
-                    <td>系统告警</td>
-                    <td>系统异常</td>
-                    <td>系统自动关机</td>
-                    <td>04/03/2016 17:23</td>
-                    <td><span class="label label-danger">未处理</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
         </div>
       </div>

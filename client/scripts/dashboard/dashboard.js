@@ -187,7 +187,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         series: [{
           name: '硬盘使用率',
           type: 'gauge',
-          splitNumber: 10,
+          splitNumber: 5,
           axisLine: {
             lineStyle: {
               color: [
@@ -195,24 +195,26 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
                 [0.8, '#3399CC'],
                 [1, '#ff4500']
               ],
-              width: 8
+              width: 6
             }
           },
           axisTick: {
-            splitNumber: 10,
+            splitNumber: 5,
             length: 12,
             lineStyle: {
               color: 'auto'
             }
           },
           axisLabel: {
+            margin:20,
             textStyle: {
-              color: 'auto'
+              color: 'auto',
+              fontSize:8
             }
           },
           splitLine: {
             show: true,
-            length: 20,
+            length: 15,
             lineStyle: {
               color: 'auto'
             }
@@ -222,19 +224,19 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
           },
           title: {
             show: true,
-            offsetCenter: [0, '100%'],
+            offsetCenter: [0, '110%'],
             textStyle: {
               fontWeight: 'bolder',
-              fonSize: '12'
+              fontSize: '12'
             }
           },
           detail: {
             formatter: '{value}%',
-            offsetCenter: [0, '60%'],
+            offsetCenter: [0, '70%'],
             textStyle: {
               color: 'auto',
               fontWeight: 'bolder',
-              fontSize: '16'
+              fontSize: '12'
             }
           },
           data: [{
@@ -261,7 +263,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         series: [{
           name: 'CPU使用率',
           type: 'gauge',
-          splitNumber: 10,
+          splitNumber: 5,
           axisLine: {
             lineStyle: {
               color: [
@@ -269,24 +271,25 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
                 [0.8, '#3399CC'],
                 [1, '#ff4500']
               ],
-              width: 8
+              width: 6
             }
           },
           axisTick: {
-            splitNumber: 10,
+            splitNumber: 5,
             length: 12,
             lineStyle: {
               color: 'auto'
             }
           },
           axisLabel: {
+            margin:0,
             textStyle: {
               color: 'auto'
             }
           },
           splitLine: {
             show: true,
-            length: 20,
+            length: 15,
             lineStyle: {
               color: 'auto'
             }
@@ -296,19 +299,19 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
           },
           title: {
             show: true,
-            offsetCenter: [0, '100%'],
+            offsetCenter: [0, '110%'],
             textStyle: {
               fontWeight: 'bolder',
-              fonSize: '12'
+              fontSize: '12'
             }
           },
           detail: {
             formatter: '{value}%',
-            offsetCenter: [0, '60%'],
+            offsetCenter: [0, '70%'],
             textStyle: {
               color: 'auto',
               fontWeight: 'bolder',
-              fontSize: '16'
+              fontSize: '12'
             }
           },
           data: [{
@@ -335,7 +338,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         series: [{
           name: '内存使用率',
           type: 'gauge',
-          splitNumber: 10,
+          splitNumber: 5,
           axisLine: {
             lineStyle: {
               color: [
@@ -343,24 +346,25 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
                 [0.8, '#3399CC'],
                 [1, '#ff4500']
               ],
-              width: 8
+              width: 6
             }
           },
           axisTick: {
-            splitNumber: 10,
+            splitNumber: 5,
             length: 12,
             lineStyle: {
               color: 'auto'
             }
           },
           axisLabel: {
+            margin:0,
             textStyle: {
               color: 'auto'
             }
           },
           splitLine: {
             show: true,
-            length: 20,
+            length: 15,
             lineStyle: {
               color: 'auto'
             }
@@ -370,19 +374,19 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
           },
           title: {
             show: true,
-            offsetCenter: [0, '100%'],
+            offsetCenter: [0, '110%'],
             textStyle: {
               fontWeight: 'bolder',
-              fonSize: '12'
+              fontSize: '12'
             }
           },
           detail: {
             formatter: '{value}%',
-            offsetCenter: [0, '60%'],
+            offsetCenter: [0, '70%'],
             textStyle: {
               color: 'auto',
               fontWeight: 'bolder',
-              fontSize: '16'
+              fontSize: '12'
             }
           },
           data: [{
@@ -469,6 +473,82 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         }]
       };
       myChart.setOption(option);
+
+
+      var netChart = echarts.init(element.find('.serverRate5')[0]);
+      var netOpt = {
+        tooltip: {
+          formatter: "{b} : {c}%"
+        },
+        series: [{
+          name: '网络使用率',
+          type: 'gauge',
+          splitNumber: 5,
+          axisLine: {
+            lineStyle: {
+              color: [
+                [0.2, '#99CC33'],
+                [0.8, '#3399CC'],
+                [1, '#ff4500']
+              ],
+              width: 6
+            }
+          },
+          axisTick: {
+            splitNumber: 5,
+            length: 12,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          axisLabel: {
+            margin:20,
+            textStyle: {
+              color: 'auto',
+              fontSize:8
+            }
+          },
+          splitLine: {
+            show: true,
+            length: 15,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          pointer: {
+            width: 5
+          },
+          title: {
+            show: true,
+            offsetCenter: [0, '110%'],
+            textStyle: {
+              fontWeight: 'bolder',
+              fontSize: '12'
+            }
+          },
+          detail: {
+            formatter: '{value}%',
+            offsetCenter: [0, '70%'],
+            textStyle: {
+              color: 'auto',
+              fontWeight: 'bolder',
+              fontSize: '12'
+            }
+          },
+          data: [{
+            value: 50,
+            name: '网络使用率'
+          }]
+        }]
+      };
+
+      clearInterval(netTimeTicket);
+      var netTimeTicket = setInterval(function() {
+        netOpt.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        netChart.setOption(netOpt, true);
+      }, 2000);
+
+      netChart.setOption(netOpt);
 
       /* platform data chart */
       var platChart = echarts.init(element.find('#plat-pie-chart')[0]);
