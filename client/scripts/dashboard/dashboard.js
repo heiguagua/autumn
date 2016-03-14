@@ -178,157 +178,227 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
   return {
     restrict: 'AE',
     link: function(scope, element, attrs) {
-      element.find('.serverRate2').highcharts({
-        chart: {
-          type: 'pie'
-        },
-        title: {
-          text: "硬盘使用率",
-          align: 'center',
-          verticalAlign: 'bottom',
-          style: {
-            color: '#719620',
-            fontSize: '12px'
-          }
-        },
-        plotOptions: {
-          pie: {
-            size: 50, //图表直径大小
-            borderColor: null,
-            dataLabels: {
-              distance: -28,
-              formatter: function() {
-                if (this.point.name == "harddisk")
-                  return "";
-                else
-                  return "19.55%";
-              },
-              style: {
-                fontSize: "12px"
-              }
-            },
-            innerSize: '92%',
-            colors: [
-              '#719620',
-              'rgba(113, 150, 32, 0.16)'
-            ]
-          }
-        },
+      /* hard disk rate */
+      var hardDiskChart = echarts.init(element.find('.serverRate2')[0]);
+      var hardDiskOpt = {
         tooltip: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
+          formatter: "{b} : {c}%"
         },
         series: [{
-          data: [
-            ['harddisk', 19.55],
-            ['all', 100 - 19.55]
-          ]
+          name: '硬盘使用率',
+          type: 'gauge',
+          splitNumber: 10,
+          axisLine: {
+            lineStyle: {
+              color: [
+                [0.2, '#99CC33'],
+                [0.8, '#3399CC'],
+                [1, '#ff4500']
+              ],
+              width: 8
+            }
+          },
+          axisTick: {
+            splitNumber: 10,
+            length: 12,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: 'auto'
+            }
+          },
+          splitLine: {
+            show: true,
+            length: 20,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          pointer: {
+            width: 5
+          },
+          title: {
+            show: true,
+            offsetCenter: [0, '100%'],
+            textStyle: {
+              fontWeight: 'bolder',
+              fonSize: '12'
+            }
+          },
+          detail: {
+            formatter: '{value}%',
+            offsetCenter: [0, '60%'],
+            textStyle: {
+              color: 'auto',
+              fontWeight: 'bolder',
+              fontSize: '16'
+            }
+          },
+          data: [{
+            value: 50,
+            name: '硬盘使用率'
+          }]
         }]
-      });
-      element.find('.serverRate3').highcharts({
-        chart: {
-          type: 'pie'
-        },
-        title: {
-          text: "CPU使用率",
-          align: 'center',
-          verticalAlign: 'bottom',
-          style: {
-            color: '#8464CA',
-            fontSize: '12px'
-          }
-        },
-        plotOptions: {
-          pie: {
-            size: 50, //图表直径大小
-            borderColor: null,
-            dataLabels: {
-              distance: -28,
-              formatter: function() {
-                if (this.point.name == "cpu")
-                  return "";
-                else
-                  return "24.2%";
-              },
-              style: {
-                fontSize: "12px",
-                color: '#FFF'
-              }
-            },
-            innerSize: '90%',
-            colors: [
-              '#8464CA',
-              'rgba(149, 124, 206, 0.17)'
-            ]
-          }
-        },
+      };
+
+      clearInterval(hardTimeTicket);
+      var hardTimeTicket = setInterval(function() {
+        hardDiskOpt.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        hardDiskChart.setOption(hardDiskOpt, true);
+      }, 2000);
+
+      hardDiskChart.setOption(hardDiskOpt);
+
+      /* cpu rate */
+      var cpuChart = echarts.init(element.find('.serverRate3')[0]);
+      var cpuOpt = {
         tooltip: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
+          formatter: "{b} : {c}%"
         },
         series: [{
-          data: [
-            ['cpu', 54.2],
-            ['all', 100 - 54.2]
-          ]
+          name: 'CPU使用率',
+          type: 'gauge',
+          splitNumber: 10,
+          axisLine: {
+            lineStyle: {
+              color: [
+                [0.2, '#99CC33'],
+                [0.8, '#3399CC'],
+                [1, '#ff4500']
+              ],
+              width: 8
+            }
+          },
+          axisTick: {
+            splitNumber: 10,
+            length: 12,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: 'auto'
+            }
+          },
+          splitLine: {
+            show: true,
+            length: 20,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          pointer: {
+            width: 5
+          },
+          title: {
+            show: true,
+            offsetCenter: [0, '100%'],
+            textStyle: {
+              fontWeight: 'bolder',
+              fonSize: '12'
+            }
+          },
+          detail: {
+            formatter: '{value}%',
+            offsetCenter: [0, '60%'],
+            textStyle: {
+              color: 'auto',
+              fontWeight: 'bolder',
+              fontSize: '16'
+            }
+          },
+          data: [{
+            value: 50,
+            name: 'CPU使用率'
+          }]
         }]
-      });
+      };
+
+      clearInterval(cpuTimeTicket);
+      var cpuTimeTicket = setInterval(function() {
+        cpuOpt.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        cpuChart.setOption(cpuOpt, true);
+      }, 2000)
+
+      cpuChart.setOption(cpuOpt);
 
       /* memory rate */
-      element.find('.serverRate4').highcharts({
-        chart: {
-          type: 'pie'
-        },
-        title: {
-          text: "内存使用率",
-          align: 'center',
-          verticalAlign: 'bottom',
-          style: {
-            color: '#5280E0',
-            fontSize: '12px'
-          }
-        },
-        plotOptions: {
-          pie: {
-            size: 50, //图表直径大小
-            borderColor: null,
-            dataLabels: {
-              distance: -28,
-              formatter: function() {
-                if (this.point.name == "memory")
-                  return "";
-                else
-                  return "19.55%";
-              },
-              style: {
-                fontSize: "12px",
-                color: '#FFF'
-              }
-            },
-            innerSize: '90%',
-            colors: [
-              '#5280E0',
-              'rgba(82, 128, 224, 0.19)'
-            ]
-          }
-        },
+      var memoryChart = echarts.init(element.find('.serverRate4')[0]);
+      var memoryOpt = {
         tooltip: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
+          formatter: "{b} : {c}%"
         },
         series: [{
-          data: [
-            ['memory', 19.55],
-            ['all', 100 - 19.55]
-          ]
+          name: '内存使用率',
+          type: 'gauge',
+          splitNumber: 10,
+          axisLine: {
+            lineStyle: {
+              color: [
+                [0.2, '#99CC33'],
+                [0.8, '#3399CC'],
+                [1, '#ff4500']
+              ],
+              width: 8
+            }
+          },
+          axisTick: {
+            splitNumber: 10,
+            length: 12,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: 'auto'
+            }
+          },
+          splitLine: {
+            show: true,
+            length: 20,
+            lineStyle: {
+              color: 'auto'
+            }
+          },
+          pointer: {
+            width: 5
+          },
+          title: {
+            show: true,
+            offsetCenter: [0, '100%'],
+            textStyle: {
+              fontWeight: 'bolder',
+              fonSize: '12'
+            }
+          },
+          detail: {
+            formatter: '{value}%',
+            offsetCenter: [0, '60%'],
+            textStyle: {
+              color: 'auto',
+              fontWeight: 'bolder',
+              fontSize: '16'
+            }
+          },
+          data: [{
+            value: 50,
+            name: '内存使用率'
+          }]
         }]
-      });
+      };
+
+      clearInterval(memTimeTicket);
+      var memTimeTicket = setInterval(function() {
+        memoryOpt.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        memoryChart.setOption(memoryOpt, true);
+      }, 2000);
+
+      memoryChart.setOption(memoryOpt);
 
       /* CPU rate detail */
       function randomData() {
@@ -373,7 +443,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         yAxis: {
           name: '百分比',
           type: 'value',
-		  max: 100,
+          max: 100,
           splitLine: {
             show: false
           }
@@ -382,19 +452,19 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
           name: 'CPU使用率',
           type: 'line',
           showSymbol: false,
-		  smooth:true,
+          smooth: true,
           hoverAnimation: false,
-		  areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
-                        color: '#99CCFF'
-                    }, {
-                        offset: 1,
-                        color: '#3399CC'
-                    }])
-                }
-            },
+          areaStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: '#99CCFF'
+              }, {
+                offset: 1,
+                color: '#3399CC'
+              }])
+            }
+          },
           data: data
         }]
       };
@@ -543,7 +613,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: ['安监局', '国土局', '环保局', '监察局', '交通局', '教育局', '民政局','人口与计划生育局','市场服务中心','市监局','司法局','残联局','统计局','城管局','地税局','发改局',]
+          data: ['安监局', '国土局', '环保局', '监察局', '交通局', '教育局', '民政局', '人口与计划生育局', '市场服务中心', '市监局', '司法局', '残联局', '统计局', '城管局', '地税局', '发改局', ]
         },
         yAxis: {
           type: 'value',
@@ -554,7 +624,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         series: [{
           name: '普通文件[MB]',
           type: 'line',
-          data: [11, 11, 15, 13, 12, 13, 10 ,20 ,26 ,21 ,23 ,12 ,12 ,14 ,15, 23],
+          data: [11, 11, 15, 13, 12, 13, 10, 20, 26, 21, 23, 12, 12, 14, 15, 23],
           markPoint: {
             data: [{
               type: 'max',
@@ -573,7 +643,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         }, {
           name: '数据库文件[MB]',
           type: 'line',
-          data: [31 ,23 ,12 ,12 ,14 ,15, 23,31, 11, 15, 33, 12, 8, 10 ,20 ,36],
+          data: [31, 23, 12, 12, 14, 15, 23, 31, 11, 15, 33, 12, 8, 10, 20, 36],
           markPoint: {
             data: [{
               type: 'max',
