@@ -31,7 +31,8 @@ var app = angular.module('app', [
   'DataRoleController'
 ]);
 
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $locationProvider.html5Mode(false);
   $urlRouterProvider.otherwise('/login');
   $stateProvider
     .state('login', {
