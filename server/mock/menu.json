@@ -1,7 +1,7 @@
 [{
   "id": "1",
   "name": "数据资源管理",
-  "url": "null",
+  "url": ".",
   "order": "",
   "icon": "",
   "expansion": true,
@@ -9,7 +9,7 @@
   "children": [{
     "id": "",
     "name": "资源目录管理",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -27,7 +27,7 @@
   }, {
     "id": "2",
     "name": "元数据管理",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -72,7 +72,7 @@
   }, {
     "id": "3",
     "name": "数据管理",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -109,7 +109,7 @@
 }, {
   "id": "",
   "name": "数据状态监控",
-  "url": "null",
+  "url": ".",
   "order": "",
   "icon": "",
   "expansion": true,
@@ -117,7 +117,7 @@
   "children": [{
     "id": "",
     "name": "平台数据整体概况",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -126,7 +126,7 @@
   }, {
     "id": "",
     "name": "部门数据概况",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -144,7 +144,7 @@
   }, {
     "id": "",
     "name": "数据使用情况统计",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -154,7 +154,7 @@
 }, {
   "id": "",
   "name": "平台运维管理",
-  "url": "null",
+  "url": ".",
   "order": "",
   "icon": "",
   "expansion": true,
@@ -171,7 +171,7 @@
   }, {
     "id": "",
     "name": "平台告警管理",
-    "url": "null",
+    "url": ".",
     "order": "",
     "icon": "",
     "expansion": true,
@@ -208,7 +208,7 @@
 }, {
   "id": "",
   "name": "平台配置管理",
-  "url": "null",
+  "url": ".",
   "order": "",
   "icon": "",
   "expansion": true,
@@ -262,7 +262,7 @@
 }, {
   "id": "",
   "name": "组织人员管理",
-  "url": "null",
+  "url": ".",
   "order": "",
   "icon": "",
   "expansion": true,
