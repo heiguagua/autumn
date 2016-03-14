@@ -19,7 +19,7 @@ gulp.task('default', ['server', 'client']);
 gulp.task('client', ['less', 'connect', 'watch']);
 // Less Processor
 gulp.task('less', function() {
-  gulp.src('./client/styles/less/index.less')
+  gulp.src('./client/styles/less/app.less')
     .pipe(less())
     .pipe(gulp.dest('./client/styles/'));
 });

@@ -2,30 +2,17 @@
 
 /*============ #Controller ============*/
 var MainController = angular.module('MainController', ['ui.router', 'MainService', 'MainDirective']);
+//
+MainController.controller('MainController.main', ['$rootScope', '$scope',
+  function($rootScope, $scope) {
 
-MainController.controller('MainController.main', ['$scope',
-  function($scope) {}
+  }
 ])
 
 
 /*============ #Service ============*/
 var MainService = angular.module('MainService', []);
-
-MainService.service('MainService.login', ['$http',
-  function($http) {
-    $http({
-      method: 'POST',
-      url: 'http://localhost:5000/api/test',
-      withCredentials: true
-    }).success(function(data, status, headers, config) {
-      console.log('HTTP Cookie : ' + document.cookie);
-      console.log('HTTP Response : ' + data);
-    }).error(function(data, status, headers, config) {
-      console.error("HTTP Status Code : " + status);
-    });
-  }
-]);
-
+// Menu Tree
 MainService.service('MainService.menuTree', ['$http', 'API',
   function($http, API) {
     if (API && API.path) {
@@ -43,7 +30,6 @@ MainService.service('MainService.menuTree', ['$http', 'API',
 
 /*============ #Directive ============*/
 var MainDirective = angular.module('MainDirective', ['MainService']);
-
 // Toggle Button
 MainDirective.directive('wiservMainWrapper', [
   function() {
@@ -59,7 +45,6 @@ MainDirective.directive('wiservMainWrapper', [
     }
   }
 ]);
-
 // Menu Tree
 MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
   function(menuTree) {
@@ -67,14 +52,14 @@ MainDirective.directive('wiservMenuTree', ['MainService.menuTree',
       restrict: 'AE',
       controller: 'MainController.main',
       link: function(scope, element, attrs) {
-        menuTree.then(function(response){
+        menuTree.then(function(response) {
           scope.menus = response.data;
-          scope.$applyAsync(function(){
+          scope.$applyAsync(function() {
             element.metisMenu({
               preventDefault: false
             });
           });
-        },function(response){
+        }, function(response) {
           console.error(response.status + response.statusText);
         });
       }

@@ -37,17 +37,17 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
   $stateProvider
     .state('login', {
       url: '/login',
-      templateUrl: 'partials/login.html',
+      templateUrl: 'partials/common/login.html',
       controller: 'LoginController.login'
     })
     .state('main', {
       url: '/main',
-      templateUrl: 'partials/main.html',
+      templateUrl: 'partials/common/main.html',
       controller: 'MainController.main'
     })
     .state('main.dashboard', {
       url: '/dashboard',
-      templateUrl: 'partials/dashboard.html',
+      templateUrl: 'partials/dashboard/dashboard.html',
       controller: 'DashboardController.dashboard'
     })
     .state('main.resource-catalog', {
