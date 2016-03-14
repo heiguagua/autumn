@@ -4,8 +4,8 @@
     <div class='row' >
       <div class='col-md-6'>
         <div class='panel panel-default panel-patch'>
-          <div class='panel-heading' data-toggle='collapse' data-target='#content6'>部门数据概况</div>
-          <div id='content6' class='panel-collapse collapse in'>
+          <div class='panel-heading' data-toggle='collapse' data-target='#departmentData'>部门数据概况</div>
+          <div id='departmentData' class='panel-collapse collapse in'>
             <div class='panel-body'>
               <div id='dept-chart' style='height:300px;'></div>
             </div>
@@ -15,8 +15,8 @@
 
       <div class='col-md-6' >
         <div class='panel panel-default panel-patch'>
-          <div class='panel-heading' data-toggle='collapse' data-target='#content7'>平台告警</div>
-          <div id='content7' class='panel-collapse collapse in'>
+          <div class='panel-heading' data-toggle='collapse' data-target='#platformAlarm'>平台告警</div>
+          <div id='platformAlarm' class='panel-collapse collapse in'>
             <div class='panel-body'>
               <div id='plat-alarm-chart' style='height:300px;overflow: hidden;'>
                 <table class='table table-hover table-striped'>
@@ -123,8 +123,8 @@
   <div class='row' style='margin-top:15px;'>
     <div class='col-md-9'>
       <div class='panel panel-default panel-patch '>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content2'>服务器监控</div>
-        <div id='content2' class='panel-collapse collapse in'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#serverManage'>服务器监控</div>
+        <div id='serverManage' class='panel-collapse collapse in'>
           <div class='panel-body'>
 
             <div class='col-md-3'>
@@ -146,79 +146,57 @@
     </div>
     <div class='col-md-3'>
       <div class='panel panel-default panel-patch' style=''>
-        <div class='panel-heading' data-toggle='collapse' data-target='#content3'>数据访问日志</div>
-        <div id='content3' class='panel-collapse collapse in'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#dataVisitLog'>数据访问日志</div>
+        <div id='dataVisitLog' class='panel-collapse collapse in'>
           <div class='panel-body'>
             <div id='data-visit-chart' style='height:380px;overflow: hidden;'>
-              <ul style='list-style:none;margin:0;padding:0;'>
-                <li style='border-bottom: 1px solid #DDD;'>
-                  <i class='fa fa-list-alt pull-left icon-success' style='color:#99CC33;display:inline-block;vertical-align: middle;-moz-border-radius: 30px;  -webkit-border-radius: 30px;border-radius: 30px;width: 34px;  height: 34px;background-color: #e4e4e4;font-size: 16px;line-height: 34px;text-align: center;margin-right: 10px;'></i>
-                  <p style='margin-bottom:0;height: 36px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;'>访问首页，查看平台整体数据概况。
-                    <div style='padding-left:45px;font-size:12px;'>
-                      <span style='display:inline-block;color:#b1b1b1;'>3分钟以前</span>
-                      <span class='pull-right' style='display:inline-block;vertical-align:middle;color:#b1b1b1;font-style: italic;'>Anna</span>
-                    </div>
+              <ul class='data-visit-logs'>
+                <li>
+                  <i class='fa fa-list-alt pull-left icon-success'></i>
+                  <p>访问首页，查看平台整体数据概况。
                   </p>
+                  <div class='visit-info'>
+                    <span class='visit-time' >3分钟以前</span>
+                    <span class='pull-right visit-user'>Anna</span>
+                  </div>
                 </li>
-                <li style='border-bottom: 1px solid #DDD;padding: 10px 0 2px 0;'>
-                  <i class='fa fa-list-alt pull-left icon-success' style='color:#99CC33;display:inline-block;vertical-align: middle;-moz-border-radius: 30px;  -webkit-border-radius: 30px;border-radius: 30px;width: 34px;  height: 34px;background-color: #e4e4e4;font-size: 16px;line-height: 34px;text-align: center;margin-right: 10px;'></i>
-                  <p style='margin-bottom:0;padding-left:40px;'>访问经济指标数据展示。
-                    <div style='padding-left:45px;font-size:12px;'>
-                      <span style='display:inline-block;color:#b1b1b1;'>10分钟以前</span>
-                      <span class='pull-right' style='display:inline-block;vertical-align:middle;color:#b1b1b1;font-style: italic;'>Anna</span>
-                    </div>
+                <li>
+                  <i class='fa fa-list-alt pull-left icon-success'></i>
+                  <p>访问经济指标数据展示。
                   </p>
+                  <div class='visit-info'>
+                    <span class='visit-time' >10分钟以前</span>
+                    <span class='pull-right visit-user'>Anna</span>
+                  </div>
                 </li>
-                <li style='border-bottom: 1px solid #DDD;padding: 10px 0 2px 0;'>
-                  <i class='fa fa-cloud-download pull-left icon-success' style='color:#3399CC;display:inline-block;vertical-align: middle;-moz-border-radius: 30px;  -webkit-border-radius: 30px;border-radius: 30px;width: 34px;  height: 34px;background-color: #e4e4e4;font-size: 16px;line-height: 34px;text-align: center;margin-right: 10px;'></i>
-                  <p title='下载二期开发功能表20151231_测试疑问_测试人员调整.xlsx' style='margin-bottom:0;height: 36px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;'>下载二期开发功能表20151231_测试疑问_测试人员调整.xlsx。
-                    <div style='padding-left:45px;font-size:12px;'>
-                      <span style='display:inline-block;color:#b1b1b1;'>1小时以前</span>
-                      <span class='pull-right' style='display:inline-block;vertical-align:middle;color:#b1b1b1;font-style: italic;'>测试人员</span>
-                    </div>
+                <li>
+                  <i class='fa fa-cloud-download pull-left icon-default'></i>
+                  <p title='下载二期开发功能表20151231_测试疑问_测试人员调整.xlsx'>下载二期开发功能表20151231_测试疑问_测试人员调整.xlsx。
+
                   </p>
+                  <div class='visit-info'>
+                    <span class='visit-time' >15分钟以前</span>
+                    <span class='pull-right visit-user'>测试</span>
+                  </div>
                 </li>
-                <li style='border-bottom: 1px solid #DDD;padding: 10px 0 2px 0;'>
-                  <i class='fa fa-list-alt pull-left icon-success' style='color:#99CC33;display:inline-block;vertical-align: middle;-moz-border-radius: 30px;  -webkit-border-radius: 30px;border-radius: 30px;width: 34px;  height: 34px;background-color: #e4e4e4;font-size: 16px;line-height: 34px;text-align: center;margin-right: 10px;'></i>
-                  <p style='margin-bottom:0;height: 36px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;'>访问首页，查看平台整体数据概况。
-                    <div style='padding-left:45px;font-size:12px;'>
-                      <span style='display:inline-block;color:#b1b1b1;'>3分钟以前</span>
-                      <span class='pull-right' style='display:inline-block;vertical-align:middle;color:#b1b1b1;font-style: italic;'>Anna</span>
-                    </div>
+                <li>
+                  <i class='fa fa-cloud-download pull-left icon-default'></i>
+                  <p title='下载二期开发功能表20151231_测试疑问_测试人员调整.xlsx'>下载二期开发功能表20151231_测试疑问_测试人员调整.xlsx。
+
                   </p>
+                  <div class='visit-info'>
+                    <span class='visit-time' >15分钟以前</span>
+                    <span class='pull-right visit-user'>测试</span>
+                  </div>
                 </li>
-                <li style='border-bottom: 1px solid #DDD;'>
-                  <i class='fa fa-cloud-download pull-left icon-success' style='color:#3399CC;display:inline-block;vertical-align: middle;-moz-border-radius: 30px;  -webkit-border-radius: 30px;border-radius: 30px;width: 34px;  height: 34px;background-color: #e4e4e4;font-size: 16px;line-height: 34px;text-align: center;margin-right: 10px;'></i>
-                  <p style='margin-bottom:0;height: 36px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;'>下载经济指标需求说明书.xlsx。
-                    <div style='padding-left:45px;font-size:12px;'>
-                      <span style='display:inline-block;color:#b1b1b1;'>1小时以前</span>
-                      <span class='pull-right' style='display:inline-block;vertical-align:middle;color:#b1b1b1;font-style: italic;'>测试人员</span>
-                    </div>
+                <li>
+                  <i class='fa fa-list-alt pull-left icon-success'></i>
+                  <p>访问首页，查看平台整体数据概况。
                   </p>
+                  <div class='visit-info'>
+                    <span class='visit-time' >3分钟以前</span>
+                    <span class='pull-right visit-user'>Anna</span>
+                  </div>
                 </li>
               </ul>
             </div>
