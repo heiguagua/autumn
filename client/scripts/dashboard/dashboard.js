@@ -206,6 +206,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
             }
           },
           axisLabel: {
+            show:false,
             margin:20,
             textStyle: {
               color: 'auto',
@@ -282,6 +283,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
             }
           },
           axisLabel: {
+            show:false,
             margin:0,
             textStyle: {
               color: 'auto'
@@ -357,6 +359,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
             }
           },
           axisLabel: {
+            show:false,
             margin:0,
             textStyle: {
               color: 'auto'
@@ -502,6 +505,7 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
             }
           },
           axisLabel: {
+            show:false,
             margin:20,
             textStyle: {
               color: 'auto',
