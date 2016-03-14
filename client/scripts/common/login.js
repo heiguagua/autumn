@@ -3,8 +3,8 @@
 /*============ #Controller ============*/
 var LoginController = angular.module('LoginController', ['ui.router', 'LoginService']);
 
-LoginController.controller('LoginController.login', ['$scope', '$state', 'HttpAuth',
-  function($scope, $state, HttpAuth) {
+LoginController.controller('LoginController.login', ['$rootScope', '$scope', '$state', 'HttpAuth',
+  function($rootScope, $scope, $state, HttpAuth) {
     // Define a global object for current page
     $scope.login = {};
     // Binding submit event
@@ -14,7 +14,10 @@ LoginController.controller('LoginController.login', ['$scope', '$state', 'HttpAu
         password: $scope.login.password
       }
       HttpAuth.get({parameters},function(data){
-        if(data.head.status === 200){
+        if(data.head.status === 200 && data.head.token!=null){
+          var appScope = $rootScope;
+          appScope.token = data.head.token;
+          appScope.$broadcast('authChanged');
           $state.go("main.dashboard");
         }
       });
