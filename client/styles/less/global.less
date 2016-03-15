@@ -1,9 +1,131 @@
 /*Override Bootstrap Theme*/
+a{
+	color: #008cba;
+    text-decoration: none;
+}
+
+/* panel style */
 .panel{
   border-radius: 0 !important;
 }
 .panel-patch{
   margin-bottom: 0;
+}
+.panel-default>.panel-heading {
+  color: #555;
+  background-image:none;
+  background-color: #f5f5f5;
+}
+.navbar-default{
+  background-color: #008cba;
+  background-image:none;
+  color:#FFF;
+}
+.breadcrumb{
+  background:none;
+}
+
+/* button style */
+.btn{
+	background-image:none;
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn{
+	cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.btn-default {
+    color: #333333;
+    background-color: #e7e7e7;
+    border-color: #cccccc;
+}
+.btn-default:hover {
+    color: #333333;
+    background-color: #cecece;
+    border-color: #adadad;
+}
+.btn-primary {
+    color: #ffffff;
+    background-color: #008cba;
+    border-color: #0079a1;
+}
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #006687;
+    border-color: #004b63;
+}
+.btn-success {
+    color: #ffffff;
+    background-color: #43ac6a;
+    border-color: #3c9a5f;
+}
+.btn-success:hover {
+    color: #ffffff;
+    background-color: #358753;
+    border-color: #2b6e44;
+}
+.btn-info {
+    color: #ffffff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.btn-info:hover {
+    color: #ffffff;
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+.btn-warning {
+    color: #ffffff;
+    background-color: #e99002;
+    border-color: #d08002;
+}
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #b67102;
+    border-color: #935b01;
+}
+.btn-danger {
+    color: #ffffff;
+    background-color: #f04124;
+    border-color: #ea2f10;
+}
+.btn-danger:hover {
+    color: #ffffff;
+    background-color: #d32a0e;
+    border-color: #b1240c;
+}
+.btn-link {
+    color: #008cba;
+    font-weight: normal;
+    border-radius: 0;
+}
+.btn-link:hover, .btn-link:focus {
+    color: #008cba;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+/* label style */
+.label-default {
+    background-color: #e7e7e7;
+    color: #333333;
+}
+.label-primary {
+    background-color: #008cba;
+}
+.label-success {
+    background-color: #43ac6a;
+}
+.label-warning {
+    background-color: #e99002;
+}
+.label-danger {
+    background-color: #f04124;
+}
+.label-info {
+    background-color: #5bc0de;
 }
 
 /* Global Style */

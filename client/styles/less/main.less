@@ -10,9 +10,7 @@
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    background-image: -webkit-linear-gradient(left, color-stop(#303030 10px), color-stop(#282828 10px));
-    background-image: linear-gradient(to right, #303030 10px, #282828 10px);
-    background-repeat: repeat-x;
+    background:#2A3F54;
     a, a:hover, a:focus, a:active {
       outline: none;
     }
@@ -39,12 +37,11 @@
       .search-box{
         padding:9px 24px;
         background-color: rgba(255, 255, 255, 0.1);
-        border-top: 1px solid rgba(0, 0, 0, 0.9);
         .decoration{
           height: 25px;
           border-radius: 10px;
           background-color: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(0, 0, 0, 0.7);
+          border: 1px solid rgba(0, 0, 0, 0.2);
           .search-input{
             background:none;
             border:none;
@@ -68,21 +65,32 @@
         }
       }
       // Menus in first level
-      ul{
+      >ul{
         padding: 0;
         margin: 0;
         list-style: none;
         font-size: 13px;
-        li, a {
+        >li, a {
           display: block;
         }
+        >li.active{
+          border-right: 5px solid #008cba;
+          >a{
+            text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+            background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b6479), color-stop(100%, #4c5566)), #686e78;
+            background: -webkit-linear-gradient(#334556, #2C4257), #2A3F54;
+            background: -moz-linear-gradient(#334556, #2C4257), #2A3F54;
+            background: -o-linear-gradient(#334556, #2C4257), #2A3F54;
+            background: linear-gradient(#334556, #2C4257), #2A3F54;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+            -moz-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+            box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+          }
+        }
         a {
-          padding: 10px 28px;
-          color: #EEE;
-          border-top: 1px solid rgba(0, 0, 0, 0.9);
-          box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.05) inset;
+          padding: 11px 28px;
+          color: #E7E7E7;
           text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
-          background-color: rgba(255, 255, 255, 0.1);
         }
         a:hover, a:focus, a:active {
           color: #FFF;
@@ -90,15 +98,69 @@
         }
         // Menus in second level
         ul {
+          li{
+            position:relative;
+          }
+          li:before{
+            background: #425668;
+            bottom: auto;
+            content: "";
+            height: 8px;
+            left: 23px;
+            margin-top: 15px;
+            position: absolute;
+            right: auto;
+            width: 8px;
+            z-index: 1;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+          }
+          li:after{
+            border-left: 1px solid #425668;
+            bottom: 0;
+            content: "";
+            left: 27px;
+            position: absolute;
+            top: 0;
+          }
           a {
             padding: 10px 28px 10px 45px;
-            background-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.75) !important;
+            font-size: 12px;
           }
           a:hover, a:focus, a:active {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+
           }
           // Menus in third level
           ul{
+            li{
+              position:relative;
+            }
+            li:before{
+              background: #425668;
+              bottom: auto;
+              content: "";
+              height: 8px;
+              left: 23px;
+              margin-top: 15px;
+              position: absolute;
+              right: auto;
+              width: 8px;
+              z-index: 1;
+              -webkit-border-radius: 50%;
+              -moz-border-radius: 50%;
+              border-radius: 50%;
+            }
+            li:after{
+              border-left: 1px solid #425668;
+              bottom: 0;
+              content: "";
+              left: 27px;
+              position: absolute;
+              top: 0;
+            }
             a{
               padding-left: 62px;
             }
@@ -121,7 +183,8 @@
       height: 40px;
       left:250px;
       right:0;
-      background: #F5F5F5;
+      border:none;
+      border-radius:0;
       -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 5px rgba(0,0,0,.075);
       z-index: 99;
@@ -135,11 +198,16 @@
           display: inline-block;
           border: 0;
           outline: none;
-          padding: 0;
+          padding: 3px 6px;
           margin: 10px;
           width: 29px;
           height: 29px;
-          background: url('./images/main/sidebar-toggler.jpg') no-repeat;
+          color:#FFF;
+          cursor:pointer;
+          font-size:18px;
+        }
+        .toggler:hover{
+          background:#367fa9;
         }
         .nav-bread {
           display: inline-block;
@@ -147,7 +215,11 @@
           vertical-align:top;
           margin:6px 0;
           li {
-            cursor: pointer;
+            cursor: default;
+            a{
+              color:#FFF;
+              cursor:pointer;
+            }
           }
         }
       }
@@ -167,6 +239,7 @@
               background:none;
               border:none;
               outline:none;
+              color:#FFF;
             }
             .user-wrap.active,.user-wrap:active{
               -webkit-box-shadow: none;
