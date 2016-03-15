@@ -1,8 +1,9 @@
 'use strict';
 /* Resource Catalog Controllers */
 
+/* Controller */
 var ResourceCatalogController = angular.module('ResourceCatalogController', ['ui.router', 'ResourceCatalogService', 'ResourceCatalogDirective']);
-
+//
 ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', 'ResourceCatalogService.httpGet',
   function($scope, httpGet) {
     httpGet.then(function(response){
@@ -14,12 +15,9 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
 ])
 
 
-
-'use strict';
 /* Resource Catalog Service */
-
 var ResourceCatalogService = angular.module('ResourceCatalogService', []);
-
+//httpGet
 ResourceCatalogService.service('ResourceCatalogService.httpGet', ['$http', 'API',
   function($http, API) {
     return $http.get(
@@ -30,14 +28,8 @@ ResourceCatalogService.service('ResourceCatalogService.httpGet', ['$http', 'API'
 ]);
 
 
-
-
-
-'use strict';
 /* Resource Catalog Directives */
-
 var ResourceCatalogDirective = angular.module('ResourceCatalogDirective', ['ResourceCatalogService']);
-
 // Resource Catalog Directive
 ResourceCatalogDirective.directive('wiservResourceCatalog', [
   function() {
