@@ -19,7 +19,7 @@ App.all('*', function(req, res, next) {
   // 设置允许浏览器可以访问到的服务器响应头信息
   // res.header('Access-Control-Expose-Header', '*');
   // 在响应Option预检请求时使用.指明在接下来的真实请求中,可以使用到哪些自定义HTTP请求头
-  // res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') res.sendStatus(200);
   else next();
 });

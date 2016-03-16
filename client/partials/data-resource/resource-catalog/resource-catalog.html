@@ -30,150 +30,43 @@
     </div>
   </div>
   <div class='row'>
-    <div class='panel panel-default panel-patch'>
+    <div class='panel panel-default'>
       <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
       <div id='content2' class='panel-collapse collapse in'>
         <div class='panel-body'>
-          <div>
-            <div class='btn-group'>
-              <button title='' class='btn btn-default' type='button' data-toggle="modal" data-target="#modal">
-                <i class='glyphicon glyphicon-plus'></i>
-              </button>
-              <button title='' class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-pencil'></i>
-              </button>
-              <button title='' class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-remove'></i>
-              </button>
-              <button title='' class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-th-list'></i>
-              </button>
-              <button title="" class="btn btn-default" type="button">
-                <i class="glyphicon glyphicon-ok-sign"></i>
-              </button>
-              <button title="" class="btn btn-default" type="button">
-                <i class="glyphicon glyphicon-ban-circle"></i>
-              </button>
+          <!-- Pannel Body -->
+          <div class="form-group">
+            <div class="col-sm-3">
+              <label class="control-label">字段过滤器A</label>
+              <input type="text" class="form-control input-sm" ng-model="filterBy.name" />
             </div>
-            <div class='columns columns-right btn-group pull-right'>
-              <button class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-refresh icon-refresh'></i>
-              </button>
-              <div class='keep-open btn-group' title='列'>
-                <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
-                  <i class='glyphicon glyphicon-th icon-th'></i>
-                  <span class='caret'></span>
-                </button>
-              </div>
+            <div class="col-sm-3">
+              <label class="control-label">字段过滤器B</label>
+              <input type="text" class="form-control input-sm" ng-model="filterBy['sf-location']" />
             </div>
           </div>
+          <!-- #Pannel Body -->
         </div>
-        <table class='table table-bordered table-hover table-striped'>
-          <thead>
-            <tr>
-              <th><input type="checkbox"/></th>
-              <th>资源目录类型</th>
-              <th>资源目录名称</th>
-              <th>资源目录编码</th>
-              <th>父目录编码</th>
-              <th>资源目录描述</th>
-              <th>状态</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat='ResourceCatalog in ResourceCatalogs'>
-              <th scope='row'><input type="checkbox"/></th>
-              <td>{{ResourceCatalog.categoryName}}</td>
-              <td>{{ResourceCatalog.catalogName}}</td>
-              <td>{{ResourceCatalog.catalogCode}}</td>
-              <td>{{ResourceCatalog.parentCode}}</td>
-              <td>{{ResourceCatalog.catalogDesc}}</td>
-              <td>{{ResourceCatalog.activeFlagName}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- ng-tasty table -->
+        <div tasty-table bind-resource-callback="getResource" bind-init="init" bind-filters="filterBy">
+          <table class="table table-bordered table-hover table-striped">
+            <thead tasty-thead></thead>
+            <tbody>
+              <tr ng-repeat="row in rows">
+                <td>{{ row.categoryName }}</td>
+                <td>{{ row.nacatalogNameme }}</td>
+                <td>{{ row.catalogCode }}</td>
+                <td>{{ row.parentCode }}</td>
+                <td>{{ row.catalogDesc }}</td>
+                <td>{{ row.activeFlagName }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div tasty-pagination></div>
+        </div>
+        <!-- #ng-tasty table -->
       </div>
     </div>
 
-    <div pagination config='Pagination' class='pull-right'></div>
-    <!--
-    <ul class='pagination'>
-      <li class='disabled'><a>«</a></li>
-      <li class='active'><a>1<span class='sr-only'>(current)</span></a></li>
-      <li><a>2</a></li>
-      <li><a>3</a></li>
-      <li><a>4</a></li>
-      <li><a>5</a></li>
-      <li><a>»</a></li>
-    </ul>
-    -->
   </div>
 </div>
-
-<!-- End for Modal -->
-<div class="modal fade" id="modal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="panel panel-default panel-patch">
-        <div class="panel-heading">
-          添加资源目录
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="panel-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label class="col-sm-3 control-label">目录类型</label>
-              <div class="col-sm-9">
-                <select class="form-control">
-                  <option>主题</option>
-                  <option>服务</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">父节点编码</label>
-              <div class="col-sm-9"><input type="text" class="form-control" placeholder="必填"></div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">资源目录编码</label>
-              <div class="col-sm-9"><input type="text" class="form-control" placeholder="必填"></div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">资源目录名称</label>
-              <div class="col-sm-9"><input type="text" class="form-control" placeholder="必填"></div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">资源目录顺序</label>
-              <div class="col-sm-9"><input type="text" class="form-control" placeholder="必填"></div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">资源目录状态</label>
-              <div class="col-sm-9">
-                <label class="radio-inline">
-                  <input type="radio">启用
-                </label>
-                <label class="radio-inline">
-                  <input type="radio">禁用
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">资源目录描述</label>
-              <div class="col-sm-9">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-            </div>
-            <div class="form-group input-sm">
-              <div class="col-sm-12">
-                <button type="button" class="btn btn-primary btn-sm pull-right">确定</button>
-                <div class='pull-right block-split'/>
-                <button type="button" class="btn btn-default btn-sm pull-right" data-dismiss="modal">取消</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End for Modal -->
