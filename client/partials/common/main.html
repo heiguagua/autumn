@@ -31,10 +31,10 @@
           -->
           <li ng-repeat='item in menus'>
             <a ui-sref='{{::item.url}}'>{{::item.name}}<span class="glyphicon arrow pull-right"></span></a>
-            <ul>
+            <ul class='nav'>
               <li ng-repeat='child in item.children'>
                 <a ui-sref='{{::child.url}}'>{{::child.name}}<span ng-if="child.isParent===true" class="glyphicon arrow pull-right"></a>
-                <ul>
+                <ul class='nav'>
                   <li ng-repeat='grandchild in child.children'>
                     <a ui-sref='{{::grandchild.url}}'>{{::grandchild.name}}<span ng-if="grandchild.isParent===true" class="glyphicon arrow pull-right"></a>
                   </li>
@@ -49,7 +49,7 @@
     <article class='content'>
       <nav class='navbar navbar-default'>
         <div class='left'>
-          <button class='toggler'></button>
+          <a class='toggler'><i class="fa fa-bars"></i></a>
           <ol class='breadcrumb nav-bread'>
             <li><a>数据资源管理</a></li>
             <li><a>元数据管理</a></li>
