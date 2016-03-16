@@ -1,0 +1,58 @@
+<div wiserv-plat-statistic >
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab">按大小</a></li>
+    <li role="presentation"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">按条数</a></li>
+  </ul>
+<div class="collapseBar panel panel-default" style="margin-bottom:5px;">
+    <div class="panel-heading" role="tab" id="baseStatistics" title="点击收缩/展开平台容量统计" data-toggle="collapse"
+         href="#showBaseStatistics" aria-expanded="true" aria-controls="showBaseStatistics" style="cursor: pointer">
+        <div class="panel-title" style="font-size: 14px;">
+            <span class="text-muted">平台容量统计</span>
+            <div class="pull-right"><i class="glyphicon glyphicon-chevron-up"></i></div>
+        </div>
+    </div>
+    <div id="showBaseStatistics" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="baseStatistics">
+        <div class="panel-body">
+            <div class=" col-md-7" style="padding: 0;">
+                <div id="plat-pie-chart" style="height:300px;min-width:450px;"></div>
+            </div>
+            <div class=" col-md-3" style="padding: 0;">
+                <div id="platformDataBar" style="height:300px;margin-left: 10px;">
+                  <div class='info-wrap info-file'>
+                    <span class='info-box'><i class="fa fa-file"></i></span>
+                    <div class='file-detail'>
+                      <p class='file-title'>普通文件数据量：1.97MB</p>
+                      <p class='file-sub'>今日新增：0.00bytes</p>
+                      <p class='file-sub'>最近7天新增：1.77MB</p>
+                    </div>
+                  </div>
+                  <div class='info-wrap info-db'>
+                    <span class='info-box'><i class="fa fa-database"></i></span>
+                    <div class='file-detail db-detail'>
+                      <p class='file-title'>数据库数据量：1.97MB</p>
+                      <p class='file-sub'>今日新增：0.00bytes</p>
+                      <p class='file-sub'>最近7天新增：1.77MB</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="collapseBar panel panel-default" style="margin-bottom:5px;">
+    <div class="panel-heading" role="tab" id="historyStatistics" title="点击收缩/展开平台历史数据量统计" data-toggle="collapse"
+         href="#showHistoryStatistics" aria-expanded="true" aria-controls="showHistoryStatistics" style="cursor: pointer">
+        <div class="panel-title" style="font-size: 14px;">
+            <span class="text-muted">平台历史数据量统计</span>
+            <div class="pull-right"><i class="glyphicon glyphicon-chevron-up"></i></div>
+        </div>
+    </div>
+    <div id="showHistoryStatistics" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="historyStatistics">
+        <div class="panel-body">
+            <div id="plat-his-chart" style="height:300px;"></div>
+        </div>
+    </div>
+</div>
+
+</div>

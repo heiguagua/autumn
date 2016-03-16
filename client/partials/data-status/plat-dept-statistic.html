@@ -1,0 +1,59 @@
+<div wiserv-plat-dept-statistic >
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab">按大小</a></li>
+    <li role="presentation"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">按条数</a></li>
+  </ul>
+  <div class="collapseBar panel panel-default" style="margin-bottom:5px;">
+      <div class="panel-heading" role="tab" id="depStatics" title="点击收缩/展开部门数据概况" data-toggle="collapse"
+           href="#showDepStatics" aria-expanded="true" aria-controls="showDepStatics" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+              <span class="text-muted">部门数据概况</span>
+              <div class="pull-right"><i class="glyphicon glyphicon-chevron-up"></i></div>
+          </div>
+      </div>
+      <div id="showDepStatics" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="depStatics">
+          <div class="panel-body">
+              <div id="dep-column" style="height:400px"></div>
+          </div>
+      </div>
+  </div>
+
+  <div class="collapseBar panel panel-default" style="margin-bottom:5px;">
+      <div class="panel-heading" role="tab" id="depCapacity" title="点击收缩/展开部门容量" data-toggle="collapse"
+           href="#showDepCapacity" aria-expanded="true" aria-controls="showDepCapacity" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+              <span class="text-muted">部门容量</span>
+              <div class="pull-right"><i class="glyphicon glyphicon-chevron-up"></i></div>
+          </div>
+      </div>
+      <div id="showDepCapacity" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="depCapacity">
+          <div class="panel-body">
+              <div class="col-md-12" style="padding: 0;">
+                  <table id="depCapacityList" style="cursor:pointer;"></table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="collapseBar panel panel-default" style="margin-bottom:5px;">
+      <div class="panel-heading" role="tab" id="depStaticsHistory" title="点击收缩/展开部门历史数据量统计" data-toggle="collapse"
+           href="#showDepStaticsHistory" aria-expanded="true" aria-controls="showDepStaticsHistory" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+              <span class="text-muted">部门历史数据量统计</span>
+              <div class="pull-right"><i class="glyphicon glyphicon-chevron-up"></i></div>
+          </div>
+      </div>
+      <div id="showDepStaticsHistory" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="depStaticsHistory">
+          <div class="panel-body">
+              <div class=" col-md-12" style="padding: 0;">
+              <span>
+                  <select id="home_department_select"  class="selectpicker">
+                  </select>
+              </span>
+              </div>
+              <div id="dept-history" class=" col-md-12" style="height:300px;"></div>
+          </div>
+      </div>
+  </div>
+
+</div>

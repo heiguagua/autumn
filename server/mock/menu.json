@@ -129,8 +129,8 @@
   "children": [{
     "id": "",
     "name": "平台数据整体概况",
-    "url": {},
-    "isParent": true,
+    "url": "main.plat-statistic",
+    "isParent": false,
     "order": "",
     "icon": "",
     "expansion": true,
@@ -139,8 +139,8 @@
   }, {
     "id": "",
     "name": "部门数据概况",
-    "url": {},
-    "isParent": true,
+    "url": "main.plat-dept-statistic",
+    "isParent": false,
     "order": "",
     "icon": "",
     "expansion": true,
@@ -159,8 +159,8 @@
   }, {
     "id": "",
     "name": "数据使用情况统计",
-    "url": {},
-    "isParent": true,
+    "url": "main.data-visit-statistic",
+    "isParent": false,
     "order": "",
     "icon": "",
     "expansion": true,

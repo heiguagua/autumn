@@ -37,3 +37,15 @@ App.use('/api', menu);
 /** resource_catalog */
 var resource_catalog = require('./api/resource-catalog');
 App.use('/api', resource_catalog);
+
+/** plat statistic */
+var plat_statistic = require('./api/plat-statistic');
+App.use('/api', plat_statistic);
+
+/** plat department statistic */
+var plat_dept_statistic = require('./api/plat-dept-statistic');
+App.use('/api', plat_dept_statistic);
+
+/** data visit statistic*/
+var data_visit_statistic = require('./api/data-visit-statistic');
+App.use('/api', data_visit_statistic);

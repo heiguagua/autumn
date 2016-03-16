@@ -29,7 +29,10 @@ var app = angular.module('app', [
   'SysDepManageController',
   'UserManageController',
   'SysRoleController',
-  'DataRoleController'
+  'DataRoleController',
+  'PlatStatisticController',
+  'PlatDeptStatisticController',
+  'DataVisitStatisticController'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -96,6 +99,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: 'partials/data-status/data-visit-info.html',
       controller: 'DataVisitInfoController.dataVisitInfo'
     })
+    .state('main.plat-statistic', {
+      url: '/plat-statistic',
+      templateUrl: 'partials/data-status/plat-statistic.html',
+      controller: 'PlatStatisticController.platStatistic'
+    })
+    .state('main.plat-dept-statistic', {
+      url: '/plat-dept-statistic',
+      templateUrl: 'partials/data-status/plat-dept-statistic.html',
+      controller: 'PlatDeptStatisticController.platDeptStatistic'
+    })
+    .state('main.data-visit-statistic', {
+      url: '/data-visit-statistic',
+      templateUrl: 'partials/data-status/data-visit-statistic.html',
+      controller: 'DataVisitStatisticController.dataVisitStatistic'
+    })
     .state('main.server-manage', {
       url: '/server-manage',
       templateUrl: 'partials/platform-operations/server-manage.html',
@@ -161,4 +179,5 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
       templateUrl: 'partials/organization-person/data-role.html',
       controller: 'DataRoleController.dataRole'
     })
+
 }]);
