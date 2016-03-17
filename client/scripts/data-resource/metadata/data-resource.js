@@ -3,9 +3,54 @@
 
 var DataResourceController = angular.module('DataResourceController', ['ui.router', 'DataResourceService', 'DataResourceDirective']);
 
-DataResourceController.controller('DataResourceController.dataResource', ['$scope',
-  function($scope) {}
-])
+DataResourceController.controller('DataResourceController.dataResource', ['$scope', 'DataResourceService.http',
+  function($scope, http) {
+    $scope.init = {
+      'count': 5,
+      'page': 1,
+      'sortBy': 'name',
+      'sortOrder': 'dsc',
+      'filterBase': 1
+    };
+    $scope.filterBy = {
+      '': '',
+      '': ''
+    };
+    $scope.getResource = function(params, paramsObj) {
+      return http.fetch().then(function(response) {
+        return {
+          'rows': response.body,
+          'header': [{
+            key: 'resName',
+            value: '资源名称'
+          }, {
+            key: 'resCat',
+            value: '资源源目录分类'
+          }, {
+            key: 'resDept',
+            value: '资源所属部门'
+          }, {
+            key: 'resCreateTime',
+            value: '资源创建时间'
+          }, {
+            key: 'resAccessStaus',
+            value: '资源接入状态'
+          }],
+          'pagination': {
+            "count": 10,
+            "page": 1,
+            "pages": 7,
+            "size": response.body.length
+          },
+          'sortBy': 'name',
+          'sortOrder': 'asc'
+        }
+      });
+    }
+
+  }
+]);
+
 
 
 
@@ -14,13 +59,28 @@ DataResourceController.controller('DataResourceController.dataResource', ['$scop
 
 var DataResourceService = angular.module('DataResourceService', []);
 
-DataResourceService.service('DataResourceService.dataResource', ['$http',
-  function($http) {
-
+DataResourceService.factory('DataResourceService.http', ['$http', '$q', 'API',
+  function($http, $q, API) {
+    function fetch() {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      $http.get(
+        API.path + '/api/data-resource', {
+          withCredentials: true,
+          cache: false
+        }).success(function(data, status, headers, config) {
+        deferred.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(statusa );
+        deferred.reject();
+      })
+      return promise;
+    }
+    return {
+      fetch: fetch
+    }
   }
 ]);
-
-
 
 
 'use strict';
@@ -40,77 +100,7 @@ DataResourceDirective.directive('wiservDataResource', [
           liveSearch: false
         });
 
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'state',
-            checkbox: true
-          }, {
-            field: 'resName',
-            title: '资源名称'
-          }, {
-            field: 'resCat',
-            title: '资源源目录分类'
-          }, {
-            field: 'resDept',
-            title: '资源所属部门'
-          }, {
-            field: 'resCreateTime',
-            title: '资源创建时间'
-          }, {
-            field: 'resAccessStaus',
-            title: '资源接入状态'
-          }],
-          data: [{
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }, {
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }, {
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }, {
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }, {
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }, {
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }, {
-            resName: '交通数据',
-            resCat: '服务一',
-            resDept: '交通局',
-            resCreateTime:'2016-02-10 10:15:21',
-            resAccessStaus:'未接入'
-          }],
-          pagination: true,
-          pageNumber: 1,
-          toolbar: ".toolbar",
-          clickToSelect: true,
-          showRefresh: true,
-          showToggle: true,
-          showColumns: true
-        });
+
       }
     }
   }

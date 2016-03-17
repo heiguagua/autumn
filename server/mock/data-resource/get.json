@@ -1,0 +1,69 @@
+{
+  "head": {
+    "status": 200,
+    "total": 100,
+    "current": 15,
+    "message": ""
+  },
+  "body": [{
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }, {
+    "resName": "交通数据",
+    "resCat": "服务一",
+    "resDept": "交通局",
+    "resCreateTime":"2016-02-10 10:15:21",
+    "resAccessStaus":"未接入"
+  }]
+}

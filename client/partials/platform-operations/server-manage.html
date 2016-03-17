@@ -9,5 +9,22 @@
       </button>
     </div>
   </div>
-  <table id="table"></table>
+  <!-- tasty table  -->
+  <div tasty-table bind-resource-callback="getResource" bind-init="init" bind-filters="filterBy">
+    <table class="table table-bordered table-hover table-striped">
+      <thead tasty-thead></thead>
+      <tbody>
+        <tr ng-repeat="row in rows">
+          <td>{{ row.categoryName }}</td>
+          <td>{{ row.nacatalogNameme }}</td>
+          <td>{{ row.catalogCode }}</td>
+          <td>{{ row.parentCode }}</td>
+          <td>{{ row.catalogDesc }}</td>
+          <td>{{ row.activeFlagName }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div tasty-pagination></div>
+  </div>
+  <!-- #tasty table  -->
 </div>
