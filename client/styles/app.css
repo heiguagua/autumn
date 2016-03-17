@@ -128,6 +128,10 @@ fieldset[disabled] .btn {
 .label-info {
   background-color: #5bc0de;
 }
+/* modal dialog */
+.modal-body {
+  overflow: hidden;
+}
 /* Global Style */
 .block-split {
   display: inline-block;
@@ -544,4 +548,42 @@ fieldset[disabled] .btn {
 #dashboard .data-visit-logs li:not(:first-child) {
   font-size: 12px;
   padding: 10px 0;
+}
+#showBaseStatistics .info-wrap {
+  border: 1px solid #CCC;
+  margin-top: 20px;
+}
+#showBaseStatistics .info-wrap .info-box {
+  float: left;
+  display: block;
+  width: 58px;
+  height: 88px;
+  padding: 28px 20px;
+  font-size: 22px;
+}
+#showBaseStatistics .info-wrap .file-detail {
+  padding: 6px 20px;
+  background: #F5F5F5;
+  color: #555;
+}
+#showBaseStatistics .info-wrap .file-detail p {
+  margin: 5px 0;
+}
+#showBaseStatistics .info-wrap .file-detail .file-title {
+  font-size: 14px;
+}
+#showBaseStatistics .info-wrap .file-detail .file-sub {
+  color: #999;
+}
+#showBaseStatistics .info-file {
+  border-top: 5px solid #3399CC;
+}
+#showBaseStatistics .info-file .info-box {
+  color: #3399CC;
+}
+#showBaseStatistics .info-db {
+  border-top: 5px solid #99CC33;
+}
+#showBaseStatistics .info-db .info-box {
+  color: #99CC33;
 }

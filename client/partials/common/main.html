@@ -13,22 +13,6 @@
           </div>
 	      </div>
         <ul wiserv-menu-tree class='metismenu' id='menu'>
-          <!--
-          <li class='active' >
-            <a href='#'>数据资源管理</a>
-            <ul>
-              <li><a>资源目录管理</a>
-                <ul>
-                  <li><a>资源目录管理</a></li>
-                  <li><a>元数据管理</a></li>
-                  <li><a>数据管理</a></li>
-                </ul>
-              </li>
-              <li><a>元数据管理</a></li>
-              <li><a>数据管理</a></li>
-            </ul>
-          </li>
-          -->
           <li ng-repeat='item in menus'>
             <a ui-sref='{{::item.url}}'>{{::item.name}}<span class="glyphicon arrow pull-right"></span></a>
             <ul class='nav'>

@@ -574,10 +574,10 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
           center: ['50%', '60%'],
           data: [{
             value: 335,
-            name: '普通文件'
+            name: '普通文件[MB]'
           }, {
             value: 310,
-            name: '数据库文件'
+            name: '数据库文件[MB]'
           }],
           itemStyle: {
             emphasis: {
@@ -598,12 +598,15 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
           trigger: 'axis'
         },
         legend: {
-          data: ['普通文件', '数据库文件']
+          data: ['普通文件', '数据库文件', '全部']
         },
-        color: ['#3399CC', '#99CC33'],
+        color: ['#3399CC', '#99CC33', '#456073'],
         toolbox: {
           show: true,
           feature: {
+            mark: {
+              show: true
+            },
             dataView: {
               show: true,
               readOnly: false
@@ -623,92 +626,19 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         calculable: true,
         xAxis: [{
           type: 'category',
-          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+          boundaryGap: false,
+          data: ['2016-01-01','2016-01-03','2016-01-04','2016-01-05']
         }],
         yAxis: [{
-          type: 'value'
-        }],
-        series: [{
-          name: '普通文件',
-          type: 'bar',
-          data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-          markPoint: {
-            data: [{
-              type: 'max',
-              name: '最大值'
-            }, {
-              type: 'min',
-              name: '最小值'
-            }]
-          },
-          markLine: {
-            data: [{
-              type: 'average',
-              name: '平均值'
-            }]
-          }
-        }, {
-          name: '数据库文件',
-          type: 'bar',
-          data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-          markPoint: {
-            data: [{
-              name: '年最高',
-              value: 182.2,
-              xAxis: 7,
-              yAxis: 183
-            }, {
-              name: '年最低',
-              value: 2.3,
-              xAxis: 11,
-              yAxis: 3
-            }]
-          },
-          markLine: {
-            data: [{
-              type: 'average',
-              name: '平均值'
-            }]
-          }
-        }]
-      };
-      platHisChart.setOption(platHisOpt);
-
-      /* department data */
-      var deptChart = echarts.init(element.find('#dept-chart')[0]);
-      var deptopt = {
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['普通文件[MB]', '数据库文件[MB]']
-        },
-        color: ['#3399CC', '#99CC33'],
-        toolbox: {
-          show: true,
-          feature: {
-            dataView: {
-              readOnly: false
-            },
-            restore: {},
-            saveAsImage: {}
-          }
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: ['安监局', '国土局', '环保局', '监察局', '交通局', '教育局', '民政局', '人口与计划生育局', '市场服务中心', '市监局', '司法局', '残联局', '统计局', '城管局', '地税局', '发改局', ]
-        },
-        yAxis: {
           type: 'value',
           axisLabel: {
-            formatter: '{value} '
+            formatter: '{value} [MB]'
           }
-        },
+        }],
         series: [{
           name: '普通文件[MB]',
           type: 'line',
-          data: [11, 11, 15, 13, 12, 13, 10, 20, 26, 21, 23, 12, 12, 14, 15, 23],
+          data: [12,3,12,16],
           markPoint: {
             data: [{
               type: 'max',
@@ -727,6 +657,103 @@ DashboardDirective.directive('myDefaultDash', ['DashboardService.platformPie', '
         }, {
           name: '数据库文件[MB]',
           type: 'line',
+          data: [2,12,2,13],
+          markPoint: {
+            data: [{
+              type: 'max',
+              name: '最大值'
+            }, {
+              type: 'min',
+              name: '最小值'
+            }]
+          },
+          markLine: {
+            data: [{
+              type: 'average',
+              name: '平均值'
+            }]
+          }
+        }, {
+          name: '全部[MB]',
+          type: 'line',
+          data: [12,34,22,33],
+          markPoint: {
+            data: [{
+              type: 'max',
+              name: '最大值'
+            }, {
+              type: 'min',
+              name: '最小值'
+            }]
+          },
+          markLine: {
+            data: [{
+              type: 'average',
+              name: '平均值'
+            }]
+          }
+        }]
+      };
+
+      platHisChart.setOption(platHisOpt);
+
+      /* department data */
+      var deptChart = echarts.init(element.find('#dept-chart')[0]);
+      var deptopt = {
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['普通文件', '数据库文件']
+        },
+        color: ['#3399CC', '#99CC33'],
+        toolbox: {
+          show: true,
+          feature: {
+            dataView: {
+              readOnly: false
+            },
+            restore: {},
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          axisLabel: {
+            interval: 0,
+            rotate: 45
+          },
+          data: ['安监局', '国土局', '环保局', '监察局', '交通局', '教育局', '民政局', '人口与计划生育局', '市场服务中心', '市监局', '司法局', '残联局', '统计局', '城管局', '地税局', '发改局', ]
+        },
+        yAxis: {
+          type: 'value',
+          axisLabel: {
+            formatter: '{value} '
+          }
+        },
+        series: [{
+          name: '普通文件[MB]',
+          type: 'bar',
+          data: [11, 11, 15, 13, 12, 13, 10, 20, 26, 21, 23, 12, 12, 14, 15, 23],
+          markPoint: {
+            data: [{
+              type: 'max',
+              name: '最大值'
+            }, {
+              type: 'min',
+              name: '最小值'
+            }]
+          },
+          markLine: {
+            data: [{
+              type: 'average',
+              name: '平均值'
+            }]
+          }
+        }, {
+          name: '数据库文件[MB]',
+          type: 'bar',
           data: [31, 23, 12, 12, 14, 15, 23, 31, 11, 15, 33, 12, 8, 10, 20, 36],
           markPoint: {
             data: [{
