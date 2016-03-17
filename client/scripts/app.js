@@ -4,6 +4,7 @@
 var app = angular.module('app', [
   'ui.router',
   'Config',
+  'ui.bootstrap',
   'ngTasty',
   'LoginController',
   'MainController',

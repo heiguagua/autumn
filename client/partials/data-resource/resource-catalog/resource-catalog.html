@@ -9,16 +9,16 @@
               <div class='form-group'>
                 <div class='input-group'>
                   <div class='input-group-addon'>资源目录类型</div>
-                  <select class='form-control'>
+                  <select ng-model='CategoryName' class='form-control'>
                     <option>主题</option>
                     <option>服务</option>
                   </select>
                 </div>
                 <div class='input-group'>
                   <div class='input-group-addon'>资源目录名称</div>
-                  <input type='text' class='form-control' placeholder='请输入...'>
+                  <input ng-model='CatalogName' type='text' class='form-control' placeholder='请输入...'>
                 </div>
-                <button type='submit' class='btn btn-primary'>
+                <button ng-click='Search()' class='btn btn-primary'>
                   <span class='glyphicon glyphicon-search'></span>
                   查询
                 </button>
@@ -95,17 +95,7 @@
       </div>
     </div>
 
-    <div wiserv-pagination config='Pagin()' class='pull-right'></div>
-
-    <ul class='pagination'>
-      <li class='disabled'><a>«</a></li>
-      <li class='active'><a>1<span class='sr-only'>(current)</span></a></li>
-      <li><a>2</a></li>
-      <li><a>3</a></li>
-      <li><a>4</a></li>
-      <li><a>5</a></li>
-      <li><a>»</a></li>
-    </ul>
+    <uib-pagination boundary-links='true' ng-change="Paging.pageChanged()" total-items="Paging.totalItems" items-per-page='Paging.itemsPerPage'  ng-model="Paging.currentPage" max-size="Paging.maxSize" class="pagination" boundary-link-numbers="true" rotate="false" first-text='首页' last-text="末页" next-text="下一页" previous-text="上一页"></uib-pagination>
 
   </div>
 </div>

@@ -8,19 +8,14 @@ GlobalModule.directive('wiservPagination', ['$timeout', '$compile',
       scope: {
         pagin: '&config'
       },
-      template: "<ul ng-click='test()' class='pagination'>{{haha}}</ul>",
+      template: "<div wiserv-pagination config='Pagin()' class='pull-right'></div>",
       link: function(scope, element, attrs) {
         scope.pagin().then(function(result){
           console.log();
           scope.haha = result;
           var temp = result.total;
-          console.log( (temp+8-1)/8 >> 0);
-
-
+          //console.log( (temp+8-1)/8 >> 0);
         })
-        scope.test=function(){
-          console.log("hank hank hank hank hank");
-        }
       }
     }
   }
