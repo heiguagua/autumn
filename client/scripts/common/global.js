@@ -1,79 +1,26 @@
 /* Resource Catalog Directives */
 var GlobalModule = angular.module('GlobalModule', []);
 // Resource Catalog Directive
-GlobalModule.directive('pagination', ['$timeout',
-  function($timeout) {
+GlobalModule.directive('wiservPagination', ['$timeout', '$compile',
+  function($timeout, $compile) {
     return {
       restrict: 'AE',
       scope: {
-        config:'='
+        pagin: '&config'
       },
-      template: "<ul class='pagination'>{{config}}</ul>",
+      template: "<ul ng-click='test()' class='pagination'>{{haha}}</ul>",
       link: function(scope, element, attrs) {
-        // $timeout(function () {
-        //   console.log(JSON.stringify(scope.config));
-        // }, 1000);
-        scope.$watch(
-          'config',
-          function(newValue, oldValue, scope) {
-            if (newValue !== oldValue) {
-              scope.config = newValue;
-            }
-          }
-        );
+        scope.pagin().then(function(result){
+          console.log();
+          scope.haha = result;
+          var temp = result.total;
+          console.log( (temp+8-1)/8 >> 0);
 
-      }
-    }
-  }
-]);
 
-// Bootstrap Table for Angular
-GlobalModule.directive('wiservBootstrapTable', [ '$timeout',
-  function($timeout) {
-    return {
-      restrict: 'AE',
-      scope: {
-        config:'='
-      },
-      link: function(scope, element, attrs) {
-        scope.$watch(
-          'config',
-          function(newValue, oldValue, scope) {
-            if (newValue !== oldValue) {
-              console.log(newValue);
-              scope.config = newValue;
-              scope.$applyAsync(function(){
-                element.bootstrapTable({
-                  columns: [{
-                    field: 'activeFlagName',
-                    title: 'Item ID',
-                    checkbox: true
-                  }, {
-                    field: 'categoryName',
-                    title: 'Item Name'
-                  }, {
-                    field: 'catalogFullName',
-                    title: 'Item Price'
-                  }],
-                  //data: scope.config,
-                  pagination: true,
-                  showRefresh: true,
-                  showHeader: true,
-                  search: true,
-                  showToggle: true,
-                  showPaginationSwitch: true,
-                  url:'http://localhost:5000/api/resource-catalog',
-                  ajaxOptions: {
-                    method: 'GET',
-                    xhrFields: {
-                      withCredentials: true
-                    }
-                  }
-                });
-              })
-            }
-          }
-        );
+        })
+        scope.test=function(){
+          console.log("hank hank hank hank hank");
+        }
       }
     }
   }
