@@ -38,37 +38,38 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       });
     }
 
-    // Modal
-    $scope.items = ['item1', 'item2', 'item3'];
+    // Modal for Create
     $scope.Create = function() {
       var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'myModalContent.html',
-        controller: 'ResourceCatalogController.resourceCatalogModal',
-        resolve: {
-          items: function() {
-            return $scope.items;
-          }
-        }
+        controller: 'ResourceCatalogController.resourceCatalogModal'
       });
-      modalInstance.result.then(function(selectedItem) {
-        $scope.selected = selectedItem;
+      modalInstance.result.then(function(item) {
+        console.log(item);
       }, function() {
-        console.info('Modal dismissed at: ' + new Date());
+        console.info('Modal dismissed');
       });
     };
 
+
   }
 ])
-// Modal
-ResourceCatalogController.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance', 'items',
-  function($scope, $uibModalInstance, items) {
-    $scope.items = items;
-    $scope.selected = {
-      item: $scope.items[0]
-    };
+// Modal Instance
+ResourceCatalogController.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '添加';
+    var _modelResult = {};
     $scope.Comfirm = function () {
-      $uibModalInstance.close($scope.selected.item);
+      _modelResult.category = $scope.Model.category;
+      _modelResult.catalogCode = $scope.Model.catalogCode;
+      _modelResult.parentCode = $scope.Model.parentCode;
+      _modelResult.catalogName = $scope.Model.catalogName;
+      _modelResult.catalogOrd = $scope.Model.catalogOrd;
+      _modelResult.activeFlag = $scope.Model.activeFlag;
+      _modelResult.catalogDesc = $scope.Model.catalogDesc;
+      $uibModalInstance.close(_modelResult);
     };
     $scope.Cancel = function () {
       $uibModalInstance.dismiss('cancel');
