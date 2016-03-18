@@ -14,13 +14,13 @@
 	      </div>
         <ul wiserv-menu-tree class='metismenu' id='menu'>
           <li ng-repeat='item in menus'>
-            <a ui-sref='{{::item.url}}'>{{::item.name}}<span class="glyphicon arrow pull-right"></span></a>
+            <a ui-sref='{{::item.url}}' data-level='1' ng-click="createBread($event)">{{::item.name}}<span class="glyphicon arrow pull-right"></span></a>
             <ul class='nav'>
               <li ng-repeat='child in item.children'>
-                <a ui-sref='{{::child.url}}'>{{::child.name}}<span ng-if="child.isParent===true" class="glyphicon arrow pull-right"></a>
+                <a ui-sref='{{::child.url}}' data-level='2' ng-click="createBread($event)">{{::child.name}}<span ng-if="child.isParent===true" class="glyphicon arrow pull-right"></a>
                 <ul class='nav'>
                   <li ng-repeat='grandchild in child.children'>
-                    <a ui-sref='{{::grandchild.url}}'>{{::grandchild.name}}<span ng-if="grandchild.isParent===true" class="glyphicon arrow pull-right"></a>
+                    <a ui-sref='{{::grandchild.url}}' data-level='3' ng-click="createBread($event)">{{::grandchild.name}}<span ng-if="grandchild.isParent===true" class="glyphicon arrow pull-right"></a>
                   </li>
                 </ul>
               </li>
@@ -35,9 +35,9 @@
         <div class='left'>
           <a class='toggler'><i class="fa fa-bars"></i></a>
           <ol class='breadcrumb nav-bread'>
-            <li><a>数据资源管理</a></li>
-            <li><a>元数据管理</a></li>
-            <li>数据接入资源管理</li>
+            <li ng-repeat='bread in breadcrumbs'>
+              <a href={{bread.menu_href}}>{{bread.menu_title}}</a>
+            </li>
           </ol>
         </div>
         <div class='right search-profile'>

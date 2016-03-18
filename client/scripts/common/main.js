@@ -5,6 +5,46 @@ var MainController = angular.module('MainController', ['ui.router', 'MainService
 //
 MainController.controller('MainController.main', ['$rootScope', '$scope',
   function($rootScope, $scope) {
+    $scope.first_menu = null;
+    $scope.second_menu = null;
+    $scope.third_menu = null;
+    $scope.breadcrumbs = [];
+
+    $scope.createBread = function(ev) {
+      var target = ev.target;
+      var menu_title = target.innerText;
+      var href = target.getAttribute('href');
+      window.console.log(href);
+      var menu_level = target.getAttribute('data-level');
+      switch (menu_level) {
+        case '1':
+          $scope.firstMenu = {
+            'menu_title': menu_title,
+            'menu_href': href
+          };
+          $scope.secondMenu = null;
+          $scope.thirdMenu = null;
+          break;
+        case '2':
+          $scope.thirdMenu = null;
+          $scope.secondMenu = {
+            'menu_title': menu_title,
+            'menu_href': href
+          };
+          break;
+        case '3':
+          $scope.thirdMenu = {
+            'menu_title': menu_title,
+            'menu_href': href
+          };
+          break;
+        default:
+          window.console.log('not support');
+      }
+      $scope.breadcrumbs = [];
+      var filteredBread = _.compact(_.concat($scope.firstMenu, $scope.secondMenu, $scope.thirdMenu));
+      $scope.breadcrumbs = filteredBread;
+    }
 
   }
 ])
