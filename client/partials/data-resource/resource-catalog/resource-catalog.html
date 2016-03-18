@@ -36,23 +36,14 @@
         <div class='panel-body'>
           <div>
             <div class='btn-group'>
-              <button title='' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
+              <button ng-click='Create()' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
                 <i class='glyphicon glyphicon-plus'></i>
               </button>
-              <button title='' class='btn btn-default' type='button'>
+              <button ng-click='Update()' class='btn btn-default' type='button'>
                 <i class='glyphicon glyphicon-pencil'></i>
               </button>
-              <button title='' class='btn btn-default' type='button'>
+              <button ng-click='Delete()' class='btn btn-default' type='button'>
                 <i class='glyphicon glyphicon-remove'></i>
-              </button>
-              <button title='' class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-th-list'></i>
-              </button>
-              <button title='' class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-ok-sign'></i>
-              </button>
-              <button title='' class='btn btn-default' type='button'>
-                <i class='glyphicon glyphicon-ban-circle'></i>
               </button>
             </div>
             <div class='columns columns-right btn-group pull-right'>
@@ -102,7 +93,27 @@
   </div>
 </div>
 
-<!-- End for Modal -->
+
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <h3 class="modal-title">I'm a modal!</h3>
+  </div>
+  <div class="modal-body">
+    <ul>
+      <li ng-repeat="item in items">
+        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+      </li>
+    </ul>
+    Selected:
+    <b>{{ selected.item }}</b>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="Comfirm()" class="btn btn-primary" type="button">确认</button>
+    <button ng-click="Cancel()" class="btn btn-warning" type="button">取消</button>
+  </div>
+</script>
+
+<!-- End for Modal -
 <div class='modal fade' id='modal'>
   <div class='modal-dialog' role='document'>
     <div class='modal-content'>
@@ -168,4 +179,4 @@
     </div>
   </div>
 </div>
-<!-- End for Modal -->
+-- End for Modal -->

@@ -3,9 +3,9 @@
 
 /* Controller */
 var ResourceCatalogController = angular.module('ResourceCatalogController', ['ui.router', 'GlobalModule', 'ResourceCatalogService']);
-//
-ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', 'ResourceCatalogService.http',
-  function($scope, http) {
+// Main
+ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$uibModal', 'ResourceCatalogService.http',
+  function($scope, $uibModal, http) {
     // Pagination
     $scope.Paging = {};
     $scope.Paging.maxSize = 5;
@@ -38,6 +38,41 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       });
     }
 
+    // Modal
+    $scope.items = ['item1', 'item2', 'item3'];
+    $scope.Create = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'myModalContent.html',
+        controller: 'ResourceCatalogController.resourceCatalogModal',
+        resolve: {
+          items: function() {
+            return $scope.items;
+          }
+        }
+      });
+      modalInstance.result.then(function(selectedItem) {
+        $scope.selected = selectedItem;
+      }, function() {
+        console.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+  }
+])
+// Modal
+ResourceCatalogController.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance', 'items',
+  function($scope, $uibModalInstance, items) {
+    $scope.items = items;
+    $scope.selected = {
+      item: $scope.items[0]
+    };
+    $scope.Comfirm = function () {
+      $uibModalInstance.close($scope.selected.item);
+    };
+    $scope.Cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
   }
 ])
 
