@@ -44,6 +44,10 @@ App.use('/api', resource_catalog);
 var data_resource = require('./api/data-resource');
 App.use('/api', data_resource);
 
+/** data visit into*/
+var data_visit_info = require('./api/data-visit-info');
+App.use('/api', data_visit_info);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
