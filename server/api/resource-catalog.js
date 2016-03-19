@@ -7,15 +7,16 @@ const Express = require('express'),
 // mongoimport --db autumn --collection resource_catalog --file server/mock/resource-catalog/get.json
 Router.route('/resource-catalog')
   .get(function(req, res) {
-    Config.mongodb.open(function(err, db) {
-      var ResourceCatalog = db.collection('resource_catalog').find({}, {_id: 0});
-      ResourceCatalog.each(function(err, doc) {
-        if (doc != null) {
-          res.json(doc);
-        }
-        db.close();
-      })
-    });
+    // Config.mongodb.open(function(err, db) {
+    //   var ResourceCatalog = db.collection('resource_catalog').find({}, {_id: 0});
+    //   ResourceCatalog.each(function(err, doc) {
+    //     if (doc != null) {
+    //       res.json(doc);
+    //     }
+    //     db.close();
+    //   });
+    // });
+    res.json(Config.json('resource-catalog/get.json'));
   })
   .post(function(req, res) {
     //POST for Create

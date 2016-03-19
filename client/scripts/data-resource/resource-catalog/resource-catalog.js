@@ -94,7 +94,7 @@ ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'A
         }).success(function(data, status, headers, config) {
         deferred.resolve(data);
       }).error(function(data, status, headers, config) {
-        console.error(statusa );
+        console.error(status);
         deferred.reject();
       })
       return promise;
