@@ -26,7 +26,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
     //Init Table
     http.fetch(_httpParams).then(function(response){
       $scope.ResourceCatalogs = response.body;
-      $scope.Paging.totalItems = response.body.length;
+      $scope.Paging.totalItems = response.head.total;
     });
 
     // Search
