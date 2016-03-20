@@ -9,7 +9,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
     // Pagination
     $scope.Paging = {};
     $scope.Paging.maxSize = 5;
-    $scope.Paging.itemsPerPage = 15;
+    $scope.Paging.itemsPerPage = 10;
     $scope.Paging.pageChanged = function() {
       _httpParams.offset = $scope.Paging.currentPage;
       _httpParams.limit = $scope.Paging.itemsPerPage;
