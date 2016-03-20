@@ -8,15 +8,15 @@ const Config = {
   json: function(name){
     return JsonLoader.sync(__dirname + '/mock/' + name);
   },
-  head: function(total, body){
+  protocal: function(head, body){
     return {
       "head": {
-        "status": 200,
-        "token": "bb4fba181e6d83d8c5a1b56055c08b5aa2da5755",
-        "message": "Mongodb Operation Sucess!",
-        "total": total
+        "status": head.status || '',
+        "token": head.token || 'bb4fba181e6d83d8c5a1b56055c08b5aa2da5755',
+        "message": head.message || 'Mongodb Operation Sucess!',
+        "total": head.total || ''
       },
-      "body": body
+      "body": body || ''
     }
   }
 }

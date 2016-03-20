@@ -13,7 +13,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
     $scope.Paging.pageChanged = function() {
       _httpParams.offset = $scope.Paging.currentPage;
       _httpParams.limit = $scope.Paging.itemsPerPage;
-      http.fetch(_httpParams).then(function(response){
+      http.fetch('GET', _httpParams).then(function(response){
         $scope.ResourceCatalogs = response.body;
       });
     };
@@ -24,7 +24,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
     _httpParams.limit = $scope.Paging.itemsPerPage;
 
     //Init Table
-    http.fetch(_httpParams).then(function(response){
+    http.fetch('GET', _httpParams).then(function(response){
       $scope.ResourceCatalogs = response.body;
       $scope.Paging.totalItems = response.head.total;
     });
@@ -33,7 +33,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
     $scope.Search = function(){
       _httpParams.categoryName = $scope.CategoryName;
       _httpParams.catalogName = $scope.CatalogName;
-      http.fetch(_httpParams).then(function(response){
+      http.fetch('GET', _httpParams).then(function(response){
         $scope.ResourceCatalogs = response.body;
       });
     }
@@ -46,7 +46,10 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
         controller: 'ResourceCatalogController.resourceCatalogModal'
       });
       modalInstance.result.then(function(item) {
-        console.log(item);
+        _httpParams = item;
+        http.fetch('POST', _httpParams).then(function(response){
+          var status = response.head;
+        });
       }, function() {
         console.info('Modal dismissed');
       });
@@ -83,11 +86,12 @@ var ResourceCatalogService = angular.module('ResourceCatalogService', []);
 //httpGet
 ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
   function($http, $q, API) {
-    function fetch(params) {
+    function fetch(method, params) {
       var deferred = $q.defer();
       var promise = deferred.promise;
-      $http.get(
-        API.path + '/api/resource-catalog', {
+      $http({
+          url: API.path + '/api/resource-catalog',
+          method: method,
           withCredentials: true,
           cache: false,
           params: params
