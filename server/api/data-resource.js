@@ -1,19 +1,37 @@
 'use strict';
-const Express = require('express'),
-      Router = Express.Router(),
-      JsonLoader = require('load-json-file'),
+const Router = require('express').Router(),
       Config = require('../config');
 
 Router.route('/data-resource')
-  .get(function(req, res) {
+  .get(function(request, response) {
     //GET for Read
-    let datas = JsonLoader.sync(Config.path + 'data-resource/get.json');
-    res.json(datas);
+    let head = {}, body = {};
+    Config.mongodb.open(function(error, database) {
+      // Query total number of pages
+      database.collection('data_resource').count(function(error, result) {
+        head.total = result; // Set protocal.head
+        // Query data resource
+        database.collection('data_resource').find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
+          body = documents; // Set protocal.body
+          response.json(Config.protocal(head, body));
+          database.close();
+        });
+      });
+    });
   })
-  .post(function(req, res) {
+  .post(function(request, response) {
     //POST for Create
-    let datas = JsonLoader.sync(Config.path + 'data-resource/post.json');
-    res.json(datas);
+    let head = {}, body = {}; // for HTTP Response Protocal
+    Config.mongodb.open(function(err, db) {
+      db.collection('data_resource').insertOne(request.body.data, function(error, result){
+        if(1 === result.result.ok){
+          head.status = '200';
+          head.message = 'Create operation sucessful!';
+          response.json(Config.protocal(head, body));
+        }
+        db.close();
+      });
+    })
   })
   .put(function(req, res) {
     //PUT for Update

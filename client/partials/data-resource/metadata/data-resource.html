@@ -1,178 +1,196 @@
-<div wiserv-data-resource>
-  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
-    <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
-      <div class="panel-title" style="font-size: 14px;">
-        <span class="text-muted">查询条件</span>
-        <div class="pull-right">
-          <i class="glyphicon glyphicon-chevron-up"></i>
-        </div>
-      </div>
-    </div>
-    <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
-      <div class="panel-body">
-        <form class="form-inline" style="margin-bottom:0">
-          <div class="form-group">
-            <label class="control-label" for="">资源名称
-            </label>
-            <input type="text" class="form-control input-sm" id="" ng-model="filterBy.resName" placeholder="请输入资源名称"/>
-          </div>
-          <div class="form-group">
-            <label for="" class="control-label">资源分类</label>
-            <select id="" class="selectpicker">
-              <option value="">请选择</option>
-              <option value="2">部门</option>
-              <option value="1">主题</option>
-              <option value="3">服务</option>
-              <option value="test">test</option>
-            </select>
-            <input id="" class="form-control input-sm" placeholder="请选择" readonly/>
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="">资源所属部门</label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请选择" readonly/>
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="">创建时间</label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请选择"/>
-          </div>
-          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button" ng-click="search()">
-            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="toolbar">
-    <div class="btn-group">
-      <button title="" class="btn btn-default" type="button" ng-click="showAdd()">
-        <i class="glyphicon glyphicon-plus"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button" data-toggle="modal" ng-click="showEdit()">
-        <i class="glyphicon glyphicon-pencil"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button" ng-click="remove()">
-        <i class="glyphicon glyphicon-remove"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-th-list"></i>
-      </button>
-    </div>
-  </div>
-  <!-- tasty table  -->
-  <div tasty-table bind-resource-callback="getResource" bind-init="init" bind-filters="filterBy" bind-reload="reloadCallback">
-    <table class="table table-bordered table-hover table-striped">
-      <thead tasty-thead></thead>
-      <tbody>
-        <tr ng-repeat="row in rows">
-          <td><input type="checkbox" ng-click="checked(row)"/></td>
-          <td>{{ row.resName }}</td>
-          <td>{{ row.resCat }}</td>
-          <td>{{ row.resDept }}</td>
-          <td>{{ row.resCreateTime }}</td>
-          <td>{{ row.resAccessStaus }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div tasty-pagination></div>
-  </div>
-  <!-- #tasty table  -->
-
-  <!-- Modal -->
-  <script type="text/ng-template" id="modal.html">
-    <div class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">{{title}}</h4>
-          </div>
-          <div class="modal-body">
-              <form id="form" class="form-horizontal" action="" method="POST">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group has-feedback">
-                    <label for="resourceNameShow" class="col-sm-3 control-label">资源名称
-                      <span style="color:red">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                      <input ng-model="resName" id="resourceNameShow" value="" class="form-control" placeholder="请输入资源名称" autocomplete="off" maxlength="32" value="" />
-                      <input type="hidden" name="pageModel.id" value=""/>
-                    </div>
-                  </div>
-                  <div class="form-group has-feedback">
-                    <label for="depNameShow" class="col-sm-3 control-label">所属部门
-                      <span style="color:red">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                      <input id="depNameShow"  class="form-control" ng-model="resCat" container=".bootbox"/>
-                    </div>
-                  </div>
-                  <div class="form-group has-feedback">
-                    <label for="sysNameShow" class="col-sm-3 control-label">业务系统</label>
-                    <div class="col-sm-8">
-                      <select id="sysNameShow" class="selectpicker"></select>
-                    </div>
-                  </div>
-                  <div class="form-group has-feedback">
-                    <label class="col-sm-3 control-label">资源分类
-                      <span style="color:red">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                      <input type="hidden"  value=""/>
-
-                      <div class="col-md-12">
-                        <input type="hidden" name="classifyType" value="2"/>
-                        <label class="col-sm-3 control-label">部门</label>
-                        <div class="col-sm-8">
-                          <input id="dataClassifyNames0" ng-model="resDept" class="form-control input-sm " style="width: 240px"/>
-                        </div>
-                      </div>
-
-                      <div class="col-md-12">
-                        <input type="hidden" name="classifyType" value="1"/>
-                        <label class="col-sm-3 control-label">主题</label>
-                        <div class="col-sm-8">
-                          <input id="dataClassifyNames1" ng-model="resTheme" class="form-control input-sm " style="width: 240px"/>
-                        </div>
-                      </div>
-
-                      <div class="col-md-12">
-                        <input type="hidden" name="classifyType" value="3"/>
-                        <label class="col-sm-3 control-label">服务</label>
-                        <div class="col-sm-8">
-                          <input id="dataClassifyNames2" ng-model="resService" class="form-control input-sm " style="width: 240px"/>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="form-group has-feedback">
-                    <label for="remarkShow" class="col-sm-3 control-label">数据描述</label>
-                    <div class="col-sm-8">
-                      <textarea ng-model="resDesc" id="remarkShow" maxlength="1000" rows="3" cols="30" class="form-control" placeholder="请输入数据描述" ></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group has-feedback" id="createTimeDiv">
-                    <label class="col-sm-3 control-label">资源创建日期</label>
-                    <div class="col-sm-8">
-                      <div class='inputView'></div>
-                    </div>
-                  </div>
-                  <div class="form-group has-feedback" id="createUserDiv">
-                    <label class="col-sm-3 control-label">资源创建人</label>
-                    <div class="col-sm-8">
-                      <div class='inputView'></div>
-                    </div>
-                  </div>
-                </div>
-              </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">确认</button>
-            <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">关闭</button>
+<div class='container-fluid'>
+  <div class='row'>
+    <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+      <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
+        <div class="panel-title" style="font-size: 14px;">
+          <span class="text-muted">查询条件</span>
+          <div class="pull-right">
+            <i class="glyphicon glyphicon-chevron-up"></i>
           </div>
         </div>
       </div>
+      <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
+        <div class="panel-body">
+          <form class="form-inline" style="margin-bottom:0">
+            <div class="form-group">
+              <label class="control-label" for="">资源名称
+              </label>
+              <input type="text" class="form-control input-sm" id="" ng-model="CatalogName" placeholder="请输入资源名称"/>
+            </div>
+            <div class="form-group">
+              <label for="" class="control-label">资源分类</label>
+              <select id="" class="selectpicker" ng-model='CategoryName'>
+                <option value="">请选择</option>
+                <option value="2">部门</option>
+                <option value="1">主题</option>
+                <option value="3">服务</option>
+                <option value="test">test</option>
+              </select>
+              <input id="" class="form-control input-sm" placeholder="请选择" readonly/>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="">资源所属部门</label>
+              <input type="text" class="form-control input-sm" id="" ng-model='ResourceDept' placeholder="请选择" readonly/>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="">创建时间</label>
+              <input type="text" class="form-control input-sm" id="" ng-model='CreateTime' placeholder="请选择"/>
+            </div>
+            <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button" ng-click="Search()">
+              <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-  </script>
+  </div>
+
+  <div class='row'>
+    <div class='panel panel-default panel-patch'>
+      <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+      <div class='panel-body'>
+        <div>
+          <div class='btn-group'>
+            <button ng-click='Create()' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
+              <i class="fa fa-plus-circle"></i>
+            </button>
+            <button ng-click='Update()' class='btn btn-default' type='button'>
+              <i class="fa fa-pencil-square-o"></i>
+            </button>
+            <button ng-click='Delete()' class='btn btn-default' type='button'>
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+          <div class='columns columns-right btn-group pull-right'>
+            <button class='btn btn-default' type='button'>
+              <i class="fa fa-refresh"></i>
+            </button>
+            <div class='keep-open btn-group' title='列'>
+              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                <i class="fa fa-table"></i>
+                <span class='caret'></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- table  -->
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th><input type='checkbox'/></th>
+            <th>资源名称</th>
+            <th>资源源目录分类</th>
+            <th>资源所属部门</th>
+            <th>资源创建时间</th>
+            <th>资源接入状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="DataResource in DataResources">
+            <td><input type="checkbox"/></td>
+            <td>{{ DataResource.resName }}</td>
+            <td>{{ DataResource.resCat }}</td>
+            <td>{{ DataResource.resDept }}</td>
+            <td>{{ DataResource.resCreateTime }}</td>
+            <td>{{ DataResource.resAccessStaus }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class='pull-right'>
+        <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
+      </div>
+      <!-- table  -->
+    </div>
+  </div>
 </div>
+<!-- Modal -->
+<script type="text/ng-template" id="dataResourceModal.html">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="Cancel()" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">{{title}}</h4>
+  </div>
+  <div class="modal-body">
+    <form id="form" class="form-horizontal" action="" method="POST">
+        <div class="form-group has-feedback">
+          <label for="resourceNameShow" class="col-sm-3 control-label">资源名称
+            <span style="color:red">*</span>
+          </label>
+          <div class="col-sm-8">
+            <input ng-model="Model.resName" id="resourceNameShow" value="" class="form-control" placeholder="请输入资源名称" autocomplete="off" maxlength="32" value=""/>
+            <input type="hidden" name="pageModel.id" value=""/>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="depNameShow" class="col-sm-3 control-label">所属部门
+            <span style="color:red">*</span>
+          </label>
+          <div class="col-sm-8">
+            <input id="depNameShow" class="form-control" ng-model="Model.resCat" container=".bootbox"/>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="sysNameShow" class="col-sm-3 control-label">业务系统</label>
+          <div class="col-sm-8">
+            <select id="sysNameShow" class="selectpicker"></select>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-3 control-label">资源分类
+            <span style="color:red">*</span>
+          </label>
+          <div class="col-sm-8">
+            <input type="hidden" value=""/>
+
+            <div class="col-md-12">
+              <input type="hidden" name="classifyType" value="2"/>
+              <label class="col-sm-3 control-label">部门</label>
+              <div class="col-sm-8">
+                <input id="dataClassifyNames0" ng-model="Model.resDept" class="form-control input-sm " style="width: 240px"/>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <input type="hidden" name="classifyType" value="1"/>
+              <label class="col-sm-3 control-label">主题</label>
+              <div class="col-sm-8">
+                <input id="dataClassifyNames1" ng-model="Model.resTheme" class="form-control input-sm " style="width: 240px"/>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <input type="hidden" name="classifyType" value="3"/>
+              <label class="col-sm-3 control-label">服务</label>
+              <div class="col-sm-8">
+                <input id="dataClassifyNames2" ng-model="Model.resService" class="form-control input-sm " style="width: 240px"/>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="remarkShow" class="col-sm-3 control-label">数据描述</label>
+          <div class="col-sm-8">
+            <textarea ng-model="Model.resDesc" id="remarkShow" maxlength="1000" rows="3" cols="30" class="form-control" placeholder="请输入数据描述"></textarea>
+          </div>
+        </div>
+        <div class="form-group has-feedback" id="createTimeDiv" style="display:none">
+          <label class="col-sm-3 control-label">资源创建日期</label>
+          <div class="col-sm-8">
+            <div class='inputView'></div>
+          </div>
+        </div>
+        <div class="form-group has-feedback" id="createUserDiv" style="display:none">
+          <label class="col-sm-3 control-label">资源创建人</label>
+          <div class="col-sm-8">
+            <div class='inputView'></div>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" ng-click="Confirm()" class="btn btn-primary" data-dismiss="modal">确认</button>
+    <button type="button" ng-click="Cancel()" class="btn btn-default" data-dismiss="modal">关闭</button>
+  </div>
+</script>
