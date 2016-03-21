@@ -2,37 +2,44 @@
 const Router = require('express').Router(),
       Config = require('../config');
 
-// mongoimport --db autumn --collection resource_catalog --file server/mock/resource-catalog/get.json
+// mongoimport --db autumn --collection resource_catalog --file server/mock/resource-catalog.json
 Router.route('/resource-catalog')
+  // GET for Retrieve
   .get(function(request, response) {
-    Config.mongodb.open(function(err, db) {
-      db.collection('resource_catalog').count(function(err, count) {
-        var ResourceCatalog = db.collection('resource_catalog').find({}, {_id: 0}).skip(parseInt(request.query.offset - 1) * 10).limit(parseInt(request.query.limit));
-        ResourceCatalog.toArray(function(err, doc) {
-          var body = doc;
-          var head = {};
-          head.total = count;
+    let head = {}, body = {}; // for HTTP Response Protocal
+    Config.mongodb.open(function(error, database) {
+      database.collection('resource_catalog').count(function(error, result) {
+        head.total = result; // Set protocal.head
+        var ResourceCatalog = database.collection('resource_catalog').find({}, {_id: 0}).sort().skip(parseInt(request.query.offset - 1) * 10).limit(parseInt(request.query.limit));
+        ResourceCatalog.toArray(function(error, documents) {
+          body = documents; // Set protocal.body
           response.json(Config.protocal(head, body));
-          db.close();
+          database.close();
         });
       });
     });
   })
+  // POST for Create
   .post(function(request, response) {
+    let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(err, db) {
       db.collection('resource_catalog').insertOne(request.query, function(error, result){
         if(1 === result.result.ok){
-          response.json(Config.protocal());
+          head.status = '200';
+          head.message = 'Create operation sucessful!';
+          response.json(Config.protocal(head, body));
         }
         db.close();
       });
     })
   })
-  .put(function(req, res) {
-    //PUT for Update
+  // PUT for Update
+  .put(function(request, response) {
+
   })
-  .delete(function(req, res) {
-    //DELETE for Delete
+  // DELETE for Delete
+  .delete(function(request, response) {
+
   });
 
 module.exports = Router;

@@ -12,8 +12,8 @@ const Config = {
     return {
       "head": {
         "status": head.status || '',
-        "token": head.token || 'bb4fba181e6d83d8c5a1b56055c08b5aa2da5755',
-        "message": head.message || 'Mongodb Operation Sucess!',
+        "token": head.token || '',
+        "message": head.message || '',
         "total": head.total || ''
       },
       "body": body || ''

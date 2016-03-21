@@ -48,13 +48,14 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       modalInstance.result.then(function(item) {
         _httpParams = item;
         http.fetch('POST', _httpParams).then(function(response){
-          var status = response.head;
+          if('200'===response.head.status){
+
+          }
         });
       }, function() {
         console.info('Modal dismissed');
       });
     };
-
 
   }
 ])
