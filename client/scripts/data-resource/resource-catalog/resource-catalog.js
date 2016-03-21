@@ -80,6 +80,14 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       });
     };
 
+    //
+    $scope.CheckedInputArray = [];
+    $scope.Select = function(id ,checked){
+      $scope.CheckedInputArray.push({id:checked});
+      console.log($scope.CheckedInputArray);
+    }
+
+
   }
 ])
 // Controller for Modal Instance

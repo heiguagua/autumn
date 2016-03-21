@@ -32,6 +32,11 @@ Router.route('/resource-catalog')
           head.message = '资源目录创建成功!';
           response.json(Config.protocal(head, body));
         }
+        else{
+          head.status = '500';
+          head.message = '资源目录创建失败!';
+          response.json(Config.protocal(head, body));
+        }
         db.close();
       });
     })
