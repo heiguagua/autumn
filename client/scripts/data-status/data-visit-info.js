@@ -50,7 +50,7 @@ DataVisitInfoDirective.directive('wiservDataVisitInfo', ['DataVisitInfoService.d
         });
 
         dataVisitInfo.then(function(response){
-          var datas = response.data[0];
+          var datas = response.data;
           var dataShow = [];
           var data;
           for(var i = 0; i<datas.rows.length; i++) {
@@ -64,7 +64,6 @@ DataVisitInfoDirective.directive('wiservDataVisitInfo', ['DataVisitInfoService.d
             }
             dataShow[i]  = data;
           }
-          window.console.log(dataShow);
           element.find('#table').bootstrapTable({
             columns: [{
               field: 'state',
