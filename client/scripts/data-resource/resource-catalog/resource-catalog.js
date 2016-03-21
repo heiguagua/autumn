@@ -116,14 +116,14 @@ ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'A
       })
       return Qpromise;
     };
-    function saveResourceCatalog(params) {
+    function saveResourceCatalog(datas) {
       var Qdefer = $q.defer();
       var Qpromise = Qdefer.promise;
       $http.post(
         API.path + '/api/resource-catalog', {
           withCredentials: true,
           cache: false,
-          params: params
+          data: datas
         }).success(function(data, status, headers, config) {
         Qdefer.resolve(data);
       }).error(function(data, status, headers, config) {

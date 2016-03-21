@@ -1,7 +1,9 @@
 'use strict';
 const Express = require('express'),
-      App = Express();
+      App = Express(),
+      bodyParser = require('body-parser');
 
+App.use(bodyParser.json());
 /** CORS Filter */
 // Setting static resource for express
 // const path = require('path');

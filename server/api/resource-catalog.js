@@ -8,11 +8,13 @@ Router.route('/resource-catalog')
   .get(function(request, response) {
     let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(error, database) {
+      // Map collection to ResourceCatalog
+      let ResourceCatalog = database.collection('resource_catalog');
       // Query total number of pages
-      database.collection('resource_catalog').count(function(error, result) {
+      ResourceCatalog.count(function(error, result) {
         head.total = result; // Set protocal.head
         // Query resource catalog
-        database.collection('resource_catalog').find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
+        ResourceCatalog.find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
           body = documents; // Set protocal.body
           response.json(Config.protocal(head, body));
           database.close();
@@ -24,7 +26,7 @@ Router.route('/resource-catalog')
   .post(function(request, response) {
     let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(err, db) {
-      db.collection('resource_catalog').insertOne(request.query, function(error, result){
+      db.collection('resource_catalog').insertOne(request.body.data, function(error, result){
         if(1 === result.result.ok){
           head.status = '200';
           head.message = 'Create operation sucessful!';
