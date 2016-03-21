@@ -4,37 +4,41 @@
 /* Controller */
 var ResourceCatalogController = angular.module('ResourceCatalogController', ['ui.router', 'GlobalModule', 'ResourceCatalogService']);
 // Main
-ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$uibModal', 'ResourceCatalogService.http',
-  function($scope, $uibModal, http) {
+ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http',
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+
     // Pagination
     $scope.Paging = {};
     $scope.Paging.maxSize = 5;
-    $scope.Paging.itemsPerPage = 10;
+    $scope.Paging.itemsPerPage = 12;
     $scope.Paging.pageChanged = function() {
-      _httpParams.offset = $scope.Paging.currentPage;
+      _httpParams.skip = $scope.Paging.currentPage;
       _httpParams.limit = $scope.Paging.itemsPerPage;
-      http.fetch('GET', _httpParams).then(function(response){
-        $scope.ResourceCatalogs = response.body;
+      http.fatchResourceCatalog(_httpParams).then(function(data){
+        $scope.ResourceCatalogs = data.body;
       });
     };
 
     // Init Pagination Parameters for Http
     var _httpParams = {};
-    _httpParams.offset = 1;
+    _httpParams.skip = 1;
     _httpParams.limit = $scope.Paging.itemsPerPage;
 
     //Init Table
-    http.fetch('GET', _httpParams).then(function(response){
-      $scope.ResourceCatalogs = response.body;
-      $scope.Paging.totalItems = response.head.total;
+    http.fatchResourceCatalog(_httpParams).then(function(data){
+      $scope.ResourceCatalogs = data.body;
+      $scope.Paging.totalItems = data.head.total;
     });
 
     // Search
     $scope.Search = function(){
       _httpParams.categoryName = $scope.CategoryName;
       _httpParams.catalogName = $scope.CatalogName;
-      http.fetch('GET', _httpParams).then(function(response){
-        $scope.ResourceCatalogs = response.body;
+      http.fatchResourceCatalog(_httpParams).then(function(data){
+        $scope.ResourceCatalogs = data.body;
       });
     }
 
@@ -47,10 +51,19 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       });
       modalInstance.result.then(function(item) {
         _httpParams = item;
-        http.fetch('POST', _httpParams).then(function(response){
-          if('200'===response.head.status){
-
+        http.saveResourceCatalog(_httpParams).then(function(data) {
+          if ('200' === data.head.status) {
+            return data.head;
           }
+        }).then(function(data) {
+          var _httpParams = {};
+          _httpParams.skip = 1;
+          _httpParams.limit = $scope.Paging.itemsPerPage;
+          http.fatchResourceCatalog(_httpParams).then(function(data) {
+            $scope.ResourceCatalogs = data.body;
+            $scope.Paging.totalItems = data.head.total;
+            $scope.Paging.currentPage = 1;
+          });
         });
       }, function() {
         console.info('Modal dismissed');
@@ -59,7 +72,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
 
   }
 ])
-// Modal Instance
+// Controller for Modal Instance
 ResourceCatalogController.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance',
   function($scope, $uibModalInstance) {
     $scope.Model = {};
@@ -87,25 +100,41 @@ var ResourceCatalogService = angular.module('ResourceCatalogService', []);
 //httpGet
 ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
   function($http, $q, API) {
-    function fetch(method, params) {
-      var deferred = $q.defer();
-      var promise = deferred.promise;
-      $http({
-          url: API.path + '/api/resource-catalog',
-          method: method,
+    function fetchResourceCatalog(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.get(
+        API.path + '/api/resource-catalog', {
           withCredentials: true,
           cache: false,
           params: params
         }).success(function(data, status, headers, config) {
-        deferred.resolve(data);
+        Qdefer.resolve(data);
       }).error(function(data, status, headers, config) {
         console.error(status);
-        deferred.reject();
+        Qdefer.reject();
       })
-      return promise;
-    }
+      return Qpromise;
+    };
+    function saveResourceCatalog(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.post(
+        API.path + '/api/resource-catalog', {
+          withCredentials: true,
+          cache: false,
+          params: params
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
     return {
-      fetch: fetch
+      fatchResourceCatalog: fetchResourceCatalog,
+      saveResourceCatalog: saveResourceCatalog
     }
   }
 ]);

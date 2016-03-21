@@ -10,7 +10,7 @@ Router.route('/resource-catalog')
     Config.mongodb.open(function(error, database) {
       database.collection('resource_catalog').count(function(error, result) {
         head.total = result; // Set protocal.head
-        var ResourceCatalog = database.collection('resource_catalog').find({}, {_id: 0}).sort().skip(parseInt(request.query.offset - 1) * 10).limit(parseInt(request.query.limit));
+        var ResourceCatalog = database.collection('resource_catalog').find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit));
         ResourceCatalog.toArray(function(error, documents) {
           body = documents; // Set protocal.body
           response.json(Config.protocal(head, body));
