@@ -29,7 +29,7 @@ Router.route('/resource-catalog')
       db.collection('resource_catalog').insertOne(request.body.data, function(error, result){
         if(1 === result.result.ok){
           head.status = '200';
-          head.message = 'Create operation sucessful!';
+          head.message = '资源目录创建成功!';
           response.json(Config.protocal(head, body));
         }
         db.close();

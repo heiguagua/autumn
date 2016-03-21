@@ -49,13 +49,14 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
         templateUrl: 'myModalContent.html',
         controller: 'ResourceCatalogController.resourceCatalogModal'
       });
-      modalInstance.result.then(function(item) {
-        _httpParams = item;
+      modalInstance.result.then(function(_httpParams) {
+        // Save operation by promise
         http.saveResourceCatalog(_httpParams).then(function(data) {
           if ('200' === data.head.status) {
             return data.head;
           }
-        }).then(function(data) {
+        }).then(function(head) {
+          // Refresh table
           var _httpParams = {};
           _httpParams.skip = 1;
           _httpParams.limit = $scope.Paging.itemsPerPage;
@@ -64,6 +65,15 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
             $scope.Paging.totalItems = data.head.total;
             $scope.Paging.currentPage = 1;
           });
+          return head.message;
+        }).then(function(message){
+          // Pop alert
+          $scope.Alerts = [
+            {type: 'success', message: message, timeout: 1200}
+          ];
+          $scope.CloseAlert = function(index) {
+            $scope.Alerts.splice(index, 1);
+          };
         });
       }, function() {
         console.info('Modal dismissed');
