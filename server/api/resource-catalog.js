@@ -2,16 +2,17 @@
 const Router = require('express').Router(),
       Config = require('../config');
 
-// mongoimport --db autumn --collection resource_catalog --file server/mock/resource-catalog.json
+// mongoimport --jsonArray --db autumn --collection resource_catalog --file server/mock/resource-catalog.json
 Router.route('/resource-catalog')
-  // GET for Retrieve
+  /* GET for Retrieve */
   .get(function(request, response) {
     let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(error, database) {
+      // Query total number of pages
       database.collection('resource_catalog').count(function(error, result) {
         head.total = result; // Set protocal.head
-        var ResourceCatalog = database.collection('resource_catalog').find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit));
-        ResourceCatalog.toArray(function(error, documents) {
+        // Query resource catalog
+        database.collection('resource_catalog').find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
           body = documents; // Set protocal.body
           response.json(Config.protocal(head, body));
           database.close();
@@ -19,7 +20,7 @@ Router.route('/resource-catalog')
       });
     });
   })
-  // POST for Create
+  /* POST for Create */
   .post(function(request, response) {
     let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(err, db) {
@@ -33,11 +34,11 @@ Router.route('/resource-catalog')
       });
     })
   })
-  // PUT for Update
+  /* PUT for Update */
   .put(function(request, response) {
 
   })
-  // DELETE for Delete
+  /* DELETE for Delete */
   .delete(function(request, response) {
 
   });
