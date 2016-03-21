@@ -14,7 +14,7 @@ Router.route('/resource-catalog')
       ResourceCatalog.count(function(error, result) {
         head.total = result; // Set protocal.head
         // Query resource catalog
-        ResourceCatalog.find({}, {_id: 0}).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
+        ResourceCatalog.find({}, {_id: 0}).sort({"category": -1}).skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
           body = documents; // Set protocal.body
           response.json(Config.protocal(head, body));
           database.close();

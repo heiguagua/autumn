@@ -33,6 +33,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "load-json-file": "^1.1.0",
-    "mongodb": "^2.1.7"
+    "mongodb": "^2.1.7",
+    "q": "^1.4.1"
   }
 }
