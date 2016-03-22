@@ -1,65 +1,245 @@
-<div wiserv-data-info>
-  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
-    <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
-      <div class="panel-title" style="font-size: 14px;">
-        <span class="text-muted">查询条件</span>
-        <div class="pull-right">
-          <i class="glyphicon glyphicon-chevron-up"></i>
+<div class='container-fluid'>
+  <div class='row'>
+    <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
+    <div class='panel-group'>
+      <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+            <span class="text-muted">查询条件</span>
+            <div class="pull-right">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
-      <div class="panel-body">
-        <form class="form-inline" style="margin-bottom:0">
-          <div class="form-group">
-            <label class="control-label" for="dataName">数据名称
-            </label>
-            <input type="text" class="form-control input-sm" id="dataName" name="dataName" placeholder="请输入数据名称"/>
+        <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
+          <div class="panel-body">
+            <form class="form-inline" style="margin-bottom:0">
+              <div class="form-group">
+                <label class="control-label" for="dataName">数据名称
+                </label>
+                <input type="text" class="form-control input-sm" id="dataName" ng-model='DataName' placeholder="请输入数据名称"/>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="dataName">数据标识符
+                </label>
+                <input type="text" class="form-control input-sm" id="dataName" ng-model='DataSign' placeholder="请输入数据标识符"/>
+              </div>
+              <div class="form-group">
+                <label for="dataClassifyType_query" class="control-label">数据类型</label>
+                <select id="dataClassifyType_query" class="selectpicker" ng-model='DataType'>
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="resourceDept">数据提供方</label>
+                <input type="text" class="form-control input-sm" id="resourceDept" ng-model='DataProvider' placeholder="请选择"/>
+              </div>
+              <div class="form-group">
+                <label for="dataClassifyType_query" class="control-label">数据资源分类</label>
+                <select id="dataClassifyType_query" class="selectpicker" ng-model='DataResourceCategory'>
+                  <option value="">请选择</option>
+                  <option value="2">部门</option>
+                  <option value="1">主题</option>
+                  <option value="3">服务</option>
+                  <option value="test">test</option>
+                </select>
+                <input id="dataClassifyNames_query" class="form-control input-sm" placeholder="请选择" readonly/>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="#createTime_query">创建时间</label>
+                <input type="text" class="form-control input-sm" id="#createTime_query" ng-model='CreateTime' placeholder="请选择"/>
+              </div>
+              <button ng-click='Search()' id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
+                <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+              </button>
+            </form>
           </div>
-          <div class="form-group">
-            <label class="control-label" for="dataName">数据标识符
-            </label>
-            <input type="text" class="form-control input-sm" id="dataName" name="dataName" placeholder="请输入数据标识符"/>
-          </div>
-          <div class="form-group">
-            <label for="dataClassifyType_query" class="control-label">数据类型</label>
-            <select id="dataClassifyType_query" class="selectpicker">
-              <option value="">请选择</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="resourceDept">数据提供方</label>
-            <input type="text" class="form-control input-sm" id="resourceDept" name="resourceDept" placeholder="请选择"  />
-          </div>
-          <div class="form-group">
-            <label for="dataClassifyType_query" class="control-label">数据资源分类</label>
-            <select id="dataClassifyType_query" class="selectpicker">
-              <option value="">请选择</option>
-              <option value="2">部门</option>
-              <option value="1">主题</option>
-              <option value="3">服务</option>
-              <option value="test">test</option>
-            </select>
-            <input id="dataClassifyNames_query" class="form-control input-sm" placeholder="请选择" readonly />
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="#createTime_query">创建时间</label>
-            <input type="text" class="form-control input-sm" id="#createTime_query" name="#createTime_query" placeholder="请选择" />
-          </div>
-          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
-            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="toolbar">
-    <div class="btn-group">
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-pencil"></i>
-      </button>
+  <div class='row'>
+    <div class='panel panel-default panel-patch'>
+      <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+      <div class='panel-body'>
+        <div>
+          <div class='btn-group'>
+            <button ng-click='Update()' class='btn btn-default' type='button'>
+              <i class="fa fa-pencil-square-o"></i>
+            </button>
+          </div>
+          <div class='columns columns-right btn-group pull-right'>
+            <button class='btn btn-default' type='button'>
+              <i class="fa fa-refresh"></i>
+            </button>
+            <div class='keep-open btn-group' title='列'>
+              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                <i class="fa fa-table"></i>
+                <span class='caret'></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- table  -->
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th><input type='checkbox'/></th>
+            <th>数据名称</th>
+            <th>数据标识符</th>
+            <th>数据类型</th>
+            <th>数据资源分类</th>
+            <th>数据提供方</th>
+            <th>数据创建时间</th>
+            <th>关键字说明</th>
+            <th>数据状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="DataInfo in DataInfos">
+            <td><input type="checkbox"/></td>
+            <td>{{ DataInfo.dataName }}</td>
+            <td>{{ DataInfo.dataSn }}</td>
+            <td>{{ DataInfo.dataTypeName }}</td>
+            <td><span title={{DataInfo.dataResourceVo.dataResourceCategoryFullNames}}>{{ DataInfo.dataResourceVo.dataResourceCategoryNames}}</span></td>
+            <td>{{ DataInfo.dataProviderName }}</td>
+            <td>{{ DataInfo.createTime }}</td>
+            <td>{{ DataInfo.keywords }}</td>
+            <td>{{ DataInfo.dataStatusName }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class='pull-right'>
+        <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
+      </div>
+      <!-- table  -->
     </div>
   </div>
-  <table id="table"></table>
 </div>
+
+<script type='text/ng-template' id='dataInfoModal.html'>
+  <div class='modal-header'>
+    <i class="fa fa-server"></i>
+    {{OperationType}}元数据
+    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
+  </div>
+  <div class='modal-body' >
+    <form id="form" class="row form-horizontal" action="" method="POST">
+      <div class="col-xs-12 col-sm-7 col-md-8">
+        <div class="form-group has-feedback">
+          <label for="dataNameShow" class="col-sm-3 control-label">数据名称
+            <span style="color:red">*</span>：</label>
+          <div class="col-sm-8">
+            <input ng-model="Model.dataName" id="dataNameShow" value="民政11" class="form-control" placeholder="请输入数据名称" autocomplete="off" maxlength="32" container=".bootbox"/>
+            <input type="hidden" name="Model.id" value=""/>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="dataSnShow" class="col-sm-3 control-label">数据标识符
+            <span style="color:red">*</span>：</label>
+          <div class="col-sm-8">
+            <input ng-model="Model.dataSn" id="dataSnShow" value="" class="form-control" placeholder="请输入数据标识符" autocomplete="off" maxlength="36" container=".bootbox"/>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-3 control-label">数据类型：</label>
+          <div class="col-sm-8">
+            <div class='inputView'>数据库数据</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="keywordsShow" class="col-sm-3 control-label">关键字说明
+            <span style="color:red">*</span>：</label>
+          <div class="col-sm-8">
+            <input ng-model="Model.keywords" id="keywordsShow" value="11" class="form-control" placeholder="请输入关键字说明" autocomplete="off" maxlength="36" container=".bootbox"/>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="linksShow" class="col-sm-3 control-label">资源链接地址：</label>
+          <div class="col-sm-8">
+            <input ng-model="Model.links" id="linksShow" value="" class="form-control" placeholder="请输入资源链接地址" autocomplete="off" maxlength="36" container=".bootbox"/>
+          </div>
+        </div>
+        <div class="form-group has-feedback" id="dataAddressDiv">
+          <label class="col-sm-3 control-label">
+            <span id="dataAddressLabel">数据地址</span>：</label>
+          <div class="col-sm-8">
+            <div class='inputView'>air0317_2014439611</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label for="dataDescShow" class="col-sm-3 control-label">数据描述
+            <span style="color:red">*</span>：</label>
+          <div class="col-sm-8">
+            <textarea ng-model="Model.dataDesc" id="dataDescShow" maxlength="1000" rows="3" cols="30" class="form-control" placeholder="请输入数据描述" container=".bootbox">111</textarea>
+          </div>
+        </div>
+        <div class="form-group has-feedback" id="dataSizeDiv">
+          <label class="col-sm-3 control-label">
+            <span id="dataSizeLabel">数据大小</span>：</label>
+          <div class="col-sm-8">
+            <div class='inputView'>115641条</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-3 control-label">资源发布日期
+            <span style="color:red">*</span>：</label>
+          <div class="col-sm-8">
+            <div class='inputView'>2016-03-17 15:36:43</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-3 control-label">资源发布人
+            <span style="color:red">*</span>：</label>
+          <div class="col-sm-8">
+            <div class='inputView'>qianzhi1</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback" id="updateTimeDiv">
+          <label class="col-sm-3 control-label">
+            <span id="updateTimeLabel">元数据更新日期</span>：</label>
+          <div class="col-sm-8">
+            <div class='inputView'>2016-03-22 10:16:53</div>
+          </div>
+        </div>
+      </div>
+      <div id="dataEvaluateDiv" class="col-xs-12 col-sm-5 col-md-4">
+        <div class="col-xs-12 ">
+          <p class="h4 text-left">
+            数据接入信息</p>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-5 control-label">前置机编码：</label>
+          <div class="col-sm-7">
+            <div class='inputView'>Q231</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-5 control-label">数据接入单位：</label>
+          <div class="col-sm-7">
+            <div class='inputView'>民政局</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-5 control-label">数据接入时间：</label>
+          <div class="col-sm-7">
+            <div class='inputView'>2016-03-22 10:16:53</div>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <label class="col-sm-5 control-label">数据接入用户：</label>
+          <div class="col-sm-7">
+            <div class='inputView'>231</div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class='modal-footer'>
+    <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
+    <button ng-click='Comfirm()' class='btn btn-primary' type='button'>确认</button>
+  </div>
+</script>
