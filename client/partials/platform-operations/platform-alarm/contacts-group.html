@@ -1,5 +1,5 @@
-<div ass='container-fluid'>
-  <div class=''>
+<div class='container-fluid'>
+  <div class='row'>
     <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
     <div class='panel-group'>
       <div class='panel panel-default panel-patch'>
