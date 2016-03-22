@@ -72,6 +72,14 @@ App.use('/api', data_offline_info);
 var data_visit_info = require('./api/data-visit-info');
 App.use('/api', data_visit_info);
 
+/** server manage*/
+var server_manage = require('./api/server-manage');
+App.use('/api', server_manage);
+
+/** conatcts group*/
+var contacts_group = require('./api/contacts-group');
+App.use('/api', contacts_group);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
@@ -83,7 +91,3 @@ App.use('/api', plat_dept_statistic);
 /** data visit statistic*/
 var data_visit_statistic = require('./api/data-visit-statistic');
 App.use('/api', data_visit_statistic);
-
-/** server manage*/
-var server_manage = require('./api/server-manage');
-App.use('/api', server_manage);
