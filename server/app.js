@@ -44,9 +44,61 @@ App.use('/api', resource_catalog);
 var data_resource = require('./api/data-resource');
 App.use('/api', data_resource);
 
-/** data visit into*/
+/** data info*/
+var data_info = require('./api/data-info');
+App.use('/api', data_info);
+
+/** data authority*/
+var data_authority = require('./api/data-authority');
+App.use('/api', data_authority);
+
+/** data authority apply*/
+var data_authority_apply = require('./api/data-authority-apply');
+App.use('/api', data_authority_apply);
+
+/** data audit info*/
+var data_audit_info = require('./api/data-audit-info');
+App.use('/api', data_audit_info);
+
+/** data release info*/
+var data_release_info = require('./api/data-release-info');
+App.use('/api', data_release_info);
+
+/** data offline info*/
+var data_offline_info = require('./api/data-offline-info');
+App.use('/api', data_offline_info);
+
+/** data visit info*/
 var data_visit_info = require('./api/data-visit-info');
 App.use('/api', data_visit_info);
+
+/** server manage*/
+var server_manage = require('./api/server-manage');
+App.use('/api', server_manage);
+
+/** conatcts group*/
+var contacts_group = require('./api/contacts-group');
+App.use('/api', contacts_group);
+
+/** alarm rule*/
+var alarm_rule = require('./api/alarm-rule');
+App.use('/api', alarm_rule);
+
+/** alarm info*/
+var alarm_info = require('./api/alarm-info');
+App.use('/api', alarm_info);
+
+/** dcm config*/
+var dcm_config = require('./api/dcm-config');
+App.use('/api', dcm_config);
+
+/** system setting category*/
+var sys_setting_category = require('./api/sys-setting-category');
+App.use('/api', sys_setting_category);
+
+/** system dict category*/
+var sys_dict_category = require('./api/sys-dict-category');
+App.use('/api', sys_dict_category);
 
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
@@ -59,7 +111,3 @@ App.use('/api', plat_dept_statistic);
 /** data visit statistic*/
 var data_visit_statistic = require('./api/data-visit-statistic');
 App.use('/api', data_visit_statistic);
-
-/** server manage*/
-var server_manage = require('./api/server-manage');
-App.use('/api', server_manage);

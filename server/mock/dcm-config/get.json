@@ -1,0 +1,89 @@
+[{
+  "accessType": "2",
+  "dcmCode": "Q231",
+  "dcmDepMapVoList": [{
+    "dcmId": "5d5f72f7-870f-4194-aa42-fcdf6ab9ece8",
+    "depId": "15",
+    "depName": "民政局",
+    "id": "111d688f-1d1b-48ef-ab18-e4d42c73e7b7",
+    "limit": null,
+    "offset": null,
+    "order": null,
+    "sort": null
+  }, {
+    "dcmId": "5d5f72f7-870f-4194-aa42-fcdf6ab9ece8",
+    "depId": "mzj_bgs",
+    "depName": "办公室",
+    "id": "72bb5c52-0eef-46f4-8ecc-07f6b3771c9c",
+    "limit": null,
+    "offset": null,
+    "order": null,
+    "sort": null
+  }, {
+    "dcmId": "5d5f72f7-870f-4194-aa42-fcdf6ab9ece8",
+    "depId": "10",
+    "depName": "国土局",
+    "id": "e6ead13d-c7ae-4743-b92d-6702e32f8898",
+    "limit": null,
+    "offset": null,
+    "order": null,
+    "sort": null
+  }],
+  "dcmIp": "192.168.13.231",
+  "dcmName": "192.168.13.231",
+  "depIdList": ["15", "mzj_bgs", "10"],
+  "depIds": "15,mzj_bgs,10",
+  "depNameList": ["民政局", "办公室", "国土局"],
+  "depNames": "民政局,办公室,国土局",
+  "id": "5d5f72f7-870f-4194-aa42-fcdf6ab9ece8",
+  "limit": null,
+  "maintainUser": "231",
+  "offset": null,
+  "order": null,
+  "remark": "",
+  "sort": null
+}, {
+  "accessType": "1",
+  "dcmCode": "Q230",
+  "dcmDepMapVoList": [{
+    "dcmId": "f8ced6c8-c9f4-4118-9b6d-68970d5efc07",
+    "depId": "1",
+    "depName": "安监局",
+    "id": "5864e667-ce5e-4545-b0be-57d4ead276fa",
+    "limit": null,
+    "offset": null,
+    "order": null,
+    "sort": null
+  }, {
+    "dcmId": "f8ced6c8-c9f4-4118-9b6d-68970d5efc07",
+    "depId": "jtj_bgs",
+    "depName": "交通局办公室",
+    "id": "74a012fd-0304-466a-806c-7353ef416fc0",
+    "limit": null,
+    "offset": null,
+    "order": null,
+    "sort": null
+  }, {
+    "dcmId": "f8ced6c8-c9f4-4118-9b6d-68970d5efc07",
+    "depId": "13",
+    "depName": "交通局",
+    "id": "d6325948-f1f9-466b-b21c-3b9362f72a05",
+    "limit": null,
+    "offset": null,
+    "order": null,
+    "sort": null
+  }],
+  "dcmIp": "192.168.13.230",
+  "dcmName": "192.168.13.230",
+  "depIdList": ["1", "jtj_bgs", "13"],
+  "depIds": "1,jtj_bgs,13",
+  "depNameList": ["安监局", "交通局办公室", "交通局"],
+  "depNames": "安监局,交通局办公室,交通局",
+  "id": "f8ced6c8-c9f4-4118-9b6d-68970d5efc07",
+  "limit": null,
+  "maintainUser": "230",
+  "offset": null,
+  "order": null,
+  "remark": "",
+  "sort": null
+}]

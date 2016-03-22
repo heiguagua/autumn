@@ -1,23 +1,29 @@
 'use strict';
-const Express = require('express'),
-      Router = Express.Router(),
-      JsonLoader = require('load-json-file'),
-      Config = require('../config');
+const Router = require('express').Router(),
+  Config = require('../config');
 
 Router.route('/server-manage')
-  .get(function(req, res) {
+  .get(function(request, response) {
     //GET for Read
-    let datas = JsonLoader.sync(Config.path + 'server-manage/get.json');
-    res.json(datas);
-  })
-  .post(function(req, res) {
-    //POST for Create
+    let head = {},
+      body = {};
+    Config.mongodb.open(function(error, database) {
+      // Query total number of pages
+      database.collection('server_manage').count(function(error, result) {
+        head.total = result; // Set protocal.head
+        // Query data info
+        database.collection('server_manage').find({}, {
+          _id: 0
+        }).sort().skip(parseInt(request.query.skip - 1) * 12).limit(parseInt(request.query.limit)).toArray(function(error, documents) {
+          body = documents; // Set protocal.body
+          response.json(Config.protocal(head, body));
+          database.close();
+        });
+      });
+    });
   })
   .put(function(req, res) {
     //PUT for Update
   })
-  .delete(function(req, res) {
-    //DELETE for Delete
-  });
 
 module.exports = Router;

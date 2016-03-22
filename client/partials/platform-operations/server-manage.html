@@ -1,30 +1,85 @@
-<div wiserv-server-manage>
-  <div class="toolbar">
-    <div class="btn-group">
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-eye-open"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-th-list"></i>
-      </button>
+<div class='container-fluid'>
+  <div class='row'>
+    <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
+    <div class='panel-group'>
+      <div class='panel panel-default panel-patch'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+        <div class='panel-body'>
+          <div class='btn-group'>
+            <button ng-click='ShowServerMonitor()' class='btn btn-default' type='button'>
+              <i class="fa fa-eye"></i>
+            </button>
+            <button ng-click='ShowAlarmRule()' class='btn btn-default' type='button'>
+              <i class="fa fa-list-ul"></i>
+            </button>
+          </div>
+          <div class='columns columns-right btn-group pull-right'>
+            <button class='btn btn-default' type='button'>
+              <i class="fa fa-refresh"></i>
+            </button>
+            <div class='keep-open btn-group' title='列'>
+              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                <i class="fa fa-table"></i>
+                <span class='caret'></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- table  -->
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
+            <tr>
+              <th><input type='checkbox'/></th>
+              <th>服务器ID</th>
+              <th>IP地址</th>
+              <th>硬盘使用率</th>
+              <th>CPU使用率</th>
+              <th>内存使用率</th>
+              <th>服务器连接状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="Server in Servers">
+              <td><input type="checkbox"/></td>
+              <td>{{ Server.serverName }}</td>
+              <td>{{ Server.ipAddress }}</td>
+              <td>{{ Server.hdUseRate }}</td>
+              <td>{{ Server.cpuUseRate }}</td>
+              <td>{{ Server.memoryUseRate }}</td>
+              <td>{{ Server.connectStatus }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class='pull-right'>
+          <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
+        </div>
+        <!-- table  -->
+      </div>
     </div>
   </div>
-  <!-- tasty table  -->
-  <div tasty-table bind-resource-callback="getResource" bind-init="init" bind-filters="filterBy">
-    <table class="table table-bordered table-hover table-striped">
-      <thead tasty-thead></thead>
-      <tbody>
-        <tr ng-repeat="row in rows">
-          <td>{{ row.categoryName }}</td>
-          <td>{{ row.nacatalogNameme }}</td>
-          <td>{{ row.catalogCode }}</td>
-          <td>{{ row.parentCode }}</td>
-          <td>{{ row.catalogDesc }}</td>
-          <td>{{ row.activeFlagName }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div tasty-pagination></div>
-  </div>
-  <!-- #tasty table  -->
 </div>
+
+<script type='text/ng-template' id='alarmRuleModal.html'>
+  <div class='modal-header'>
+    {{OperationType}}查看告警规则
+    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
+  </div>
+  <div class='modal-body'></div>
+  <div class='modal-footer'>
+    <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
+    <button ng-click='Confirm()' class='btn btn-primary' type='button'>确认</button>
+  </div>
+</script>
+
+<script type='text/ng-template' id='serverMonitorModal.html'>
+  <div class='modal-header'>
+    {{OperationType}}查看告警详情
+    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
+  </div>
+  <div class='modal-body'></div>
+  <div class='modal-footer'>
+    <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
+    <button ng-click='Confirm()' class='btn btn-primary' type='button'>确认</button>
+  </div>
+</script>

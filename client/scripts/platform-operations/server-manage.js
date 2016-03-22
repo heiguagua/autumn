@@ -1,59 +1,97 @@
 'use strict';
 /* Server Manage Controllers */
 
-var ServerManageController = angular.module('ServerManageController', ['ui.router', 'GlobalModule', 'ServerManageService', 'ServerManageDirective']);
+var ServerManageController = angular.module('ServerManageController', ['ui.router', 'GlobalModule', 'ServerManageService', 'GlobalModule']);
 
 /* Server Manage Controller */
-ServerManageController.controller('ServerManageController.serverManage', ['$scope', 'ServerManageService.http',
-  function($scope, http) {
-    $scope.init = {
-      'count': 5,
-      'page': 1,
-      'sortBy': 'name',
-      'sortOrder': 'dsc',
-      'filterBase': 1
-    };
-    $scope.filterBy = {
-      '': '',
-      '': ''
-    };
-    $scope.getResource = function(params, paramsObj) {
-      return http.fetch().then(function(response) {
-        return {
-          'rows': response.body,
-          'header': [{
-            key: 'serverID',
-            name: '服务器ID'
-          }, {
-            key: 'IPAddress',
-            name: 'IP地址'
-          }, {
-            key: 'hdUseRate',
-            name: '硬盘使用率'
-          }, {
-            key: 'cpuUseRate',
-            name: 'CPU使用率'
-          }, {
-            key: 'memoryUseRate',
-            name: '内存使用率'
-          }, {
-            key: 'connectStatus',
-            name: '服务器连接状态'
-          }],
-          'pagination': {
-            "count": 5,
-            "page": 1,
-            "pages": 7,
-            "size": response.body.length
-          },
-          'sortBy': 'name',
-          'sortOrder': 'asc'
-        }
+ServerManageController.controller('ServerManageController.serverManage', ['$scope', '$q', '$uibModal', 'ServerManageService.http',
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+
+    // Pagination
+    $scope.Paging = {};
+    $scope.Paging.maxSize = 5;
+    $scope.Paging.itemsPerPage = 12;
+    $scope.Paging.pageChanged = function() {
+      _httpParams.skip = $scope.Paging.currentPage;
+      _httpParams.limit = $scope.Paging.itemsPerPage;
+      http.fetchServerManage(_httpParams).then(function(data) {
+        $scope.Servers = data.body;
       });
-    }
+    };
+
+    // Init Pagination Parameters for Http
+    var _httpParams = {};
+    _httpParams.skip = 1;
+    _httpParams.limit = $scope.Paging.itemsPerPage;
+
+    //Init Table
+    http.fetchServerManage(_httpParams).then(function(data) {
+      $scope.Servers = data.body;
+      $scope.Paging.totalItems = data.head.total;
+    });
+
+    // Modal for show server monitor
+    $scope.ShowServerMonitor = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'serverMonitorModal.html',
+        controller: 'ServerManageController.serverMonitorModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+    // Modal for show alarm rule
+    $scope.ShowAlarmRule = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'alarmRuleModal.html',
+        controller: 'ServerManageController.alarmRuleModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
 
   }
 ])
+
+ServerManageController.controller('ServerManageController.serverMonitorModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '';
+    var _modelResult = {};
+    $scope.Confirm = function() {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
+
+ServerManageController.controller('ServerManageController.alarmRuleModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '';
+    var _modelResult = {};
+    $scope.Confirm = function() {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
 
 
 'use strict';
@@ -63,71 +101,24 @@ var ServerManageService = angular.module('ServerManageService', []);
 
 ServerManageService.factory('ServerManageService.http', ['$http', '$q', 'API',
   function($http, $q, API) {
-    function fetch() {
-      var deferred = $q.defer();
-      var promise = deferred.promise;
+    function fetchServerManage(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
       $http.get(
         API.path + '/api/server-manage', {
           withCredentials: true,
-          cache: false
+          cache: false,
+          params: params
         }).success(function(data, status, headers, config) {
-        deferred.resolve(data);
+        Qdefer.resolve(data);
       }).error(function(data, status, headers, config) {
-        console.error(statusa );
-        deferred.reject();
+        console.error(status);
+        Qdefer.reject();
       })
-      return promise;
-    }
+      return Qpromise;
+    };
     return {
-      fetch: fetch
-    }
-  }
-]);
-
-
-'use strict';
-/* Server Manage Directives */
-
-var ServerManageDirective = angular.module('ServerManageDirective', ['ServerManageService']);
-
-// Server Manage Directive
-ServerManageDirective.directive('wiservServerManage', [
-  function() {
-    return {
-      restrict: 'AE',
-      link: function(scope, element, attrs) {
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'state',
-            checkbox: true
-          }, {
-            field: 'serverID',
-            title: '服务器ID'
-          }, {
-            field: 'IPAddress',
-            title: 'IP地址'
-          }, {
-            field: 'hdUseRate',
-            title: '硬盘使用率'
-          }, {
-            field: 'cpuUseRate',
-            title: 'CPU使用率'
-          }, {
-            field: 'memoryUseRate',
-            title: '内存使用率'
-          }, {
-            field: 'connectStatus',
-            title: '服务器连接状态'
-          }],
-          data: [],
-          pagination: true,
-          pageNumber: 1,
-          toolbar: ".toolbar",
-          clickToSelect: true,
-          showRefresh: true,
-          showColumns: true
-        });
-      }
+      fetchServerManage: fetchServerManage
     }
   }
 ]);

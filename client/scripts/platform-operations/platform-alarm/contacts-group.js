@@ -1,12 +1,82 @@
 'use strict';
 /* Contacts Group Controllers */
 
-var ContactsGroupController = angular.module('ContactsGroupController', ['ui.router', 'ContactsGroupService', 'ContactsGroupDirective']);
+var ContactsGroupController = angular.module('ContactsGroupController', ['ui.router', 'ContactsGroupService', 'GlobalModule']);
 
-ContactsGroupController.controller('ContactsGroupController.contactsGroup', ['$scope',
-  function($scope) {}
+ContactsGroupController.controller('ContactsGroupController.contactsGroup', ['$scope', '$q', '$uibModal', 'ContactsGroupService.http',
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+
+    // Pagination
+    $scope.Paging = {};
+    $scope.Paging.maxSize = 5;
+    $scope.Paging.itemsPerPage = 12;
+    $scope.Paging.pageChanged = function() {
+      _httpParams.skip = $scope.Paging.currentPage;
+      _httpParams.limit = $scope.Paging.itemsPerPage;
+      http.fetchContactsGroup(_httpParams).then(function(data) {
+        $scope.ContactUsers = data.body;
+      });
+    };
+
+    // Init Pagination Parameters for Http
+    var _httpParams = {};
+    _httpParams.skip = 1;
+    _httpParams.limit = $scope.Paging.itemsPerPage;
+
+    //Init Table
+    http.fetchContactsGroup(_httpParams).then(function(data) {
+      $scope.ContactUsers = data.body;
+      $scope.Paging.totalItems = data.head.total;
+    });
+
+    // Modal for Create
+    $scope.Create = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'contactsGroupModal.html',
+        controller: 'ContactsGroupController.contactsGroupModal'
+      });
+      modalInstance.result.then(function(_httpParams) {
+        // Save operation by promise
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+
+    // Modal for Update
+    $scope.Update = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'contactsGroupModal.html',
+        controller: 'ContactsGroupController.contactsGroupModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+
+  }
 ])
 
+ContactsGroupController.controller('ContactsGroupController.contactsGroupModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '添加';
+    var _modelResult = {};
+    $scope.Confirm = function() {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
 
 
 'use strict';
@@ -14,63 +84,26 @@ ContactsGroupController.controller('ContactsGroupController.contactsGroup', ['$s
 
 var ContactsGroupService = angular.module('ContactsGroupService', []);
 
-ContactsGroupService.service('ContactsGroupService.contactsGroup', ['$http',
-  function($http) {
-
-  }
-]);
-
-
-
-
-'use strict';
-/* Contacts Group Directives */
-
-var ContactsGroupDirective = angular.module('ContactsGroupDirective', ['ContactsGroupService']);
-
-// Contacts Group Directive
-ContactsGroupDirective.directive('wiservContactsGroup', [
-  function() {
+ContactsGroupService.factory('ContactsGroupService.http', ['$http', '$q', 'API',
+  function($http, $q, API) {
+    function fetchContactsGroup(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.get(
+        API.path + '/api/contacts-group', {
+          withCredentials: true,
+          cache: false,
+          params: params
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
     return {
-      restrict: 'AE',
-      link: function(scope, element, attrs) {
-        element.find('.selectpicker').selectpicker({
-          style: 'btn-default btn-sm',
-          width: 80,
-          liveSearch: false
-        });
-
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'userName',
-            title: '用户名'
-          }, {
-            field: 'realName',
-            title: '姓名'
-          }, {
-            field: 'phoneNumber',
-            title: '手机号'
-          }, {
-            field: 'email',
-            title: 'Email'
-          }],
-          data: [{
-            userName: 'Ahbh',
-            realName: '张三',
-            phoneNumber: '13584452415',
-            email:'sdfsdf@ww.me'
-          }, {
-            userName: 'Ahbh',
-            realName: '张三',
-            phoneNumber: '13584452415',
-            email:'sdfsdf@ww.me'
-          }],
-          pagination: true,
-          pageNumber: 1,
-          showRefresh: true,
-          showColumns: true
-        });
-      }
+      fetchContactsGroup: fetchContactsGroup
     }
   }
 ]);

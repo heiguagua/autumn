@@ -3,7 +3,7 @@
 
 var DataResourceController = angular.module('DataResourceController', ['ui.router', 'DataResourceService', 'GlobalModule']);
 
-DataResourceController.controller('DataResourceController.dataResource', ['$scope', '$q', '$uibModal','DataResourceService.http',
+DataResourceController.controller('DataResourceController.dataResource', ['$scope', '$q', '$uibModal', 'DataResourceService.http',
   function($scope, $q, $uibModal, http) {
     // Promise
     var Qdefer = $q.defer();
@@ -16,7 +16,7 @@ DataResourceController.controller('DataResourceController.dataResource', ['$scop
     $scope.Paging.pageChanged = function() {
       _httpParams.skip = $scope.Paging.currentPage;
       _httpParams.limit = $scope.Paging.itemsPerPage;
-      http.fetchDataResource(_httpParams).then(function(data){
+      http.fetchDataResource(_httpParams).then(function(data) {
         $scope.DataResources = data.body;
       });
     };
@@ -27,16 +27,16 @@ DataResourceController.controller('DataResourceController.dataResource', ['$scop
     _httpParams.limit = $scope.Paging.itemsPerPage;
 
     //Init Table
-    http.fetchDataResource(_httpParams).then(function(data){
+    http.fetchDataResource(_httpParams).then(function(data) {
       $scope.DataResources = data.body;
       $scope.Paging.totalItems = data.head.total;
     });
 
     // Search
-    $scope.Search = function(){
+    $scope.Search = function() {
       _httpParams.categoryName = $scope.CategoryName;
       _httpParams.catalogName = $scope.CatalogName;
-      http.fetchDataResource(_httpParams).then(function(data){
+      http.fetchDataResource(_httpParams).then(function(data) {
         $scope.DataResources = data.body;
       });
     }
@@ -77,10 +77,10 @@ DataResourceController.controller('DataResourceController.dataResourceModal', [
     $scope.Model = {};
     $scope.OperationType = '添加';
     var _modelResult = {};
-    $scope.Confirm = function () {
+    $scope.Confirm = function() {
       $uibModalInstance.close(_modelResult);
     };
-    $scope.Cancel = function () {
+    $scope.Cancel = function() {
       $uibModalInstance.dismiss('cancel');
     };
 
@@ -113,6 +113,7 @@ DataResourceService.factory('DataResourceService.http', ['$http', '$q', 'API',
       })
       return Qpromise;
     };
+
     function saveDataResource(datas) {
       var Qdefer = $q.defer();
       var Qpromise = Qdefer.promise;

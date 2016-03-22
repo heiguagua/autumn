@@ -1,10 +1,65 @@
-<div wiserv-sys-setting-category>
-  <div class="toolbar">
-    <div class="btn-group">
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-pencil"></i>
-      </button>
+<div class='container-fluid'>
+  <div class='row'>
+    <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
+    <div class='panel-group'>
+      <div class='panel panel-default panel-patch'>
+        <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+        <div id='content2' class='panel-collapse collapse in'>
+          <div class='panel-body'>
+            <div>
+              <div class='btn-group'>
+                <button ng-click='Update()' class='btn btn-default' type='button'>
+                  <i class="fa fa-pencil-square-o"></i>
+                </button>
+              </div>
+              <div class='columns columns-right btn-group pull-right'>
+                <button class='btn btn-default' type='button'>
+                  <i class="fa fa-refresh"></i>
+                </button>
+                <div class='keep-open btn-group' title='列'>
+                  <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                    <i class="fa fa-table"></i>
+                    <span class='caret'></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class='table table-bordered table-hover table-striped'>
+            <thead>
+              <tr>
+                <th><input ng-model='SelectAll' type='checkbox'/></th>
+                <th>配置类别编码</th>
+                <th>配置类别名称</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='SysSetting in SysSettings'>
+                <th scope='row'><input ng-checked='SelectAll' type='checkbox'/></th>
+                <td>{{SysSetting.code}}</td>
+                <td>{{SysSetting.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class='pull-right'>
+        <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
+      </div>
+
     </div>
   </div>
-  <table id="table"></table>
 </div>
+
+<script type='text/ng-template' id='sysSettingModal.html'>
+  <div class='modal-header'>
+    {{OperationType}}配置项
+    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
+  </div>
+  <div class='modal-body'></div>
+  <div class='modal-footer'>
+    <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
+    <button ng-click='Confirm()' class='btn btn-primary' type='button'>确认</button>
+  </div>
+</script>
