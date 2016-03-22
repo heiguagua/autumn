@@ -64,6 +64,10 @@ App.use('/api', data_audit_info);
 var data_release_info = require('./api/data-release-info');
 App.use('/api', data_release_info);
 
+/** data offline info*/
+var data_offline_info = require('./api/data-offline-info');
+App.use('/api', data_offline_info);
+
 /** data visit info*/
 var data_visit_info = require('./api/data-visit-info');
 App.use('/api', data_visit_info);
