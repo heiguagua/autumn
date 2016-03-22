@@ -52,6 +52,10 @@ App.use('/api', data_info);
 var data_authority = require('./api/data-authority');
 App.use('/api', data_authority);
 
+/** data authority apply*/
+var data_authority_apply = require('./api/data-authority-apply');
+App.use('/api', data_authority_apply);
+
 /** data visit into*/
 var data_visit_info = require('./api/data-visit-info');
 App.use('/api', data_visit_info);

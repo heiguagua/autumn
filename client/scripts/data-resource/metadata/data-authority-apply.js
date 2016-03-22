@@ -1,78 +1,100 @@
 'use strict';
 /* Data Authority Apply Controllers */
 
-var DataAuthorityApplyController = angular.module('DataAuthorityApplyController', ['ui.router', 'DataAuthorityApplyService', 'DataAuthorityApplyDirective']);
+var DataAuthorityApplyController = angular.module('DataAuthorityApplyController', ['ui.router', 'DataAuthorityApplyService', 'GlobalModule']);
 
-DataAuthorityApplyController.controller('DataAuthorityApplyController.dataAuthorityApply', ['$scope',
-  function($scope) {}
+DataAuthorityApplyController.controller('DataAuthorityApplyController.dataAuthorityApply', ['$scope', '$q', '$uibModal','DataAuthorityApplyService.http',
+function($scope, $q, $uibModal, http) {
+  // Promise
+  var Qdefer = $q.defer();
+  var Qpromise = Qdefer.promise;
+
+  // Pagination
+  $scope.Paging = {};
+  $scope.Paging.maxSize = 5;
+  $scope.Paging.itemsPerPage = 12;
+  $scope.Paging.pageChanged = function() {
+    _httpParams.skip = $scope.Paging.currentPage;
+    _httpParams.limit = $scope.Paging.itemsPerPage;
+    http.fetchDataAuthorityApply(_httpParams).then(function(data){
+      $scope.DataAuthorityApplies = data.body;
+    });
+  };
+
+  // Init Pagination Parameters for Http
+  var _httpParams = {};
+  _httpParams.skip = 1;
+  _httpParams.limit = $scope.Paging.itemsPerPage;
+
+  //Init Table
+  http.fetchDataAuthorityApply(_httpParams).then(function(data){
+    $scope.DataAuthorityApplies = data.body;
+    $scope.Paging.totalItems = data.head.total;
+  });
+
+  // Search
+  $scope.Search = function(){
+    http.fetchDataAuthorityApply(_httpParams).then(function(data){
+      $scope.DataAuthorityApplies = data.body;
+    });
+  }
+
+  // Modal for Update
+  $scope.Audit = function() {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'dataAuthorityApplyModal.html',
+      controller: 'DataAuthorityApplyController.dataAuthorityApplyModal'
+    });
+    modalInstance.result.then(function(item) {
+      _httpParams = item;
+    }, function() {
+      console.info('Modal dismissed');
+    });
+  };
+}
 ])
 
-
+DataAuthorityApplyController.controller('DataAuthorityApplyController.dataAuthorityApplyModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '审核';
+    var _modelResult = {};
+    $scope.Confirm = function () {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
 
 'use strict';
 /* Data Authority Apply Service */
 
 var DataAuthorityApplyService = angular.module('DataAuthorityApplyService', []);
 
-DataAuthorityApplyService.service('DataAuthorityApplyService.dataAuthorityApply', ['$http',
-  function($http) {
-
+DataAuthorityApplyService.factory('DataAuthorityApplyService.http', ['$http', '$q', 'API',
+function($http, $q, API) {
+  function fetchDataAuthorityApply(params) {
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+    $http.get(
+      API.path + '/api/data-authority-apply', {
+        withCredentials: true,
+        cache: false,
+        params: params
+      }).success(function(data, status, headers, config) {
+      Qdefer.resolve(data);
+    }).error(function(data, status, headers, config) {
+      console.error(status);
+      Qdefer.reject();
+    })
+    return Qpromise;
+  };
+  return {
+    fetchDataAuthorityApply: fetchDataAuthorityApply
   }
-]);
-
-
-
-'use strict';
-/* Data Authority Apply Directives */
-
-var DataAuthorityApplyDirective = angular.module('DataAuthorityApplyDirective', ['DataAuthorityApplyService']);
-
-// Data Authority Apply Directive
-DataAuthorityApplyDirective.directive('wiservDataAuthorityApply', [
-  function() {
-    return {
-      restrict: 'AE',
-      link: function(scope, element, attrs) {
-        window.console.log(element.find('#table'));
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'dataName',
-            title: '数据名称'
-          }, {
-            field: 'dataResCatalog',
-            title: '数据资源分类'
-          }, {
-            field: 'applicant',
-            title: '申请人'
-          }, {
-            field: 'applicationDate',
-            title: '申请时间'
-          }, {
-            field: 'applicationStatus',
-            title: '申请状态'
-          }, {
-            field: 'operator',
-            title: '操作'
-          }],
-          data: [{
-            dataName: '资源一',
-            dataResCatalog: '主题：交通局',
-            applicant: '测试人员',
-            applicationDate:'2016-02-10',
-            applicationStatus:'未审核',
-            operator:'<a href='+'"#"'+'>审核</a>'
-          }, {
-            dataName: '资源一',
-            dataResCatalog: '主题：交通局',
-            applicant: '测试人员',
-            applicationDate:'2016-02-10',
-            applicationStatus:'未审核',
-            operator:'<a href='+'"#"'+'>审核</a>'
-          }],
-          pagination: true,
-          pageNumber: 1
-        });
-      }
-    }
-  }
+}
 ]);
