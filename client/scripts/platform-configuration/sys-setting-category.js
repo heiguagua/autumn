@@ -4,48 +4,48 @@
 var SysSettingCategoryController = angular.module('SysSettingCategoryController', ['ui.router', 'SysSettingCategoryService', 'GlobalModule']);
 
 SysSettingCategoryController.controller('SysSettingCategoryController.sysSettingCategory', ['$scope', '$q', '$uibModal', 'SysSettingCategoryService.http',
-function($scope, $q, $uibModal, http) {
-  // Promise
-  var Qdefer = $q.defer();
-  var Qpromise = Qdefer.promise;
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
 
-  // Pagination
-  $scope.Paging = {};
-  $scope.Paging.maxSize = 5;
-  $scope.Paging.itemsPerPage = 12;
-  $scope.Paging.pageChanged = function() {
-    _httpParams.skip = $scope.Paging.currentPage;
+    // Pagination
+    $scope.Paging = {};
+    $scope.Paging.maxSize = 5;
+    $scope.Paging.itemsPerPage = 12;
+    $scope.Paging.pageChanged = function() {
+      _httpParams.skip = $scope.Paging.currentPage;
+      _httpParams.limit = $scope.Paging.itemsPerPage;
+      http.fetchSysSettingCategory(_httpParams).then(function(data) {
+        $scope.SysSettings = data.body;
+      });
+    };
+
+    // Init Pagination Parameters for Http
+    var _httpParams = {};
+    _httpParams.skip = 1;
     _httpParams.limit = $scope.Paging.itemsPerPage;
+
+    //Init Table
     http.fetchSysSettingCategory(_httpParams).then(function(data) {
       $scope.SysSettings = data.body;
+      $scope.Paging.totalItems = data.head.total;
     });
-  };
 
-  // Init Pagination Parameters for Http
-  var _httpParams = {};
-  _httpParams.skip = 1;
-  _httpParams.limit = $scope.Paging.itemsPerPage;
-
-  //Init Table
-  http.fetchSysSettingCategory(_httpParams).then(function(data) {
-    $scope.SysSettings = data.body;
-    $scope.Paging.totalItems = data.head.total;
-  });
-
-  // Modal for Update
-  $scope.Update = function() {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      templateUrl: 'sysSettingModal.html',
-      controller: 'SysSettingCategoryController.sysSettingModal'
-    });
-    modalInstance.result.then(function(item) {
-      _httpParams = item;
-    }, function() {
-      console.info('Modal dismissed');
-    });
-  };
-}
+    // Modal for Update
+    $scope.Update = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'sysSettingModal.html',
+        controller: 'SysSettingCategoryController.sysSettingModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+  }
 ])
 
 

@@ -96,6 +96,10 @@ App.use('/api', dcm_config);
 var sys_setting_category = require('./api/sys-setting-category');
 App.use('/api', sys_setting_category);
 
+/** system dict category*/
+var sys_dict_category = require('./api/sys-dict-category');
+App.use('/api', sys_dict_category);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);

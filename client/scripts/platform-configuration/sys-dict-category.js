@@ -1,13 +1,69 @@
 'use strict';
 /* Sys Dict Category Controllers */
 
-var SysDictCategoryController = angular.module('SysDictCategoryController', ['ui.router', 'SysDictCategoryService', 'SysDictCategoryDirective']);
+var SysDictCategoryController = angular.module('SysDictCategoryController', ['ui.router', 'SysDictCategoryService', 'GlobalModule']);
 
-SysDictCategoryController.controller('SysDictCategoryController.sysDictCategory', ['$scope',
-  function($scope) {}
+SysDictCategoryController.controller('SysDictCategoryController.sysDictCategory', ['$scope', '$q', '$uibModal', 'SysDictCategoryService.http',
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+
+    // Pagination
+    $scope.Paging = {};
+    $scope.Paging.maxSize = 5;
+    $scope.Paging.itemsPerPage = 12;
+    $scope.Paging.pageChanged = function() {
+      _httpParams.skip = $scope.Paging.currentPage;
+      _httpParams.limit = $scope.Paging.itemsPerPage;
+      http.fetchSysDictCategory(_httpParams).then(function(data) {
+        $scope.SysDicts = data.body;
+      });
+    };
+
+    // Init Pagination Parameters for Http
+    var _httpParams = {};
+    _httpParams.skip = 1;
+    _httpParams.limit = $scope.Paging.itemsPerPage;
+
+    //Init Table
+    http.fetchSysDictCategory(_httpParams).then(function(data) {
+      $scope.SysDicts = data.body;
+      $scope.Paging.totalItems = data.head.total;
+    });
+
+    // Modal for Update
+    $scope.Update = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'sysDictModal.html',
+        controller: 'SysDictCategoryController.sysDictModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+  }
 ])
 
 
+
+SysDictCategoryController.controller('SysDictCategoryController.sysDictModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '修改';
+    var _modelResult = {};
+    $scope.Confirm = function() {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
 
 
 'use strict';
@@ -15,53 +71,26 @@ SysDictCategoryController.controller('SysDictCategoryController.sysDictCategory'
 
 var SysDictCategoryService = angular.module('SysDictCategoryService', []);
 
-SysDictCategoryService.service('SysDictCategoryService.sysDictCategory', ['$http',
-  function($http) {
-
-  }
-]);
-
-
-
-
-'use strict';
-/* Sys Dict Category Directives */
-
-var SysDictCategoryDirective = angular.module('SysDictCategoryDirective', ['SysDictCategoryService']);
-
-// Sys Dict Category Directive
-SysDictCategoryDirective.directive('wiservSysDictCategory', [
-  function() {
+SysDictCategoryService.factory('SysDictCategoryService.http', ['$http', '$q', 'API',
+  function($http, $q, API) {
+    function fetchSysDictCategory(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.get(
+        API.path + '/api/sys-dict-category', {
+          withCredentials: true,
+          cache: false,
+          params: params
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
     return {
-      restrict: 'AE',
-      link: function(scope, element, attrs) {
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'state',
-            checkbox: true
-          }, {
-            field: 'code',
-            title: '字典类别'
-          }, {
-            field: 'name',
-            title: '字典类别名称'
-          }],
-          data: [{
-            code: '1',
-            name: '性别'
-          }, {
-            code: '2',
-            name: '证件类型'
-          }, {
-            code: '3',
-            name: '数据大小'
-          }],
-          toolbar: ".toolbar",
-          clickToSelect: true,
-          showRefresh: true,
-          showColumns: true
-        });
-      }
+      fetchSysDictCategory: fetchSysDictCategory
     }
   }
 ]);
