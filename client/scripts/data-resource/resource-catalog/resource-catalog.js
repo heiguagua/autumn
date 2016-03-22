@@ -80,11 +80,31 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       });
     };
 
-    //
-    $scope.CheckedInputArray = [];
-    $scope.Select = function(id ,checked){
-      $scope.CheckedInputArray.push({id:checked});
-      console.log($scope.CheckedInputArray);
+    // Checked item
+    $scope.checkedItemArray = [];
+    $scope.CheckedChange = function(currentInput){
+      switch(currentInput.CheckedStatus){
+        case true: {
+          if(-1 === _.indexOf($scope.checkedItemArray, currentInput.ResourceCatalog.id)){
+            $scope.checkedItemArray.push(currentInput.ResourceCatalog.id);
+          };
+          break;
+        }
+        case false: {
+          _.remove($scope.checkedItemArray, function(checkedItem) {
+            return checkedItem === currentInput.ResourceCatalog.id;
+          });
+          break;
+        }
+        case 'ALL': {
+          console.log('ALL');
+          break;
+        }
+        default: {
+          console.info('Nothing handled');
+        }
+      }
+      console.log($scope.checkedItemArray);
     }
 
 
