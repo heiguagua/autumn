@@ -1,58 +1,108 @@
-<div wiserv-alarm-info>
-  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
-    <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
-      <div class="panel-title" style="font-size: 14px;">
-        <span class="text-muted">查询条件</span>
-        <div class="pull-right">
-          <i class="glyphicon glyphicon-chevron-up"></i>
+<div class='container-fluid'>
+  <div class='row'>
+    <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
+    <div class='panel-group'>
+      <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+            <span class="text-muted">查询条件</span>
+            <div class="pull-right">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </div>
+          </div>
+        </div>
+        <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
+          <div class="panel-body">
+            <form class="form-inline" style="margin-bottom:0">
+              <div class="form-group">
+                <label for="" class="control-label">告警类型</label>
+                <select id="" class="selectpicker" ng-model='AlarmType'>
+                  <option value="">请选择</option>
+                  <option value="2">服务器警告</option>
+                  <option value="1">系统警告</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="">告警名称
+                </label>
+                <input type="text" class="form-control input-sm" id="" ng-model="AlarmName" placeholder="请输入告警名称"/>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">告警状态</label>
+                <select id="" class="selectpicker" ng-model='AlarmStatus'>
+                  <option value="">请选择</option>
+                  <option value="1">未处理</option>
+                  <option value="2">确认</option>
+                  <option value="3">忽略</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="">告警时间</label>
+                <input type="text" class="form-control input-sm" id="" ng-model="AlarmTime"/>
+              </div>
+              <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button" ng-click='Search()'>
+                <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
-      <div class="panel-body">
-        <form class="form-inline" style="margin-bottom:0">
-          <div class="form-group">
-            <label for="" class="control-label">告警类型</label>
-            <select id="" class="selectpicker">
-              <option value="">请选择</option>
-              <option value="2">服务器警告</option>
-              <option value="1">系统警告</option>
-            </select>
+  </div>
+  <div class='row'>
+    <div class='panel panel-default panel-patch'>
+      <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+      <div id='content2' class='panel-collapse collapse in'>
+        <div class='panel-body'>
+          <div>
+            <div class='btn-group'>
+              <button ng-click='Check()' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
+                <i class="fa fa-check-circle"></i>
+              </button>
+              <button ng-click='Ignore()' class='btn btn-default' type='button'>
+                <i class="fa fa-ban"></i>
+              </button>
+            </div>
+            <div class='columns columns-right btn-group pull-right'>
+              <button class='btn btn-default' type='button'>
+                <i class="fa fa-refresh"></i>
+              </button>
+              <div class='keep-open btn-group' title='列'>
+                <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                  <i class="fa fa-table"></i>
+                  <span class='caret'></span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="control-label" for="">告警名称
-            </label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请输入告警名称"/>
-          </div>
-          <div class="form-group">
-            <label for="" class="control-label">告警状态</label>
-            <select id="" class="selectpicker">
-              <option value="">请选择</option>
-              <option value="1">未处理</option>
-              <option value="2">确认</option>
-              <option value="3">忽略</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="">告警时间</label>
-            <input type="text" class="form-control input-sm" id="" name="" />
-          </div>
-          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
-            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
-          </button>
-        </form>
+        </div>
+        <table class='table table-bordered table-hover table-striped'>
+          <thead>
+            <tr>
+              <th><input ng-model='SelectAll' type='checkbox'/></th>
+              <th>告警类型</th>
+              <th>告警名称</th>
+              <th>告警内容</th>
+              <th>告警时间</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='AlarmInfo in AlarmInfos'>
+              <th scope='row'><input ng-checked='SelectAll' type='checkbox'/></th>
+              <td>{{AlarmInfo.alarmTypeName}}</td>
+              <td>{{AlarmInfo.alarmName}}</td>
+              <td>{{AlarmInfo.alarmContent}}</td>
+              <td>{{AlarmInfo.alarmTime}}</td>
+              <td>{{ AlarmInfo.handleStatusName }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-  <div class="toolbar">
-    <div class="btn-group">
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-ok-sign"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-ban-circle"></i>
-      </button>
+
+    <div class='pull-right'>
+      <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
     </div>
   </div>
-  <table id="table"></table>
 </div>

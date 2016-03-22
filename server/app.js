@@ -84,6 +84,10 @@ App.use('/api', contacts_group);
 var alarm_rule = require('./api/alarm-rule');
 App.use('/api', alarm_rule);
 
+/** alarm info*/
+var alarm_info = require('./api/alarm-info');
+App.use('/api', alarm_info);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
