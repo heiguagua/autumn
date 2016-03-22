@@ -1,46 +1,109 @@
 <div wiserv-dcm-config>
-  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
-    <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
-      <div class="panel-title" style="font-size: 14px;">
-        <span class="text-muted">查询条件</span>
-        <div class="pull-right">
-          <i class="glyphicon glyphicon-chevron-up"></i>
+  class='container-fluid'>
+  <div class='row'>
+    <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
+    <div class='panel-group'>
+      <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+            <span class="text-muted">查询条件</span>
+            <div class="pull-right">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
-      <div class="panel-body">
-        <form class="form-inline" style="margin-bottom:0">
-          <div class="form-group">
-            <label class="control-label" for="dataName">前置机编码
-            </label>
-            <input type="text" class="form-control input-sm" id="dataName" name="dataName" placeholder="请输入前置机编码"/>
+        <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
+          <div class="panel-body">
+            <form class="form-inline" style="margin-bottom:0">
+              <div class="form-group">
+                <label class="control-label" for="dataName">前置机编码
+                </label>
+                <input type="text" class="form-control input-sm" id="dataName" ng-model="DcmCode" placeholder="请输入前置机编码"/>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="">前置机名称
+                </label>
+                <input type="text" class="form-control input-sm" id="" ng-model="DcmName" placeholder="请输入前置机名称"/>
+              </div>
+              <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button" ng-click='Search()'>
+                <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+              </button>
+            </form>
           </div>
-          <div class="form-group">
-            <label class="control-label" for="">前置机名称
-            </label>
-            <input type="text" class="form-control input-sm" id="" name="" placeholder="请输入前置机名称"/>
-          </div>
-          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
-            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="toolbar">
-    <div class="btn-group">
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-plus"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-pencil"></i>
-      </button>
-      <button title="" class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-remove"></i>
-      </button>
+  <div class='row'>
+    <div class='panel panel-default panel-patch'>
+      <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+      <div id='content2' class='panel-collapse collapse in'>
+        <div class='panel-body'>
+          <div>
+            <div class='btn-group'>
+              <button ng-click='Create()' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
+                <i class="fa fa-plus-circle"></i>
+              </button>
+              <button ng-click='Update()' class='btn btn-default' type='button'>
+                <i class="fa fa-pencil-square-o"></i>
+              </button>
+              <button ng-click='Delete()' class='btn btn-default' type='button'>
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+            <div class='columns columns-right btn-group pull-right'>
+              <button class='btn btn-default' type='button'>
+                <i class="fa fa-refresh"></i>
+              </button>
+              <div class='keep-open btn-group' title='列'>
+                <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                  <i class="fa fa-table"></i>
+                  <span class='caret'></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class='table table-bordered table-hover table-striped'>
+          <thead>
+            <tr>
+              <th><input ng-model='SelectAll' type='checkbox'/></th>
+              <th>前置机名称</th>
+              <th>前置机编码</th>
+              <th>前置机IP</th>
+              <th>管理人员</th>
+              <th>关联部门</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='Dcm in Dcms'>
+              <th scope='row'><input ng-checked='SelectAll' type='checkbox'/></th>
+              <td>{{Dcm.dcmName}}</td>
+              <td>{{Dcm.dcmCode}}</td>
+              <td>{{Dcm.dcmIp}}</td>
+              <td>{{Dcm.maintainUser}}</td>
+              <td>{{Dcm.depNames}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class='pull-right'>
+      <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
     </div>
   </div>
-  <table id="table"></table>
 </div>
+
+<script type='text/ng-template' id='dcmConfigModal.html'>
+  <div class='modal-header'>
+    {{OperationType}}前置机
+    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
+  </div>
+  <div class='modal-body'></div>
+  <div class='modal-footer'>
+    <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
+    <button ng-click='Confirm()' class='btn btn-primary' type='button'>确认</button>
+  </div>
+</script>

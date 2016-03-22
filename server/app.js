@@ -88,6 +88,11 @@ App.use('/api', alarm_rule);
 var alarm_info = require('./api/alarm-info');
 App.use('/api', alarm_info);
 
+/** dcm config*/
+var dcm_config = require('./api/dcm-config');
+App.use('/api', dcm_config);
+
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
