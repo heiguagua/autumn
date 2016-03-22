@@ -92,6 +92,9 @@ App.use('/api', alarm_info);
 var dcm_config = require('./api/dcm-config');
 App.use('/api', dcm_config);
 
+/** system setting category*/
+var sys_setting_category = require('./api/sys-setting-category');
+App.use('/api', sys_setting_category);
 
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
