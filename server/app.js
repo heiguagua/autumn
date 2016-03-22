@@ -60,6 +60,10 @@ App.use('/api', data_authority_apply);
 var data_audit_info = require('./api/data-audit-info');
 App.use('/api', data_audit_info);
 
+/** data release info*/
+var data_release_info = require('./api/data-release-info');
+App.use('/api', data_release_info);
+
 /** data visit info*/
 var data_visit_info = require('./api/data-visit-info');
 App.use('/api', data_visit_info);

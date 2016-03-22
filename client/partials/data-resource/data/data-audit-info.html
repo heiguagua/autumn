@@ -61,7 +61,6 @@
     <table class="table table-bordered table-hover table-striped">
       <thead>
         <tr>
-          <th><input type='checkbox'/></th>
           <th>数据名称</th>
           <th>数据资源分类</th>
           <th>数据类型</th>
@@ -73,7 +72,6 @@
       </thead>
       <tbody>
         <tr ng-repeat="DataAuditInfo in DataAuditInfos">
-          <td><input type="checkbox"/></td>
           <td>{{ DataAuditInfo.dataName }}</td>
           <td><span title={{DataAuditInfo.dataResourceVo.dataResourceCategoryFullNames}}>{{ DataAuditInfo.dataResourceVo.dataResourceCategoryNames }}</span></td>
           <td>{{ DataAuditInfo.dataTypeName }}</td>
