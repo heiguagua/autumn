@@ -3,7 +3,7 @@
 
 var DataAuthorityController = angular.module('DataAuthorityController', ['ui.router', 'DataAuthorityService', 'GlobalModule']);
 
-DataAuthorityController.controller('DataAuthorityController.dataAuthority', ['$scope', '$q', '$uibModal','DataAuthorityService.http',
+DataAuthorityController.controller('DataAuthorityController.dataAuthority', ['$scope', '$q', '$uibModal', 'DataAuthorityService.http',
   function($scope, $q, $uibModal, http) {
     // Promise
     var Qdefer = $q.defer();
@@ -16,7 +16,7 @@ DataAuthorityController.controller('DataAuthorityController.dataAuthority', ['$s
     $scope.Paging.pageChanged = function() {
       _httpParams.skip = $scope.Paging.currentPage;
       _httpParams.limit = $scope.Paging.itemsPerPage;
-      http.fetchDataAuthority(_httpParams).then(function(data){
+      http.fetchDataAuthority(_httpParams).then(function(data) {
         $scope.DataAuthorities = data.body;
       });
     };
@@ -27,14 +27,14 @@ DataAuthorityController.controller('DataAuthorityController.dataAuthority', ['$s
     _httpParams.limit = $scope.Paging.itemsPerPage;
 
     //Init Table
-    http.fetchDataAuthority(_httpParams).then(function(data){
+    http.fetchDataAuthority(_httpParams).then(function(data) {
       $scope.DataAuthorities = data.body;
       $scope.Paging.totalItems = data.head.total;
     });
 
     // Search
-    $scope.Search = function(){
-      http.fetchDataAuthority(_httpParams).then(function(data){
+    $scope.Search = function() {
+      http.fetchDataAuthority(_httpParams).then(function(data) {
         $scope.DataAuthorities = data.body;
       });
     }
@@ -61,10 +61,10 @@ DataAuthorityController.controller('DataAuthorityController.dataAuthorityModal',
     $scope.Model = {};
     $scope.OperationType = '编辑';
     var _modelResult = {};
-    $scope.Confirm = function () {
+    $scope.Confirm = function() {
       $uibModalInstance.close(_modelResult);
     };
-    $scope.Cancel = function () {
+    $scope.Cancel = function() {
       $uibModalInstance.dismiss('cancel');
     };
 

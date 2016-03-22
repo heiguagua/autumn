@@ -103,7 +103,9 @@
             <td>{{ DataInfo.dataName }}</td>
             <td>{{ DataInfo.dataSn }}</td>
             <td>{{ DataInfo.dataTypeName }}</td>
-            <td><span title={{DataInfo.dataResourceVo.dataResourceCategoryFullNames}}>{{ DataInfo.dataResourceVo.dataResourceCategoryNames}}</span></td>
+            <td>
+              <span title={{DataInfo.dataResourceVo.dataResourceCategoryFullNames}}>{{ DataInfo.dataResourceVo.dataResourceCategoryNames}}</span>
+            </td>
             <td>{{ DataInfo.dataProviderName }}</td>
             <td>{{ DataInfo.createTime }}</td>
             <td>{{ DataInfo.keywords }}</td>
@@ -125,7 +127,7 @@
     {{OperationType}}元数据
     <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
   </div>
-  <div class='modal-body' >
+  <div class='modal-body'>
     <form id="form" class="row form-horizontal" action="" method="POST">
       <div class="col-xs-12 col-sm-7 col-md-8">
         <div class="form-group has-feedback">
@@ -239,6 +241,6 @@
   </div>
   <div class='modal-footer'>
     <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
-    <button ng-click='Comfirm()' class='btn btn-primary' type='button'>确认</button>
+    <button ng-click='Confirm()' class='btn btn-primary' type='button'>确认</button>
   </div>
 </script>

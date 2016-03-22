@@ -1,88 +1,100 @@
 'use strict';
 /* Data Audit Info Controllers */
 
-var DataAuditInfoController = angular.module('DataAuditInfoController', ['ui.router', 'DataAuditInfoService', 'DataAuditInfoDirective']);
+var DataAuditInfoController = angular.module('DataAuditInfoController', ['ui.router', 'DataAuditInfoService', 'GlobalModule']);
 
-DataAuditInfoController.controller('DataAuditInfoController.dataAuditInfo', ['$scope',
-  function($scope) {}
+DataAuditInfoController.controller('DataAuditInfoController.dataAuditInfo', ['$scope', '$q', '$uibModal', 'DataAuditInfoService.http',
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+
+    // Pagination
+    $scope.Paging = {};
+    $scope.Paging.maxSize = 5;
+    $scope.Paging.itemsPerPage = 12;
+    $scope.Paging.pageChanged = function() {
+      _httpParams.skip = $scope.Paging.currentPage;
+      _httpParams.limit = $scope.Paging.itemsPerPage;
+      http.fetchDataAuditInfo(_httpParams).then(function(data) {
+        $scope.DataAuditInfos = data.body;
+      });
+    };
+
+    // Init Pagination Parameters for Http
+    var _httpParams = {};
+    _httpParams.skip = 1;
+    _httpParams.limit = $scope.Paging.itemsPerPage;
+
+    //Init Table
+    http.fetchDataAuditInfo(_httpParams).then(function(data) {
+      $scope.DataAuditInfos = data.body;
+      $scope.Paging.totalItems = data.head.total;
+    });
+
+    // Search
+    $scope.Search = function() {
+      http.fetchDataAuditInfo(_httpParams).then(function(data) {
+        $scope.DataAuditInfos = data.body;
+      });
+    }
+
+    // Modal for Update
+    $scope.Audit = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'dataAuditInfoModal.html',
+        controller: 'DataAuditInfoController.dataAuditInfoModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+  }
 ])
 
+DataAuditInfoController.controller('DataAuditInfoController.dataAuditInfoModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '';
+    var _modelResult = {};
+    $scope.Confirm = function() {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
 
 'use strict';
 /* Data Audit Info Service */
 
 var DataAuditInfoService = angular.module('DataAuditInfoService', []);
 
-DataAuditInfoService.service('DataAuditInfoService.dataAuditInfo', ['$http',
-  function($http) {
-
-  }
-]);
-
-
-'use strict';
-/* Data Audit Info Directives */
-
-var DataAuditInfoDirective = angular.module('DataAuditInfoDirective', ['DataAuditInfoService']);
-
-// Data Audit Info Directive
-DataAuditInfoDirective.directive('wiservDataAuditInfo', [
-  function() {
+DataAuditInfoService.factory('DataAuditInfoService.http', ['$http', '$q', 'API',
+  function($http, $q, API) {
+    function fetchDataAuditInfo(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.get(
+        API.path + '/api/data-audit-info', {
+          withCredentials: true,
+          cache: false,
+          params: params
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
     return {
-      restrict: 'AE',
-      link: function(scope, element, attrs) {
-        element.find('.selectpicker').selectpicker({
-          style: 'btn-default btn-sm',
-          width: 80,
-          liveSearch: false
-        });
-
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'dataName',
-            title: '数据名称'
-          }, {
-            field: 'dataResCatalog',
-            title: '数据资源分类'
-          }, {
-            field: 'dataType',
-            title: '数据类型'
-          }, {
-            field: 'dataCreateTime',
-            title: '创建时间'
-          }, {
-            field: 'creater',
-            title: '创建人'
-          }, {
-            field: 'dataStatus',
-            title: '数据状态'
-          }, {
-            field: 'operator',
-            title: '操作'
-          }],
-          data: [{
-            dataName: '民政',
-            dataResCatalog: '部门：交通局',
-            dataType: '普通文件',
-            dataCreateTime:'2016-02-10 10:15:21',
-            creater:'数据采集员',
-            dataProvider: '民政局',
-            dataStatus:'已接入',
-            operator:'<a href='+'"#"'+'>审核</a>'
-          }, {
-            dataName: '民政',
-            dataResCatalog: '部门：交通局',
-            dataType: '普通文件',
-            dataCreateTime:'2016-02-10 10:15:21',
-            creater:'数据采集员',
-            dataProvider: '民政局',
-            dataStatus:'已接入',
-            operator:'<a href='+'"#"'+'>审核</a>'
-          }],
-          pagination: true,
-          pageNumber: 1
-        });
-      }
+      fetchDataAuditInfo: fetchDataAuditInfo
     }
   }
 ]);
