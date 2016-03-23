@@ -131,3 +131,7 @@ App.use('/api', plat_dept_statistic);
 /** data visit statistic*/
 var data_visit_statistic = require('./api/data-visit-statistic');
 App.use('/api', data_visit_statistic);
+
+/** login user */
+var login_user = require('./api/login-user');
+App.use('/api', login_user);
