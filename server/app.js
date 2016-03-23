@@ -100,6 +100,10 @@ App.use('/api', sys_setting_category);
 var sys_dict_category = require('./api/sys-dict-category');
 App.use('/api', sys_dict_category);
 
+/** system log manage*/
+var log_manage = require('./api/log-manage');
+App.use('/api', log_manage);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);

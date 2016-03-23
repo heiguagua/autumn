@@ -1,46 +1,78 @@
-<div wiserv-log-manage>
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab">未审核</a></li>
-    <li role="presentation"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">已审核</a></li>
-  </ul>
-  <div class="searchBar panel panel-default" style="margin-bottom:5px;">
-    <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
-      <div class="panel-title" style="font-size: 14px;">
-        <span class="text-muted">查询条件</span>
-        <div class="pull-right">
-          <i class="glyphicon glyphicon-chevron-up"></i>
+<div class='container-fluid'>
+  <div class='row'>
+    <uib-alert ng-repeat="alert in Alerts" type="{{alert.type}}" close="CloseAlert($index)" dismiss-on-timeout="{{alert.timeout}}">{{alert.message}}</uib-alert>
+    <div class='panel-group'>
+      <div class="searchBar panel panel-default" style="margin-bottom:5px;">
+        <div class="panel-heading" role="tab" title="点击收缩/展开查询条件" data-toggle="collapse" aria-expanded="true" aria-controls="collapseSearch" href="#collapseSearch" style="cursor: pointer">
+          <div class="panel-title" style="font-size: 14px;">
+            <span class="text-muted">查询条件</span>
+            <div class="pull-right">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
-      <div class="panel-body">
-        <form class="form-inline" style="margin-bottom:0">
-          <div class="form-group">
-            <label for="" class="control-label">日志类别</label>
-            <select id="" class="selectpicker">
-              <option value="">请选择</option>
-              <option value="1">登陆</option>
-              <option value="2">注册</option>
-              <option value="3">保存</option>
-              <option value="3">删除</option>
-              <option value="3">下载</option>
-            </select>
+        <div class="panel-collapse collapse in" id="collapseSearch" role="tabpanel" aria-labelledby="headingSearch">
+          <div class="panel-body">
+            <form class="form-inline" style="margin-bottom:0">
+              <div class="form-group">
+                <label for="" class="control-label">日志类别</label>
+                <select id="" class="selectpicker" ng-model='OperateName'>
+                  <option value="">请选择</option>
+                  <option value="1">登陆</option>
+                  <option value="2">注册</option>
+                  <option value="3">保存</option>
+                  <option value="3">删除</option>
+                  <option value="3">下载</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="">操作人</label>
+                <input type="text" class="form-control input-sm" id="" ng-model="Handler"/>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="">操作时间</label>
+                <input type="text" class="form-control input-sm" id="" ng-model="OperateTime"/>
+              </div>
+              <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button" ng-click='Search()'>
+                <i class="glyphicon glyphicon-search"></i>&nbsp;查询
+              </button>
+            </form>
           </div>
-          <div class="form-group">
-            <label class="control-label" for="">操作人</label>
-            <input type="text" class="form-control input-sm" id="" name="" />
-          </div>
-          <div class="form-group">
-            <label class="control-label" for="">操作时间</label>
-            <input type="text" class="form-control input-sm" id="" name="" />
-          </div>
-          <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button">
-            <i class="glyphicon glyphicon-search"></i>&nbsp;查询
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 
-  <table id="table"></table>
+  <div class='row'>
+    <div class='panel panel-default panel-patch'>
+      <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
+      <div class='panel-body'></div>
+      <!-- table  -->
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th>日志类别</th>
+            <th>操作人</th>
+            <th>IP</th>
+            <th>操作时间</th>
+            <th>操作描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="SystemLog in SystemLogs">
+            <td>{{ SystemLog.operateName }}</td>
+            <td>{{ SystemLog.handler }}</td>
+            <td>{{ SystemLog.userIp }}</td>
+            <td>{{ SystemLog.operateTime }}</td>
+            <td>{{ SystemLog.operateDesc }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class='pull-right'>
+        <uib-pagination boundary-links='true' ng-change='Paging.pageChanged()' total-items='Paging.totalItems' items-per-page='Paging.itemsPerPage' ng-model='Paging.currentPage' max-size='Paging.maxSize' class='pagination' boundary-link-numbers='true' rotate='false' first-text='首页' last-text='末页' next-text='下一页' previous-text='上一页'></uib-pagination>
+      </div>
+      <!-- table  -->
+    </div>
+  </div>
 </div>
