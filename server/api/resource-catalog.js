@@ -25,8 +25,8 @@ Router.route('/resource-catalog')
   /* POST for Create */
   .post(function(request, response) {
     let head = {}, body = {}; // for HTTP Response Protocal
-    Config.mongodb.open(function(err, db) {
-      db.collection('resource_catalog').insertOne(request.body.data, function(error, result){
+    Config.mongodb.open(function(error, database) {
+      database.collection('resource_catalog').insertOne(request.body.data, function(error, result){
         if(1 === result.result.ok){
           head.status = '200';
           head.message = '资源目录创建成功!';
@@ -37,7 +37,7 @@ Router.route('/resource-catalog')
           head.message = '资源目录创建失败!';
           response.json(Config.protocal(head, body));
         }
-        db.close();
+        database.close();
       });
     })
   })
@@ -49,5 +49,23 @@ Router.route('/resource-catalog')
   .delete(function(request, response) {
 
   });
+
+//Find resource catalog by ID
+Router.route('/resource-catalog/:id')
+  .get(function(request, response) {
+    let head = {}, body = {}; // for HTTP Response Protocal
+    Config.mongodb.open(function(error, database) {
+      database.collection('resource_catalog').findOne({id: request.params.id}, function(error, document) {
+        if (document) {
+          response.json(Config.protocal(head, document));
+        } else {
+          head.status = '500';
+          head.message = '资源目录查询失败！';
+          response.json(Config.protocal(head, body));
+        }
+        database.close();
+      })
+    });
+  })
 
 module.exports = Router;

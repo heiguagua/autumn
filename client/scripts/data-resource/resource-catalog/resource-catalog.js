@@ -6,43 +6,80 @@ var ResourceCatalogController = angular.module('ResourceCatalogController', ['ui
 // Main
 ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http',
   function($scope, $q, $uibModal, http) {
-    // Promise
-    var Qdefer = $q.defer();
-    var Qpromise = Qdefer.promise;
-
-    // Pagination
-    $scope.Paging = {};
-    $scope.Paging.maxSize = 5;
-    $scope.Paging.itemsPerPage = 12;
-    $scope.Paging.pageChanged = function() {
-      _httpParams.skip = $scope.Paging.currentPage;
-      _httpParams.limit = $scope.Paging.itemsPerPage;
-      http.fatchResourceCatalog(_httpParams).then(function(data){
-        $scope.ResourceCatalogs = data.body;
-      });
-    };
-
-    // Init Pagination Parameters for Http
+    // Pagination parameter
+    var paging = $scope.Paging = {};
+    var pagingMaxSize = $scope.Paging.maxSize = 5;
+    var pagingItemsPerPage = $scope.Paging.itemsPerPage = 12;
+    // Init pagination parameters for Http
     var _httpParams = {};
     _httpParams.skip = 1;
-    _httpParams.limit = $scope.Paging.itemsPerPage;
+    _httpParams.limit = pagingItemsPerPage;
+    // Array for checked item's ID
+    var checkedItemArray = $scope.CheckedItemArray = [];
 
-    // Init Table
-    http.fatchResourceCatalog(_httpParams).then(function(data){
-      $scope.ResourceCatalogs = data.body;
-      $scope.Paging.totalItems = data.head.total;
-    });
+    /* Init */
+    (function(){
+      // Init Table when first enter current page
+      http.fatchResourceCatalog(_httpParams).then(function(data){
+        $scope.ResourceCatalogs = data.body;
+        $scope.Paging.totalItems = data.head.total;
+      });
+      // Handle the page changed event
+      $scope.Paging.pageChanged = function() {
+        _httpParams.skip = $scope.Paging.currentPage;
+        _httpParams.limit = pagingItemsPerPage;
+        http.fatchResourceCatalog(_httpParams).then(function(data){
+          $scope.ResourceCatalogs = data.body;
+        });
+      };
+    })();
 
-    // Search
+    /* Checked Status */
+    (function(){
+      // Handle single checked
+      $scope.CheckedChange = function(currentItem){
+        if(currentItem.ResourceCatalog.CheckedStatus){
+          if(-1 === _.indexOf(checkedItemArray, currentItem.ResourceCatalog.id)){
+            checkedItemArray.push(currentItem.ResourceCatalog.id);
+          };
+        }else{
+          _.remove(checkedItemArray, function(checkedItem) {
+            return checkedItem === currentItem.ResourceCatalog.id;
+          });
+        }
+        console.log(checkedItemArray);
+      };
+      // Handle multiple checked
+      $scope.$watch('CheckedAll', function(newValue, oldValue){
+        if(newValue){
+          $scope.CheckedItemArray = [];
+          _($scope.ResourceCatalogs).each(function(value, key){
+            value.CheckedStatus = true;
+            checkedItemArray.push(value.id);
+          });
+          console.log(checkedItemArray);
+        }
+        else{
+          if (checkedItemArray.length == 0) return;
+          _($scope.ResourceCatalogs).each(function(value, key){
+            value.CheckedStatus = false;
+          });
+          checkedItemArray = [];
+          console.log(checkedItemArray);
+        }
+      });
+    })();
+
+    /* Search */
     $scope.Search = function(){
       _httpParams.categoryName = $scope.CategoryName;
       _httpParams.catalogName = $scope.CatalogName;
       http.fatchResourceCatalog(_httpParams).then(function(data){
         $scope.ResourceCatalogs = data.body;
       });
-    }
+    };
 
-    // Modal for Create
+    /* Create */
     $scope.Create = function() {
       var modalInstance = $uibModal.open({
         animation: true,
@@ -80,40 +117,38 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
       });
     };
 
-    // Checked item's ID
-    var checkedItemArray = $scope.CheckedItemArray = [];
-    // Handle single checked
-    $scope.CheckedChange = function(currentItem){
-      if(currentItem.ResourceCatalog.CheckedStatus){
-        if(-1 === _.indexOf(checkedItemArray, currentItem.ResourceCatalog.id)){
-          checkedItemArray.push(currentItem.ResourceCatalog.id);
-        };
-      }else{
-        _.remove(checkedItemArray, function(checkedItem) {
-          return checkedItem === currentItem.ResourceCatalog.id;
-        });
+    /* Update */
+    $scope.Update = function(){
+      var checkedItemArrayLength = checkedItemArray.length;
+      if(1 === checkedItemArrayLength){
+        http.findResourceCatalogbyID(checkedItemArray[0]).then(function(data){
+          $scope.UpdateItemData = data.body;
+        }).then(function(){
+          console.log($scope.UpdateItemData);
+          var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'myModalContent.html',
+            controller: 'ResourceCatalogController.resourceCatalogModal'
+          });
+        })
       }
-      console.log(checkedItemArray);
-    };
-    // Handle multiple checked
-    $scope.$watch('CheckedAll', function(newValue, oldValue){
-      if(newValue){
-        $scope.CheckedItemArray = [];
-        _($scope.ResourceCatalogs).each(function(value, key){
-          value.CheckedStatus = true;
-          checkedItemArray.push(value.id);
-        });
-        console.log(checkedItemArray);
+      else if(0 === checkedItemArrayLength){
+        $scope.Alerts = [
+          {type: 'warning', message: '请选择需要进行编辑的数据！', timeout: 1200}
+        ];
+        $scope.CloseAlert = function(index) {
+          $scope.Alerts.splice(index, 1);
+        };
       }
       else{
-        if (checkedItemArray.length == 0) return;
-        _($scope.ResourceCatalogs).each(function(value, key){
-          value.CheckedStatus = false;
-        });
-        checkedItemArray = [];
-        console.log(checkedItemArray);
+        $scope.Alerts = [
+          {type: 'warning', message: '不能同时编辑多条数据！', timeout: 1200}
+        ];
+        $scope.CloseAlert = function(index) {
+          $scope.Alerts.splice(index, 1);
+        };
       }
-    });
+    };
 
   }
 ])
@@ -156,7 +191,6 @@ ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'A
         }).success(function(data, status, headers, config) {
         Qdefer.resolve(data);
       }).error(function(data, status, headers, config) {
-        console.error(status);
         Qdefer.reject();
       })
       return Qpromise;
@@ -172,14 +206,28 @@ ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'A
         }).success(function(data, status, headers, config) {
         Qdefer.resolve(data);
       }).error(function(data, status, headers, config) {
-        console.error(status);
         Qdefer.reject();
       })
       return Qpromise;
     };
+    function findResourceCatalogbyID(id){
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.get(
+        API.path + '/api/resource-catalog/' + id, {
+          withCredentials: true,
+          cache: false
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        Qdefer.reject();
+      })
+      return Qpromise;
+    }
     return {
       fatchResourceCatalog: fetchResourceCatalog,
-      saveResourceCatalog: saveResourceCatalog
+      saveResourceCatalog: saveResourceCatalog,
+      findResourceCatalogbyID: findResourceCatalogbyID
     }
   }
 ]);
