@@ -112,9 +112,13 @@ App.use('/api', sys_dep_manage);
 var user_manage = require('./api/user-manage');
 App.use('/api', user_manage);
 
-/** user manage*/
+/** sys role*/
 var sys_role = require('./api/sys-role');
 App.use('/api', sys_role);
+
+/** data manage*/
+var data_role = require('./api/data-role');
+App.use('/api', data_role);
 
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
