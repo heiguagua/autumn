@@ -81,19 +81,19 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
     };
 
     // Checked item's ID
-    $scope.CheckedItemArray = [];
+    var checkedItemArray = $scope.CheckedItemArray = [];
     // Handle single checked
     $scope.CheckedChange = function(currentItem){
       if(currentItem.ResourceCatalog.CheckedStatus){
-        if(-1 === _.indexOf($scope.CheckedItemArray, currentItem.ResourceCatalog.id)){
-          $scope.CheckedItemArray.push(currentItem.ResourceCatalog.id);
+        if(-1 === _.indexOf(checkedItemArray, currentItem.ResourceCatalog.id)){
+          checkedItemArray.push(currentItem.ResourceCatalog.id);
         };
       }else{
-        _.remove($scope.CheckedItemArray, function(checkedItem) {
+        _.remove(checkedItemArray, function(checkedItem) {
           return checkedItem === currentItem.ResourceCatalog.id;
         });
       }
-      console.log($scope.CheckedItemArray);
+      console.log(checkedItemArray);
     };
     // Handle multiple checked
     $scope.$watch('CheckedAll', function(newValue, oldValue){
@@ -101,17 +101,17 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
         $scope.CheckedItemArray = [];
         _($scope.ResourceCatalogs).each(function(value, key){
           value.CheckedStatus = true;
-          $scope.CheckedItemArray.push(value.id);
+          checkedItemArray.push(value.id);
         });
-        console.log($scope.CheckedItemArray);
+        console.log(checkedItemArray);
       }
       else{
-        if ($scope.CheckedItemArray.length == 0) return;
+        if (checkedItemArray.length == 0) return;
         _($scope.ResourceCatalogs).each(function(value, key){
           value.CheckedStatus = false;
         });
-        $scope.CheckedItemArray = [];
-        console.log($scope.CheckedItemArray);
+        checkedItemArray = [];
+        console.log(checkedItemArray);
       }
     });
 
