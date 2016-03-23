@@ -104,6 +104,10 @@ App.use('/api', sys_dict_category);
 var log_manage = require('./api/log-manage');
 App.use('/api', log_manage);
 
+/** system department manage*/
+var sys_dep_manage = require('./api/sys-dep-manage');
+App.use('/api', sys_dep_manage);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
