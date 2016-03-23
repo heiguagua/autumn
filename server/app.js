@@ -108,6 +108,10 @@ App.use('/api', log_manage);
 var sys_dep_manage = require('./api/sys-dep-manage');
 App.use('/api', sys_dep_manage);
 
+/** user manage*/
+var user_manage = require('./api/user-manage');
+App.use('/api', user_manage);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
