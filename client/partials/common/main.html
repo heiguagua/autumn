@@ -1,4 +1,4 @@
-<div wiserv-main-wrapper>
+﻿<div wiserv-main-wrapper>
   <div id='main'>
     <!-- Left Menu -->
     <aside class='sidebar'>
@@ -163,12 +163,8 @@
 </script>
 
 <script type="text/ng-template" id="signOutModal.html">
-  <div class='modal-header'>
-    退出系统
-    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
-  </div>
   <div class="modal-body">
-    确认退出系统？
+    <i class="fa fa-question-circle" style='font-size:25px;color:#008cba;vertical-align:middle'></i><div style='display: inline-block;padding: 10px;'>是否确认退出系统？</div>
   </div>
   <div class="modal-footer">
     <button type="button" ng-click="Confirm()" class="btn btn-primary" data-dismiss="modal">确认</button>
