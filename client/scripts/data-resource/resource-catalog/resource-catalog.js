@@ -1,10 +1,8 @@
 'use strict';
-/* Resource Catalog Controllers */
+var ResourceCatalogModule = angular.module('ResourceCatalogModule', ['ui.router', 'GlobalModule']);
 
-/* Controller */
-var ResourceCatalogController = angular.module('ResourceCatalogController', ['ui.router', 'GlobalModule', 'ResourceCatalogService']);
-// Main
-ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http',
+/** Main Controller */
+ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http',
   function($scope, $q, $uibModal, http) {
     // Pagination parameter
     var paging = $scope.Paging = {};
@@ -104,7 +102,6 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
           });
           return head.message;
         }).then(function(message){
-          // Pop alert
           $scope.Alerts = [
             {type: 'success', message: message, timeout: 1200}
           ];
@@ -113,7 +110,7 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
           };
         });
       }, function() {
-        console.info('Modal dismissed');
+        // console.info('Modal dismissed');
       });
     };
 
@@ -152,8 +149,9 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalog'
 
   }
 ])
-// Controller for Modal Instance
-ResourceCatalogController.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance',
+
+/** Modal Instance Controller */
+ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance',
   function($scope, $uibModalInstance) {
     $scope.Model = {};
     $scope.OperationType = '添加';
@@ -174,11 +172,8 @@ ResourceCatalogController.controller('ResourceCatalogController.resourceCatalogM
   }
 ])
 
-
-/* Resource Catalog Service */
-var ResourceCatalogService = angular.module('ResourceCatalogService', []);
-//httpGet
-ResourceCatalogService.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
+/* Main Service */
+ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
   function($http, $q, API) {
     function fetchResourceCatalog(params) {
       var Qdefer = $q.defer();

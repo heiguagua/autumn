@@ -9,7 +9,7 @@ var app = angular.module('app', [
   'LoginController',
   'MainController',
   'DashboardController',
-  'ResourceCatalogController',
+  'ResourceCatalogModule',
   'DataResourceController',
   'DataInfoController',
   'DataAuthorityController',
