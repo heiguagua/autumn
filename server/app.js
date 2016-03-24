@@ -100,6 +100,26 @@ App.use('/api', sys_setting_category);
 var sys_dict_category = require('./api/sys-dict-category');
 App.use('/api', sys_dict_category);
 
+/** system log manage*/
+var log_manage = require('./api/log-manage');
+App.use('/api', log_manage);
+
+/** system department manage*/
+var sys_dep_manage = require('./api/sys-dep-manage');
+App.use('/api', sys_dep_manage);
+
+/** user manage*/
+var user_manage = require('./api/user-manage');
+App.use('/api', user_manage);
+
+/** sys role*/
+var sys_role = require('./api/sys-role');
+App.use('/api', sys_role);
+
+/** data manage*/
+var data_role = require('./api/data-role');
+App.use('/api', data_role);
+
 /** plat statistic */
 var plat_statistic = require('./api/plat-statistic');
 App.use('/api', plat_statistic);
@@ -111,3 +131,7 @@ App.use('/api', plat_dept_statistic);
 /** data visit statistic*/
 var data_visit_statistic = require('./api/data-visit-statistic');
 App.use('/api', data_visit_statistic);
+
+/** login user */
+var login_user = require('./api/login-user');
+App.use('/api', login_user);

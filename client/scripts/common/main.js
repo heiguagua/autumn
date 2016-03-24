@@ -1,15 +1,16 @@
 'use strict';
 
 /*============ #Controller ============*/
-var MainController = angular.module('MainController', ['ui.router', 'MainService', 'MainDirective']);
+var MainController = angular.module('MainController', ['ui.router', 'MainService', 'MainDirective', 'GlobalModule']);
 //
-MainController.controller('MainController.main', ['$rootScope', '$scope',
-  function($rootScope, $scope) {
+MainController.controller('MainController.main', ['$rootScope', '$scope', '$q', '$uibModal', 'MainService.http',
+  function($rootScope, $scope, $q, $uibModal, http) {
     $scope.first_menu = null;
     $scope.second_menu = null;
     $scope.third_menu = null;
     $scope.breadcrumbs = [];
 
+    /* Dynamic breadcrumbs */
     $scope.createBread = function(ev) {
       var target = ev.target;
       var menu_title = target.innerText;
@@ -46,8 +47,139 @@ MainController.controller('MainController.main', ['$rootScope', '$scope',
       $scope.breadcrumbs = filteredBread;
     }
 
+    var _httpParams = {};
+
+    /* Update User Info */
+    $scope.UpdateUser = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'updateUserModal.html',
+        controller: 'MainController.updateUserModal'
+      });
+      modalInstance.result.then(function(_httpParams) {
+        http.updateUser(_httpParams).then(function(data) {
+          if ('200' === data.head.status) {
+            return data.head;
+          }
+        }).then(function(head) {
+          return head.message;
+        }).then(function(message) {
+          // Pop alert
+          window.console.log(message);
+          $scope.Alerts = [{
+            type: 'success',
+            message: message,
+            timeout: 1200
+          }];
+          $scope.CloseAlert = function(index) {
+            $scope.Alerts.splice(index, 1);
+          };
+        });
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    }
+
+    /* Update User Pasword */
+    $scope.UpdatePassword = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'updatePasswordModal.html',
+        controller: 'MainController.updatePasswordModal'
+      });
+      modalInstance.result.then(function(_httpParams) {
+        http.updateUser(_httpParams).then(function(data) {
+          if ('200' === data.head.status) {
+            return data.head;
+          }
+        }).then(function(head) {
+          return head.message;
+        }).then(function(message) {
+          // Pop alert
+          window.console.log(message);
+          $scope.Alerts = [{
+            type: 'success',
+            message: message,
+            timeout: 1200
+          }];
+          $scope.CloseAlert = function(index) {
+            $scope.Alerts.splice(index, 1);
+          };
+        });
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    }
+
+    /* Sign Out */
+    $scope.SignOut = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'signOutModal.html',
+        controller: 'MainController.signOutModal'
+      });
+      modalInstance.result.then(function(_httpParams) {
+
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    }
+
+
   }
 ])
+
+/* Update User Modal */
+MainController.controller('MainController.updateUserModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    var _modelResult = {};
+    $scope.Confirm = function () {
+      _modelResult.personName = $scope.Model.personName;
+      _modelResult.gender = $scope.Model.gender;
+      _modelResult.phoneNo = $scope.Model.phoneNo;
+      _modelResult.email = $scope.Model.email;
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
+
+/* Update User Modal */
+MainController.controller('MainController.updatePasswordModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    var _modelResult = {};
+    $scope.Confirm = function () {
+      _modelResult.oldPassword = $scope.Model.oldPassword;
+      _modelResult.newPassword = $scope.Model.newPassword;
+      _modelResult.reNewPassword = $scope.Model.reNewPassword;
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
+
+/* Sign Out Modal */
+MainController.controller('MainController.signOutModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    var _modelResult = {};
+    $scope.Confirm = function () {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
+  }
+]);
 
 
 /*============ #Service ============*/
@@ -63,6 +195,30 @@ MainService.service('MainService.menuTree', ['$http', 'API',
       });
     } else {
       console.error('API Not Found in config.js');
+    }
+  }
+]);
+
+MainService.factory('MainService.http', ['$http', '$q', 'API',
+  function($http, $q, API) {
+    function updateUser(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.put(
+        API.path + '/api/login-user/1', {
+          withCredentials: true,
+          cache: false,
+          params: params
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
+    return {
+      updateUser: updateUser
     }
   }
 ]);

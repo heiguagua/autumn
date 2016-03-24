@@ -1,78 +1,136 @@
 'use strict';
 /* System Role Controllers */
 
-var SysRoleController = angular.module('SysRoleController', ['ui.router', 'SysRoleService', 'SysRoleDirective']);
+var SysRoleController = angular.module('SysRoleController', ['ui.router', 'SysRoleService', 'GlobalModule']);
 
-SysRoleController.controller('SysRoleController.sysRole', ['$scope',
-  function($scope) {}
+SysRoleController.controller('SysRoleController.sysRole', ['$scope', '$q', '$uibModal', 'SysRoleService.http',
+  function($scope, $q, $uibModal, http) {
+    // Promise
+    var Qdefer = $q.defer();
+    var Qpromise = Qdefer.promise;
+
+    // Pagination
+    $scope.Paging = {};
+    $scope.Paging.maxSize = 5;
+    $scope.Paging.itemsPerPage = 12;
+    $scope.Paging.pageChanged = function() {
+      _httpParams.skip = $scope.Paging.currentPage;
+      _httpParams.limit = $scope.Paging.itemsPerPage;
+      http.fetchSystemRoles(_httpParams).then(function(data) {
+        $scope.SystemRoles = data.body;
+      });
+    };
+
+    // Init Pagination Parameters for Http
+    var _httpParams = {};
+    _httpParams.skip = 1;
+    _httpParams.limit = $scope.Paging.itemsPerPage;
+
+    //Init Table
+    http.fetchSystemRoles(_httpParams).then(function(data) {
+      $scope.SystemRoles = data.body;
+      $scope.Paging.totalItems = data.head.total;
+    });
+
+    // Search
+    $scope.Search = function() {
+      _httpParams.roleName = $scope.RoleName;
+      _httpParams.sysTypeName = $scope.SysTypeName;
+      http.fetchSystemRoles(_httpParams).then(function(data) {
+        $scope.SystemRoles = data.body;
+      });
+    }
+
+    // Modal for Create
+    $scope.Create = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'systemRoleModal.html',
+        controller: 'SysRoleController.systemRoleModal'
+      });
+      modalInstance.result.then(function(item) {
+        _httpParams = item;
+        http.saveSystemRole(_httpParams).then(function(data) {
+          if ('200' === data.head.status) {
+            return data.head;
+          }
+        }).then(function(data) {
+          var _httpParams = {};
+          _httpParams.skip = 1;
+          _httpParams.limit = $scope.Paging.itemsPerPage;
+          http.fetchSystemRoles(_httpParams).then(function(data) {
+            $scope.SystemRoles = data.body;
+            $scope.Paging.totalItems = data.head.total;
+            $scope.Paging.currentPage = 1;
+          });
+        });
+      }, function() {
+        console.info('Modal dismissed');
+      });
+    };
+  }
 ])
 
+SysRoleController.controller('SysRoleController.systemRoleModal', [
+  '$scope', '$uibModalInstance',
+  function($scope, $uibModalInstance) {
+    $scope.Model = {};
+    $scope.OperationType = '添加';
+    var _modelResult = {};
+    $scope.Confirm = function() {
+      $uibModalInstance.close(_modelResult);
+    };
+    $scope.Cancel = function() {
+      $uibModalInstance.dismiss('cancel');
+    };
 
+
+  }
+]);
 
 'use strict';
 /* System Role Service */
 
 var SysRoleService = angular.module('SysRoleService', []);
 
-SysRoleService.service('SysRoleService.sysRole', ['$http',
-  function($http) {
+SysRoleService.factory('SysRoleService.http', ['$http', '$q', 'API',
+  function($http, $q, API) {
+    function fetchSystemRoles(params) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.get(
+        API.path + '/api/sys-role', {
+          withCredentials: true,
+          cache: false,
+          params: params
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
 
-  }
-]);
-
-
-
-'use strict';
-/* System Role Directives */
-
-var SysRoleDirective = angular.module('SysRoleDirective', ['SysRoleService']);
-
-// System Role Directive
-SysRoleDirective.directive('wiservSysRole', [
-  function() {
+    function saveSystemRole(datas) {
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.post(
+        API.path + '/api/sys-role', {
+          withCredentials: true,
+          cache: false,
+          data: datas
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        console.error(status);
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
     return {
-      restrict: 'AE',
-      link: function(scope, element, attrs) {
-        element.find('.selectpicker').selectpicker({
-          style: 'btn-default btn-sm',
-          width: 80,
-          liveSearch: false
-        });
-        element.find('#table').bootstrapTable({
-          columns: [{
-            field: 'state',
-            checkbox: true
-          }, {
-            field: 'roleName',
-            title: '角色名'
-          }, {
-            field: 'sysTypeName',
-            title: '角色类型'
-          }, {
-            field: 'roleDesc',
-            title: '角色描述'
-          }],
-          data: [{
-            roleName: '各部门数据主管',
-            sysTypeName: '普通用户',
-            roleDesc: '查看自己部门的数据统计情况，对自己部门可访问的数据进行数据交换'
-          }, {
-            roleName: '各部门数据主管',
-            sysTypeName: '普通用户',
-            roleDesc: '查看自己部门的数据统计情况，对自己部门可访问的数据进行数据交换'
-          }, {
-            roleName: '各部门数据主管',
-            sysTypeName: '普通用户',
-            roleDesc: '查看自己部门的数据统计情况，对自己部门可访问的数据进行数据交换'
-          }],
-          pagination: true,
-          pageNumber: 1,
-          toolbar: ".toolbar",
-          clickToSelect: true,
-          showRefresh: true,
-          showColumns: true
-        });
-      }
+      fetchSystemRoles: fetchSystemRoles,
+      saveSystemRole: saveSystemRole
     }
   }
 ]);
