@@ -144,32 +144,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
           return modalInstance;
         }).then(function(modalInstance){
           modalInstance.result.then(function(_httpParams) {
-            // Save operation by promise
-            http.saveResourceCatalog(_httpParams).then(function(data) {
-              if ('200' === data.head.status) {
-                return data.head;
-              }
-            }).then(function(head) {
-              // Refresh table
-              var _httpParams = {};
-              _httpParams.skip = 1;
-              _httpParams.limit = pagingItemsPerPage;
-              http.fatchResourceCatalog(_httpParams).then(function(data) {
-                $scope.ResourceCatalogs = data.body;
-                $scope.Paging.totalItems = data.head.total;
-                $scope.Paging.currentPage = 1;
-              });
-              return head.message;
-            }).then(function(message){
-              $scope.Alerts = [
-                {type: 'success', message: message, timeout: 1200}
-              ];
-              $scope.CloseAlert = function(index) {
-                $scope.Alerts.splice(index, 1);
-              };
-            }).then(function(){
-              checkedItemArray = []; // Empty checkedItemArray
-            })
+            //TODO Update
           });
         })
       }
@@ -242,7 +217,7 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
       })
       return Qpromise;
     };
-    function UpdateResourceCatalogbyID(id){
+    function updateResourceCatalogbyID(id){
       var Qdefer = $q.defer();
       var Qpromise = Qdefer.promise;
       $http.put(
@@ -260,7 +235,7 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
       fatchResourceCatalog: fetchResourceCatalog,
       saveResourceCatalog: saveResourceCatalog,
       findResourceCatalogbyID: findResourceCatalogbyID,
-      UpdateResourceCatalogbyID: UpdateResourceCatalogbyID
+      updateResourceCatalogbyID: updateResourceCatalogbyID
     }
   }
 ]);
