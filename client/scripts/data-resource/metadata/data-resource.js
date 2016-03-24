@@ -68,6 +68,7 @@ DataResourceController.controller('DataResourceController.dataResource', ['$scop
         console.info('Modal dismissed');
       });
     };
+
   }
 ]);
 
@@ -87,8 +88,6 @@ DataResourceController.controller('DataResourceController.dataResourceModal', [
 
   }
 ]);
-
-
 
 'use strict';
 /* Data Resource Service */

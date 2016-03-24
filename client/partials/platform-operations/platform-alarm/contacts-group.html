@@ -5,16 +5,24 @@
       <div class='panel panel-default panel-patch'>
         <div class='panel-heading' data-toggle='collapse' data-target='#content2'>数据面板</div>
         <div class='panel-body'>
-          <div class='btn-group'>
-            <button ng-click='Create()' title='添加组' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
-              <i class="fa fa-plus-circle"></i>
-            </button>
-            <button ng-click='Update()' title='修改组' class='btn btn-default' type='button'>
-              <i class="fa fa-pencil-square-o"></i>
-            </button>
-            <button ng-click='Delete()' title='删除组' class='btn btn-default' type='button'>
-              <i class="fa fa-trash"></i>
-            </button>
+          <form class="form-inline" style="margin-bottom:0">
+            <div class="form-group">
+              <select id="" class="selectpicker" ng-model='Groups' wiserv-select-picker>
+                <option value="">请选择</option>
+                <option value="2">全部</option>
+              </select>
+            </div>
+            <div class='btn-group'>
+              <button ng-click='Create()' title='添加组' class='btn btn-default' type='button' data-toggle='modal' data-target='#modal'>
+                <i class="fa fa-plus-circle"></i>
+              </button>
+              <button ng-click='Update()' title='修改组' class='btn btn-default' type='button'>
+                <i class="fa fa-pencil-square-o"></i>
+              </button>
+              <button ng-click='Delete()' title='删除组' class='btn btn-default' type='button'>
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
           </div>
           <div class='columns columns-right btn-group pull-right'>
             <button class='btn btn-default' type='button'>

@@ -28,12 +28,11 @@
               </div>
               <div class="form-group">
                 <label for="" class="control-label">数据资源分类</label>
-                <select id="" class="selectpicker">
+                <select id="" class="selectpicker" data-width='80px' wiserv-select-picker>
                   <option value="">请选择</option>
                   <option value="2">部门</option>
                   <option value="1">主题</option>
                   <option value="3">服务</option>
-                  <option value="test">test</option>
                 </select>
                 <input id="dataClassifyNames_query" ng-model='DataResourceCategory' class="form-control input-sm" placeholder="请选择" readonly/>
               </div>
@@ -43,7 +42,7 @@
               </div>
               <div class="form-group">
                 <label class="control-label" for="">创建时间</label>
-                <input type="text" class="form-control input-sm" id="" ng-model="CreateTime" placeholder="请选择"/>
+                <input wiserv-date-time-picker type="text" class="form-control input-sm range-time-picker" id="CreateTime" ng-model='RangeTime' placeholder="请选择"/>
               </div>
               <button id="search" title="查询数据" class="btn btn-primary btn-sm" type="button" ng-click='Search()'>
                 <i class="glyphicon glyphicon-search"></i>&nbsp;查询
