@@ -1,4 +1,4 @@
-/* Resource Catalog Directives */
+/* Global Module */
 var GlobalModule = angular.module('GlobalModule', []);
 // Resource Catalog Directive
 GlobalModule.directive('wiservPagination', ['$timeout', '$compile',
@@ -10,7 +10,7 @@ GlobalModule.directive('wiservPagination', ['$timeout', '$compile',
       },
       template: "<div wiserv-pagination config='Pagin()' class='pull-right'></div>",
       link: function(scope, element, attrs) {
-        scope.pagin().then(function(result){
+        scope.pagin().then(function(result) {
           console.log();
           scope.haha = result;
           var temp = result.total;
@@ -114,3 +114,27 @@ GlobalModule.directive('wiservDateTimePicker', [function() {
     }
   }
 }])
+
+
+// Bootstrap Selectpicker Directive
+GlobalModule.directive('wiservSelectPicker', [function() {
+  return {
+    restrict: 'AE',
+    //  controller: 'GlobalModuleController.dateTimePickerCtrl',
+    scope: {
+      'RangeTime': '='
+    },
+    link: function(scope, element, attrs) {
+      element.selectpicker({
+        style: 'btn-default',
+        size: 4,
+        selectedTextFormat: 'values',
+        title: '请选择',
+        multipleSeparator: ',',
+        actionsBox: true,
+        selectAllText: '全选',
+        deselectAllText: '取消'
+      });
+    }
+  }
+}]);
