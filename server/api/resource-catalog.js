@@ -41,14 +41,6 @@ Router.route('/resource-catalog')
       });
     })
   })
-  /* PUT for Update */
-  .put(function(request, response) {
-
-  })
-  /* DELETE for Delete */
-  .delete(function(request, response) {
-
-  });
 
 //Find resource catalog by ID
 Router.route('/resource-catalog/:id')
@@ -67,5 +59,17 @@ Router.route('/resource-catalog/:id')
       })
     });
   })
+  .put(function(request, response){
+    let head = {}, body = {};
+    Config.mongodb.open(function(error, database){
+      database.collection('resource_catalog').updateOne({id: request.params.id}, request.body.data, function(error, result){
+        console.log(result);
+        database.close();
+      })
+    })
+  })
+  .delete(function(request, response) {
+
+  });
 
 module.exports = Router;

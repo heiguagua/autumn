@@ -144,7 +144,10 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
           return modalInstance;
         }).then(function(modalInstance){
           modalInstance.result.then(function(_httpParams) {
-            //TODO Update
+            http.updateResourceCatalogbyID(_httpParams).then(function(data){
+              // TODO 更新成功之后，需要刷新表格的数据，并显示成功的提示消息
+              console.log(data);
+            })
           });
         })
       }
@@ -217,12 +220,13 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
       })
       return Qpromise;
     };
-    function updateResourceCatalogbyID(id){
+    function updateResourceCatalogbyID(data){
       var Qdefer = $q.defer();
       var Qpromise = Qdefer.promise;
       $http.put(
-        API.path + '/api/resource-catalog/' + id, {
+        API.path + '/api/resource-catalog/' + data.id, {
           withCredentials: true,
+          data: data,
           cache: false
         }).success(function(data, status, headers, config) {
         Qdefer.resolve(data);
