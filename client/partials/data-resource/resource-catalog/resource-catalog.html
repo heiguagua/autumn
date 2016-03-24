@@ -97,18 +97,18 @@
 </div>
 
 
-<script type='text/ng-template' id='myModalContent.html'>
+<script type='text/ng-template' id='template-modal.html'>
   <div class='modal-header'>
     <i class="fa fa-server"></i>
-    {{OperationType}}资源目录
-    <button ng-click='Cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
+    {{Modal.type}}资源目录
+    <button ng-click='Modal.cancel()' type='button' class='close' data-dismiss='modal'>&times;</button>
   </div>
   <div class='modal-body'>
     <form class='form-horizontal'>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>目录类型</label>
         <div class='col-sm-9'>
-          <select ng-model='Model.category' class='form-control'>
+          <select ng-model='Modal.category' class='form-control'>
             <option value='1'>主题</option>
             <option value='3'>服务</option>
           </select>
@@ -116,41 +116,41 @@
       </div>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>资源目录编码</label>
-        <div class='col-sm-9'><input ng-model='Model.catalogCode' type='text' class='form-control' placeholder='必填'></div>
+        <div class='col-sm-9'><input ng-model='Modal.catalogCode' type='text' class='form-control' placeholder='必填'></div>
       </div>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>父节点编码</label>
-        <div class='col-sm-9'><input ng-model='Model.parentCode' type='text' class='form-control' placeholder='必填'></div>
+        <div class='col-sm-9'><input ng-model='Modal.parentCode' type='text' class='form-control' placeholder='必填'></div>
       </div>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>资源目录名称</label>
-        <div class='col-sm-9'><input ng-model='Model.catalogName' type='text' class='form-control' placeholder='必填'></div>
+        <div class='col-sm-9'><input ng-model='Modal.catalogName' type='text' class='form-control' placeholder='必填'></div>
       </div>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>资源目录顺序</label>
-        <div class='col-sm-9'><input ng-model='Model.catalogOrd' type='text' class='form-control' placeholder='必填'></div>
+        <div class='col-sm-9'><input ng-model='Modal.catalogOrd' type='text' class='form-control' placeholder='必填'></div>
       </div>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>资源目录状态</label>
         <div class='col-sm-9'>
           <label class='radio-inline'>
-            <input ng-model='Model.activeFlag' ng-value='1' type='radio'>启用
+            <input ng-model='Modal.activeFlag' ng-value='1' type='radio'>启用
           </label>
           <label class='radio-inline'>
-            <input ng-model='Model.activeFlag' ng-value='0' type='radio'>禁用
+            <input ng-model='Modal.activeFlag' ng-value='0' type='radio'>禁用
           </label>
         </div>
       </div>
       <div class='form-group'>
         <label class='col-sm-3 control-label'>资源目录描述</label>
         <div class='col-sm-9'>
-          <textarea ng-model='Model.catalogDesc' class='form-control' rows='3'></textarea>
+          <textarea ng-model='Modal.catalogDesc' class='form-control' rows='3'></textarea>
         </div>
       </div>
     </div>
     <div class='modal-footer'>
-      <button ng-click='Cancel()' class='btn btn-warning' type='button'>取消</button>
-      <button ng-click='Comfirm()' class='btn btn-primary' type='button'>确认</button>
+      <button ng-click='Modal.cancel()' class='btn btn-warning' type='button'>取消</button>
+      <button ng-click='Modal.comfirm()' class='btn btn-primary' type='button'>确认</button>
     </div>
   </div>
 </script>

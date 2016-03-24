@@ -14,6 +14,8 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
     _httpParams.limit = pagingItemsPerPage;
     // Array for checked item's ID
     var checkedItemArray = $scope.CheckedItemArray = [];
+    // Modal object
+    $scope.Modal = {};
 
     /* Init */
     (function(){
@@ -79,11 +81,18 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
 
     /* Create */
     $scope.Create = function() {
+      $scope.Modal.type = '添加';
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'myModalContent.html',
-        controller: 'ResourceCatalogController.resourceCatalogModal'
+        templateUrl: 'template-modal.html',
+        scope: $scope
       });
+      $scope.Modal.comfirm = function () {
+        modalInstance.close($scope.Modal); // Pass result into modalInstance.result
+      };
+      $scope.Modal.cancel = function () {
+        modalInstance.dismiss();
+      };
       modalInstance.result.then(function(_httpParams) {
         // Save operation by promise
         http.saveResourceCatalog(_httpParams).then(function(data) {
@@ -108,28 +117,63 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
           $scope.CloseAlert = function(index) {
             $scope.Alerts.splice(index, 1);
           };
-        });
-      }, function() {
-        // console.info('Modal dismissed');
+        }).then(function(){
+          checkedItemArray = []; // Empty checkedItemArray
+        })
       });
     };
 
     /* Update */
     $scope.Update = function(){
-      var checkedItemArrayLength = checkedItemArray.length;
-      if(1 === checkedItemArrayLength){
+      if(1 === checkedItemArray.length){
         http.findResourceCatalogbyID(checkedItemArray[0]).then(function(data){
-          $scope.UpdateItemData = data.body;
+          $scope.Modal = data.body;
         }).then(function(){
-          console.log($scope.UpdateItemData);
+          $scope.Modal.type = '修改';
           var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'myModalContent.html',
-            controller: 'ResourceCatalogController.resourceCatalogModal'
+            templateUrl: 'template-modal.html',
+            scope: $scope
+          });
+          $scope.Modal.comfirm = function () {
+            modalInstance.close($scope.Modal);
+          };
+          $scope.Modal.cancel = function () {
+            modalInstance.dismiss();
+          };
+          return modalInstance;
+        }).then(function(modalInstance){
+          modalInstance.result.then(function(_httpParams) {
+            // Save operation by promise
+            http.saveResourceCatalog(_httpParams).then(function(data) {
+              if ('200' === data.head.status) {
+                return data.head;
+              }
+            }).then(function(head) {
+              // Refresh table
+              var _httpParams = {};
+              _httpParams.skip = 1;
+              _httpParams.limit = pagingItemsPerPage;
+              http.fatchResourceCatalog(_httpParams).then(function(data) {
+                $scope.ResourceCatalogs = data.body;
+                $scope.Paging.totalItems = data.head.total;
+                $scope.Paging.currentPage = 1;
+              });
+              return head.message;
+            }).then(function(message){
+              $scope.Alerts = [
+                {type: 'success', message: message, timeout: 1200}
+              ];
+              $scope.CloseAlert = function(index) {
+                $scope.Alerts.splice(index, 1);
+              };
+            }).then(function(){
+              checkedItemArray = []; // Empty checkedItemArray
+            })
           });
         })
       }
-      else if(0 === checkedItemArrayLength){
+      else if(0 === checkedItemArray.length){
         $scope.Alerts = [
           {type: 'warning', message: '请选择需要进行编辑的数据！', timeout: 1200}
         ];
@@ -150,27 +194,6 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
   }
 ])
 
-/** Modal Instance Controller */
-ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalogModal', ['$scope', '$uibModalInstance',
-  function($scope, $uibModalInstance) {
-    $scope.Model = {};
-    $scope.OperationType = '添加';
-    var _modelResult = {};
-    $scope.Comfirm = function () {
-      _modelResult.category = $scope.Model.category;
-      _modelResult.catalogCode = $scope.Model.catalogCode;
-      _modelResult.parentCode = $scope.Model.parentCode;
-      _modelResult.catalogName = $scope.Model.catalogName;
-      _modelResult.catalogOrd = $scope.Model.catalogOrd;
-      _modelResult.activeFlag = $scope.Model.activeFlag;
-      _modelResult.catalogDesc = $scope.Model.catalogDesc;
-      $uibModalInstance.close(_modelResult);
-    };
-    $scope.Cancel = function () {
-      $uibModalInstance.dismiss('cancel');
-    };
-  }
-])
 
 /* Main Service */
 ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
@@ -218,11 +241,26 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
         Qdefer.reject();
       })
       return Qpromise;
-    }
+    };
+    function UpdateResourceCatalogbyID(id){
+      var Qdefer = $q.defer();
+      var Qpromise = Qdefer.promise;
+      $http.put(
+        API.path + '/api/resource-catalog/' + id, {
+          withCredentials: true,
+          cache: false
+        }).success(function(data, status, headers, config) {
+        Qdefer.resolve(data);
+      }).error(function(data, status, headers, config) {
+        Qdefer.reject();
+      })
+      return Qpromise;
+    };
     return {
       fatchResourceCatalog: fetchResourceCatalog,
       saveResourceCatalog: saveResourceCatalog,
-      findResourceCatalogbyID: findResourceCatalogbyID
+      findResourceCatalogbyID: findResourceCatalogbyID,
+      UpdateResourceCatalogbyID: UpdateResourceCatalogbyID
     }
   }
 ]);
