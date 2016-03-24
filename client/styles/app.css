@@ -29,6 +29,14 @@ a {
   width: 16px;
   height: 1px;
 }
+.range-time-picker {
+  width: 300px !important;
+}
+.daterangepicker .calendar th,
+.daterangepicker .calendar td {
+  min-width: 0 !important;
+  font-size: 12px;
+}
 /* button style
 .btn{
 	background-image:none;
