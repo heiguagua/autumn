@@ -94,7 +94,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
           // Refresh table
           var _httpParams = {};
           _httpParams.skip = 1;
-          _httpParams.limit = $scope.Paging.itemsPerPage;
+          _httpParams.limit = pagingItemsPerPage;
           http.fatchResourceCatalog(_httpParams).then(function(data) {
             $scope.ResourceCatalogs = data.body;
             $scope.Paging.totalItems = data.head.total;
