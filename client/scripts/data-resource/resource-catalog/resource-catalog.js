@@ -93,6 +93,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
 
     /* Create */
     $scope.Create = function() {
+      $scope.Modal = {};
       common.popModal($scope, '添加', 'template-modal').result.then(function(_httpParams) {
         // Save operation by promise
         http.saveResourceCatalog(_httpParams).then(function(data) {
@@ -135,7 +136,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
       }
     };
 
-    
+
   }
 ])
 

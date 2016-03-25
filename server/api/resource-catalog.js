@@ -26,8 +26,8 @@ Router.route('/resource-catalog')
   .post(function(request, response) {
     let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(error, database) {
-      database.collection('resource_catalog').insertOne(request.body.data, function(error, result){
-        if(1 === result.result.ok){
+      database.collection('resource_catalog').insertOne(request.body.data, function(error, res){
+        if(1 === res.result.ok){
           head.status = '200';
           head.message = '资源目录创建成功!';
           response.json(Config.protocal(head, body));
