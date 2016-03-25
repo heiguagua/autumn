@@ -2,8 +2,8 @@
 var ResourceCatalogModule = angular.module('ResourceCatalogModule', ['ui.router', 'GlobalModule']);
 
 /** Main Controller */
-ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http',
-  function($scope, $q, $uibModal, http) {
+ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http', 'ResourceCatalogService.common',
+  function($scope, $q, $uibModal, http, common) {
     // Pagination parameter
     var paging = $scope.Paging = {};
     var pagingMaxSize = $scope.Paging.maxSize = 5;
@@ -72,7 +72,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
       });
     })();
 
-    /* Refresh table */
+    /* Refresh */
     $scope.Refresh = function(){
       var _httpParams = {};
       _httpParams.skip = 1;
@@ -115,22 +115,19 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
           }
         }).then(function(head) {
           $scope.Refresh();
-          return head.message;
-        }).then(function(message){
-          $scope.Alerts = [
-            {type: 'success', message: message, timeout: 1200}
-          ];
-          $scope.CloseAlert = function(index) {
-            $scope.Alerts.splice(index, 1);
-          };
+          head.type = 'success';
+          return head;
+        }).then(function(head){
+          common.popAlert($scope, head);
         }).then(function(){
           checkedItemArray = []; // Empty checkedItemArray
         })
       });
-    };
+    };11
 
     /* Update */
     $scope.Update = function(){
+      var alertInfo = {}; // Init alert information
       if(1 === checkedItemArray.length){
         http.findResourceCatalogbyID(checkedItemArray[0]).then(function(data){
           $scope.Modal = data.body;
@@ -158,26 +155,34 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
         })
       }
       else if(0 === checkedItemArray.length){
-        $scope.Alerts = [
-          {type: 'warning', message: '请选择需要进行编辑的数据！', timeout: 1200}
-        ];
-        $scope.CloseAlert = function(index) {
-          $scope.Alerts.splice(index, 1);
-        };
+        alertInfo.type = 'warning';
+        alertInfo.message = '请选择需要进行编辑的数据！';
+        common.popAlert($scope, head);
       }
       else{
-        $scope.Alerts = [
-          {type: 'warning', message: '不能同时编辑多条数据！', timeout: 1200}
-        ];
-        $scope.CloseAlert = function(index) {
-          $scope.Alerts.splice(index, 1);
-        };
+        alertInfo.type = 'warning';
+        alertInfo.message = '不能同时编辑多条数据！';
+        common.popAlert($scope, head);
       }
     };
 
   }
 ])
 
+/* Main Component */
+ResourceCatalogModule.service('ResourceCatalogService.common',[function(){
+    function popAlert(scope, info){
+      scope.Alerts = [
+        {type: info.type, message: info.message, timeout: 1200}
+      ];
+      scope.CloseAlert = function(index) {
+        scope.Alerts.splice(index, 1);
+      };
+    }
+    return {
+      popAlert: popAlert
+    }
+}])
 
 /* Main Service */
 ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
