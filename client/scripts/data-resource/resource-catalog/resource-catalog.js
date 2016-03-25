@@ -12,10 +12,12 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
     var _httpParams = {};
     _httpParams.skip = 1;
     _httpParams.limit = pagingItemsPerPage;
+
     // Array for checked item's ID
     var checkedItemArray = $scope.CheckedItemArray = [];
     // Modal object
     $scope.Modal = {};
+
 
     /* Init */
     (function(){
@@ -70,6 +72,18 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
       });
     })();
 
+    /* Refresh table */
+    $scope.Refresh = function(){
+      var _httpParams = {};
+      _httpParams.skip = 1;
+      _httpParams.limit = pagingItemsPerPage;
+      http.fatchResourceCatalog(_httpParams).then(function(data) {
+        $scope.ResourceCatalogs = data.body;
+        $scope.Paging.totalItems = data.head.total;
+        $scope.Paging.currentPage = 1;
+      });
+    }
+
     /* Search */
     $scope.Search = function(){
       _httpParams.categoryName = $scope.CategoryName;
@@ -100,15 +114,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
             return data.head;
           }
         }).then(function(head) {
-          // Refresh table
-          var _httpParams = {};
-          _httpParams.skip = 1;
-          _httpParams.limit = pagingItemsPerPage;
-          http.fatchResourceCatalog(_httpParams).then(function(data) {
-            $scope.ResourceCatalogs = data.body;
-            $scope.Paging.totalItems = data.head.total;
-            $scope.Paging.currentPage = 1;
-          });
+          $scope.Refresh();
           return head.message;
         }).then(function(message){
           $scope.Alerts = [
