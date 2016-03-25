@@ -27,7 +27,6 @@ Router.route('/resource-catalog')
     let head = {}, body = {}; // for HTTP Response Protocal
     Config.mongodb.open(function(error, database) {
       database.collection('resource_catalog').insertOne(request.body.data, function(error, result){
-        console.log(result);
         if(1 === result.result.ok){
           head.status = '200';
           head.message = '资源目录创建成功!';
@@ -64,7 +63,6 @@ Router.route('/resource-catalog/:id')
     let head = {}, body = {};
     Config.mongodb.open(function(error, database){
       database.collection('resource_catalog').updateOne({id: request.params.id}, request.body.data, function(error, result){
-        console.log(result);
         database.close();
       })
     })

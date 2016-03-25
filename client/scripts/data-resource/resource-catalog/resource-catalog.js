@@ -2,8 +2,8 @@
 var ResourceCatalogModule = angular.module('ResourceCatalogModule', ['ui.router', 'GlobalModule']);
 
 /** Main Controller */
-ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', '$uibModal', 'ResourceCatalogService.http', 'ResourceCatalogService.common',
-  function($scope, $q, $uibModal, http, common) {
+ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['$scope', '$q', 'ResourceCatalogService.http', 'ResourceCatalogService.common',
+  function($scope, $q, http, common) {
     // Pagination parameter
     var paging = $scope.Paging = {};
     var pagingMaxSize = $scope.Paging.maxSize = 5;
@@ -12,12 +12,10 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
     var _httpParams = {};
     _httpParams.skip = 1;
     _httpParams.limit = pagingItemsPerPage;
-
     // Array for checked item's ID
     var checkedItemArray = $scope.CheckedItemArray = [];
     // Modal object
     $scope.Modal = {};
-
 
     /* Init */
     (function(){
@@ -95,19 +93,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
 
     /* Create */
     $scope.Create = function() {
-      $scope.Modal.type = '添加';
-      var modalInstance = $uibModal.open({
-        animation: true,
-        templateUrl: 'template-modal.html',
-        scope: $scope
-      });
-      $scope.Modal.comfirm = function () {
-        modalInstance.close($scope.Modal); // Pass result into modalInstance.result
-      };
-      $scope.Modal.cancel = function () {
-        modalInstance.dismiss();
-      };
-      modalInstance.result.then(function(_httpParams) {
+      common.popModal($scope, '添加', 'template-modal').result.then(function(_httpParams) {
         // Save operation by promise
         http.saveResourceCatalog(_httpParams).then(function(data) {
           if ('200' === data.head.status) {
@@ -132,19 +118,7 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
         http.findResourceCatalogbyID(checkedItemArray[0]).then(function(data){
           $scope.Modal = data.body;
         }).then(function(){
-          $scope.Modal.type = '修改';
-          var modalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: 'template-modal.html',
-            scope: $scope
-          });
-          $scope.Modal.comfirm = function () {
-            modalInstance.close($scope.Modal);
-          };
-          $scope.Modal.cancel = function () {
-            modalInstance.dismiss();
-          };
-          return modalInstance;
+          return common.popModal($scope, '修改', 'template-modal');
         }).then(function(modalInstance){
           modalInstance.result.then(function(_httpParams) {
             http.updateResourceCatalogbyID(_httpParams).then(function(data){
@@ -157,12 +131,12 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
       else if(0 === checkedItemArray.length){
         alertInfo.type = 'warning';
         alertInfo.message = '请选择需要进行编辑的数据！';
-        common.popAlert($scope, head);
+        common.popAlert($scope, alertInfo);
       }
       else{
         alertInfo.type = 'warning';
         alertInfo.message = '不能同时编辑多条数据！';
-        common.popAlert($scope, head);
+        common.popAlert($scope, alertInfo);
       }
     };
 
@@ -170,19 +144,41 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
 ])
 
 /* Main Component */
-ResourceCatalogModule.service('ResourceCatalogService.common',[function(){
-    function popAlert(scope, info){
-      scope.Alerts = [
-        {type: info.type, message: info.message, timeout: 1200}
-      ];
+ResourceCatalogModule.service('ResourceCatalogService.common', ['$uibModal',
+  function($uibModal) {
+    // prompt Alert
+    function popAlert(scope, info) {
+      scope.Alerts = [{
+        type: info.type,
+        message: info.message,
+        timeout: 1200
+      }];
       scope.CloseAlert = function(index) {
         scope.Alerts.splice(index, 1);
       };
-    }
+    };
+    // prompt Modal
+    function popModal(scope, type, templateUrl) {
+      scope.Modal.type = type;
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: templateUrl+'.html',
+        scope: scope
+      });
+      scope.Modal.comfirm = function () {
+        modalInstance.close(scope.Modal);
+      };
+      scope.Modal.cancel = function () {
+        modalInstance.dismiss();
+      };
+      return modalInstance;
+    };
     return {
-      popAlert: popAlert
+      popAlert: popAlert,
+      popModal: popModal
     }
-}])
+  }
+])
 
 /* Main Service */
 ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
