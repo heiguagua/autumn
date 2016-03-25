@@ -178,14 +178,13 @@ ResourceCatalogModule.service('ResourceCatalogService.common', ['$uibModal',
 ])
 
 /* Main Service */
-ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'API',
-  function($http, $q, API) {
+ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', 'Restangular', '$q', 'API',
+  function($http, Restangular, $q, API) {
     function fetchResourceCatalog(params) {
       var Qdefer = $q.defer();
       var Qpromise = Qdefer.promise;
       $http.get(
         API.path + '/api/resource-catalog', {
-          withCredentials: true,
           cache: false,
           params: params
         }).success(function(data, status, headers, config) {
@@ -200,7 +199,6 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
       var Qpromise = Qdefer.promise;
       $http.post(
         API.path + '/api/resource-catalog', {
-          withCredentials: true,
           cache: false,
           data: datas
         }).success(function(data, status, headers, config) {
@@ -215,7 +213,6 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
       var Qpromise = Qdefer.promise;
       $http.get(
         API.path + '/api/resource-catalog/' + id, {
-          withCredentials: true,
           cache: false
         }).success(function(data, status, headers, config) {
         Qdefer.resolve(data);
@@ -229,7 +226,6 @@ ResourceCatalogModule.factory('ResourceCatalogService.http', ['$http', '$q', 'AP
       var Qpromise = Qdefer.promise;
       $http.put(
         API.path + '/api/resource-catalog/' + data.id, {
-          withCredentials: true,
           data: data,
           cache: false
         }).success(function(data, status, headers, config) {

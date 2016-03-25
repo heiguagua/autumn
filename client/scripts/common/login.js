@@ -1,7 +1,7 @@
 'use strict';
 
 /*============ #Controller ============*/
-var LoginController = angular.module('LoginController', ['ui.router', 'LoginService']);
+var LoginController = angular.module('LoginController', ['ui.router']);
 
 LoginController.controller('LoginController.login', ['$rootScope', '$scope', '$state', 'HttpAuth',
   function($rootScope, $scope, $state, HttpAuth) {
@@ -27,12 +27,12 @@ LoginController.controller('LoginController.login', ['$rootScope', '$scope', '$s
 
 
 /*============ #Service ============*/
-var LoginService = angular.module('LoginService',['ngResource']);
-
-LoginService.factory('HttpAuth', ['$resource',
-  function($resource) {
-    return $resource('http://localhost:5000/api/auth', {}, {
-      withCredentials: true
-    });
-  }
-]);
+// var LoginService = angular.module('LoginService',['ngResource']);
+//
+// LoginService.factory('HttpAuth', ['$resource',
+//   function($resource) {
+//     return $resource('http://localhost:5000/api/auth', {}, {
+//       withCredentials: true
+//     });
+//   }
+// ]);

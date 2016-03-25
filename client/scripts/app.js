@@ -2,10 +2,10 @@
 /* Bootstrap Application */
 
 var app = angular.module('app', [
-  'ui.router',
   'Config',
+  'ui.router',
+  'restangular',
   'ui.bootstrap',
-  'ngTasty',
   'LoginController',
   'MainController',
   'DashboardController',
@@ -36,9 +36,11 @@ var app = angular.module('app', [
   'DataVisitStatisticController'
 ]);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'RestangularProvider', function($stateProvider, $urlRouterProvider, $locationProvider, RestangularProvider) {
   $locationProvider.html5Mode(false);
   $urlRouterProvider.otherwise('/login');
+  RestangularProvider.setBaseUrl('http://localhost:5000');
+  RestangularProvider.setDefaultHttpFields({withCredentials: true, cache: false});
   $stateProvider
     .state('login', {
       url: '/login',
