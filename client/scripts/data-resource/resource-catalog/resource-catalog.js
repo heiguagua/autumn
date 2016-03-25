@@ -113,7 +113,6 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
 
     /* Update */
     $scope.Update = function(){
-      var alertInfo = {}; // Init alert information
       if(1 === checkedItemArray.length){
         http.findResourceCatalogbyID(checkedItemArray[0]).then(function(data){
           $scope.Modal = data.body;
@@ -129,17 +128,14 @@ ResourceCatalogModule.controller('ResourceCatalogController.resourceCatalog', ['
         })
       }
       else if(0 === checkedItemArray.length){
-        alertInfo.type = 'warning';
-        alertInfo.message = '请选择需要进行编辑的数据！';
-        common.popAlert($scope, alertInfo);
+        common.popAlert($scope, {type:'warning', message:'请选择需要进行编辑的数据！'});
       }
       else{
-        alertInfo.type = 'warning';
-        alertInfo.message = '不能同时编辑多条数据！';
-        common.popAlert($scope, alertInfo);
+        common.popAlert($scope, {type:'warning', message:'不能同时编辑多条数据！'});
       }
     };
 
+    
   }
 ])
 
