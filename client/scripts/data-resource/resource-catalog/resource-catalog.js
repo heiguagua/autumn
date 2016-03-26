@@ -57,7 +57,7 @@ ResourceCatalog.controller('ResourceCatalog.Controller.Main', ['$scope', '$q', '
           checkedItemArray = []; // Empty checkedItemArray
         })
       });
-    };11
+    };
 
     /* Update */
     $scope.Update = function(){
@@ -69,8 +69,17 @@ ResourceCatalog.controller('ResourceCatalog.Controller.Main', ['$scope', '$q', '
         }).then(function(modalInstance){
           modalInstance.result.then(function(_httpParams) {
             Http.updateResourceCatalogbyID(_httpParams).then(function(result){
-              // TODO 更新成功之后，需要刷新表格的数据，并显示成功的提示消息
-              console.log(result);
+              if ('200' === result.data.head.status) {
+                return result.data.head;
+              }
+            }).then(function(head) {
+              $scope.Refresh();
+              head.type = 'success';
+              return head;
+            }).then(function(head){
+              Component.popAlert($scope, head);
+            }).then(function(){
+              checkedItemArray = []; // Empty checkedItemArray
             })
           });
         })
@@ -81,6 +90,33 @@ ResourceCatalog.controller('ResourceCatalog.Controller.Main', ['$scope', '$q', '
       else{
         Component.popAlert($scope, {type:'warning', message:'不能同时编辑多条数据！'});
       }
+    };
+
+    /* Delete */
+    $scope.Delete = function(){
+      if(checkedItemArray.length){
+        Http.deleteResourceCatalogByIDs(checkedItemArray).then(function(result){
+          if ('200' === result.data.head.status) {
+            return result.data.head;
+          }
+        }).then(function(head) {
+          $scope.Refresh();
+          head.type = 'success';
+          return head;
+        }).then(function(head){
+          Component.popAlert($scope, head);
+        }).then(function(){
+          checkedItemArray = []; // Empty checkedItemArray
+        })
+      }
+      else{
+        Component.popAlert($scope, {type:'warning', message:'请选择需要删除的数据！'});
+      }
+    };
+
+    /* 切换 */
+    $scope.Switch = function(){
+
     };
 
     /* Initialization Code Block*/
@@ -175,31 +211,38 @@ ResourceCatalog.service('ResourceCatalog.Service.Component', ['$uibModal',
 /* HTTP */
 ResourceCatalog.factory('ResourceCatalog.Service.Http', ['$http', '$q', 'API',
   function($http, $q, API) {
+    var path = API.path;
     function fetchResourceCatalog(params) {
       return $http.get(
-        API.path + '/api/resource-catalog', {params: params}
+        path + '/api/resource-catalog', {params: params}
       )
     };
     function saveResourceCatalog(data) {
       return $http.post(
-        API.path + '/api/resource-catalog', {data: data}
+        path + '/api/resource-catalog', {data: data}
       )
     };
     function findResourceCatalogbyID(id){
       return $http.get(
-        API.path + '/api/resource-catalog/' + id
+        path + '/api/resource-catalog/' + id
       )
     };
     function updateResourceCatalogbyID(data){
       return $http.put(
-        API.path + '/api/resource-catalog/' + data.id, {data: data}
+        path + '/api/resource-catalog/' + data.id, {data: data}
+      )
+    };
+    function deleteResourceCatalogByIDs(data){
+      return $http.delete(
+        path + '/api/resource-catalog/', {data: data}
       )
     };
     return {
       fatchResourceCatalog: fetchResourceCatalog,
       saveResourceCatalog: saveResourceCatalog,
       findResourceCatalogbyID: findResourceCatalogbyID,
-      updateResourceCatalogbyID: updateResourceCatalogbyID
+      updateResourceCatalogbyID: updateResourceCatalogbyID,
+      deleteResourceCatalogByIDs: deleteResourceCatalogByIDs
     }
   }
 ]);
