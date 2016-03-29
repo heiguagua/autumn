@@ -9,7 +9,7 @@ var app = angular.module('app', [
   'MainController',
   'DashboardController',
   'ResourceCatalog',
-  'DataResourceController',
+  'DataResource',
   'DataInfoController',
   'DataAuthorityController',
   'DataAuthorityApplyController',
@@ -63,7 +63,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
       .state('main.data-resource', {
         url: '/data-resource',
         templateUrl: 'partials/data-resource/metadata/data-resource.html',
-        controller: 'DataResourceController.dataResource'
+        controller: 'DataResource.Controller.dataResource'
       })
       .state('main.data-info', {
         url: '/data-info',
